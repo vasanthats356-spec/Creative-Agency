@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <title>Creative Agency — Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #faf7f2;
+      --white: #ffffff;
+      --ink: #1a1625;
+      --ink-2: #4a4358;
+      --ink-3: #6f6880;
+      --violet: #7c3aed;
+      --violet-2: #a78bfa;
+      --violet-3: #f3edff;
+      --border: #ebe6dd;
+      --shadow: 0 18px 50px rgba(26,22,37,.07);
+      --shadow-hi: 0 28px 70px rgba(26,22,37,.14);
+      --input-bg: #faf7f2;
+      --input-bd: #ebe6dd;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif; }
+    body {
+      background: var(--paper);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    #header-placeholder { width: 100%; flex-shrink: 0; }
+    #footer-placeholder { width: 100%; flex-shrink: 0; margin-top: auto; }
+    .main-wrapper {
+      max-width: 1140px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      overflow-x: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .login-form-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+      width: 100%;
+      flex: 1;
+    }
+    .login-form-card {
+      display: flex;
+      flex-direction: column;
+      max-width: 940px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow-hi);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+    .login-form-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--violet), var(--violet-2));
+    }
+    .login-form-visual {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1a1625 0%, #2b2440 45%, #4c1d95 100%);
+      padding: 2rem 1.5rem;
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      border-bottom: 3px solid var(--violet);
+    }
+    .login-form-visual::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,139,250,.4), transparent 70%);
+      pointer-events: none;
+    }
+    .login-form-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -50px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,.35), transparent 70%);
+      pointer-events: none;
+    }
+    .login-visual-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 340px;
+    }
+    .login-visual-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      font-family: 'Sora', sans-serif;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--violet-2);
+    }
+    .login-visual-badge i {
+      font-size: .58rem;
+      color: #4ade80;
+      animation: loginPulse 2s ease-in-out infinite;
+    }
+    @keyframes loginPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    .login-visual-icon {
+      width: 76px; height: 76px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      color: #fff;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      animation: loginFloat 4s ease-in-out infinite;
+    }
+    @keyframes loginFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .login-form-visual h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin: 0;
+    }
+    .login-form-visual h2 em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--violet-2);
+    }
+    .login-form-visual p {
+      font-size: .88rem;
+      color: #c7c1d6;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .login-visual-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+      text-align: left;
+      width: 100%;
+      list-style: none;
+    }
+    .login-visual-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .82rem;
+      color: #c7c1d6;
+      line-height: 1.5;
+    }
+    .login-visual-list li i {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(167,139,250,.18);
+      color: var(--violet-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .55rem;
+      flex-shrink: 0;
+    }
+
+    .login-form-content {
+      flex: 1;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--white);
+      text-align: center;
+    }
+    .login-form-heading {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -.025em;
+    }
+    .login-form-subhead {
+      font-size: .88rem;
+      color: var(--ink-3);
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .login-form-subhead strong { color: var(--violet); font-weight: 700; }
+
+    .login-global-error,
+    .login-global-success {
+      display: none;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: .8rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .login-global-error {
+      background: #fdecea;
+      color: #a02622;
+      border: 1px solid #f5c6c2;
+      border-left: 4px solid #c0392b;
+    }
+    .login-global-success {
+      background: #edf7ee;
+      color: #1f5a2e;
+      border: 1px solid #a8d5a8;
+      border-left: 4px solid #4caf50;
+    }
+    .login-global-error.show,
+    .login-global-success.show { display: block; }
+    .login-global-error i,
+    .login-global-success i { margin-right: 6px; }
+
+    .login-demo-hint {
+      background: var(--violet-3);
+      border: 1px dashed #d9c8f5;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      font-size: .75rem;
+      color: var(--ink-2);
+      line-height: 1.8;
+      text-align: left;
+    }
+    .login-demo-hint strong {
+      color: var(--violet);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .login-demo-hint code {
+      background: var(--white);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: .72rem;
+      border: 1px solid var(--border);
+      font-family: 'Inter', monospace;
+    }
+
+    .login-google-row {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: .86rem;
+      transition: all .2s ease;
+      border-radius: 10px;
+      padding: 11px 16px;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-bd);
+      justify-content: center;
+      text-decoration: none;
+    }
+    .login-google-row:hover {
+      background: #fff;
+      border-color: var(--violet);
+      box-shadow: 0 4px 14px rgba(124,58,237,.18);
+      transform: translateY(-1px);
+    }
+    .login-google-icon {
+      display: inline-flex;
+      width: 1.35rem; height: 1.35rem;
+      flex-shrink: 0;
+    }
+    .login-google-icon svg { width: 100%; height: 100%; display: block; }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin: 4px 0 18px;
+      justify-content: center;
+    }
+    .login-divider hr {
+      flex: 1;
+      border: none;
+      height: 1px;
+      background: var(--border);
+    }
+    .login-divider span {
+      color: var(--ink-3);
+      font-family: 'Sora', sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .login-input-group {
+      position: relative;
+      margin-bottom: 14px;
+      width: 100%;
+    }
+    .login-input-group > i.field-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--violet);
+      font-size: .9rem;
+      width: 1.1rem;
+      text-align: center;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .login-input-group input,
+    .login-input-group select {
+      width: 100%;
+      padding: 0.78rem 2.6rem 0.78rem 2.5rem;
+      border: 1.5px solid var(--input-bd);
+      border-radius: 10px;
+      font-size: 16px;
+      background: var(--input-bg);
+      transition: .18s;
+      outline: none;
+      color: var(--ink);
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .login-input-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 2.6rem;
+      background-image: url("ca6.webp");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 12px;
+    }
+    .login-input-group input:focus,
+    .login-input-group select:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(124,58,237,.14);
+      background: #fff;
+    }
+    .login-input-group input::placeholder { color: #a8a2b8; font-weight: 400; }
+    .login-input-group.has-error input,
+    .login-input-group.has-error select {
+      border-color: #ef4444;
+      background: rgba(239,68,68,.03);
+    }
+
+    .login-password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--ink-3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      transition: all .2s ease;
+      z-index: 3;
+    }
+    .login-password-toggle:hover {
+      background: var(--violet-3);
+      color: var(--violet);
+    }
+
+    .login-error-msg {
+      color: #c0392b;
+      font-size: .74rem;
+      font-weight: 500;
+      margin-top: -6px;
+      margin-bottom: 10px;
+      display: none;
+      padding-left: 0.4rem;
+      text-align: left;
+      line-height: 1.4;
+    }
+    .login-error-msg.show { display: block; }
+
+    .login-row-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 0 20px;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .login-row-options.has-error { margin-bottom: 6px; }
+
+    .login-remember {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: var(--ink-2);
+      font-weight: 500;
+      font-size: .82rem;
+      user-select: none;
+    }
+    .login-remember input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--violet);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .login-forgot-link {
+      color: var(--violet);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: .82rem;
+      transition: color .2s ease;
+    }
+    .login-forgot-link:hover {
+      color: #6d28d9;
+      text-decoration: underline;
+    }
+
+    .login-btn-wrapper {
+      display: flex;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+    .login-submit-btn {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(135deg, var(--violet), #6d28d9);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      color: #fff;
+      cursor: pointer;
+      transition: all .35s ease;
+      letter-spacing: .04em;
+      box-shadow: 0 8px 24px rgba(124,58,237,.35);
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transition: left .5s ease;
+    }
+    .login-submit-btn:hover::before { left: 100%; }
+    .login-submit-btn:hover {
+      background: linear-gradient(135deg, #6d28d9, #5b21b6);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(124,58,237,.5);
+    }
+    .login-submit-btn:disabled {
+      opacity: .85;
+      cursor: wait;
+      transform: none;
+    }
+
+    .login-signup-text {
+      text-align: center;
+      font-size: .85rem;
+      color: var(--ink-3);
+    }
+    .login-signup-text a {
+      color: var(--violet);
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .login-signup-text a:hover {
+      color: #6d28d9;
+      text-decoration: underline;
+    }
+
+    @media (min-width: 768px) {
+      .login-form-card { flex-direction: row; min-height: 620px; }
+      .login-form-visual {
+        flex: 0.9;
+        min-height: 300px;
+        padding: 2.5rem 2rem;
+        border-bottom: none;
+        border-right: 3px solid var(--violet);
+      }
+      .login-form-content {
+        padding: 2.5rem 2.5rem 2.5rem 2rem;
+        flex: 1.1;
+        text-align: left;
+      }
+      .login-form-heading { font-size: 1.9rem; }
+      .login-form-subhead { font-size: .92rem; margin-bottom: 24px; }
+      .login-divider { justify-content: flex-start; }
+      .login-google-row { justify-content: flex-start; }
+      .login-form-visual h2 { font-size: 1.7rem; }
+      .login-form-visual p { font-size: .92rem; }
+    }
+    @media (max-width: 767px) {
+      .login-form-wrapper { padding: 1.5rem 0; }
+      .login-form-card {
+        max-width: 460px;
+        margin: 0 auto;
+        border-radius: 18px;
+      }
+      .login-form-content { padding: 2rem 1.5rem; text-align: center; }
+    }
+    @media (max-width: 420px) {
+      .login-form-content { padding: 1.5rem 1rem; }
+      .login-form-heading { font-size: 1.4rem; }
+      .login-form-subhead { font-size: .8rem; margin-bottom: 18px; }
+      .login-input-group input,
+      .login-input-group select { padding: 0.7rem 2.4rem 0.7rem 2.2rem; }
+      .login-submit-btn { padding: 0.75rem .6rem; font-size: .82rem; }
+      .login-form-visual {
+        min-height: 240px;
+        padding: 1.5rem 1rem;
+      }
+      .login-form-visual h2 { font-size: 1.25rem; }
+      .login-visual-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+      .login-error-msg { font-size: .7rem; }
+      .login-demo-hint { font-size: .7rem; padding: 10px 12px; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--violet-2); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--violet); }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <div class="main-wrapper">
+    <div class="login-form-wrapper">
+      <div class="login-form-card">
+
+        <!-- Visual Panel -->
+        <div class="login-form-visual">
+          <div class="login-visual-content">
+            <div class="login-visual-badge">
+              <i class="fa-solid fa-circle"></i>
+              Studio Access
+            </div>
+
+            <div class="login-visual-icon">
+              <i class="fa-solid fa-fingerprint"></i>
+            </div>
+
+            <h2>Welcome back to <em>Stackly.</em></h2>
+
+            <p>
+              Sign in to your studio account to track projects, download assets, and stay in the loop with the team.
+            </p>
+
+            <ul class="login-visual-list">
+              <li><i class="fa-solid fa-check"></i> Track projects in real time</li>
+              <li><i class="fa-solid fa-check"></i> Download deliverables anytime</li>
+              <li><i class="fa-solid fa-check"></i> Message the team directly</li>
+              <li><i class="fa-solid fa-check"></i> One dashboard, everything in place</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Form Panel -->
+        <div class="login-form-content">
+          <h1 class="login-form-heading">Welcome Back</h1>
+          <p class="login-form-subhead">
+            Sign in to <strong>Stackly Creative Agency</strong> — manage your projects, files, and upcoming work.
+          </p>
+
+          <div class="login-global-success" id="loginGlobalSuccess" role="status" aria-live="polite"></div>
+          <div class="login-global-error" id="loginGlobalError" role="alert" aria-live="polite"></div>
+
+          <div class="login-demo-hint">
+            <strong>Demo Accounts:</strong><br>
+            🧑‍💼 Client: <code>client@stackly.com</code> / <code>Client@123</code><br>
+            🎨 Designer: <code>designer@stackly.com</code> / <code>Designer@123</code>
+          </div>
+
+          <!-- Google Login -->
+          <a href="404.html" class="login-google-row" id="googleLoginBtn">
+            <span class="login-google-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+                <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+                <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+                <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+              </svg>
+            </span>
+            <span>Continue with Google</span>
+          </a>
+
+          <div class="login-divider"><hr /><span>Or</span><hr /></div>
+
+          <!-- Role Select (2 roles only) -->
+          <div class="login-input-group" id="roleGroup">
+            <i class="fas fa-user-tag field-icon"></i>
+            <select id="loginRoleSelect">
+              <option value="">Select your role</option>
+              <option value="client">Client</option>
+              <option value="designer">Designer</option>
+            </select>
+          </div>
+          <div class="login-error-msg" id="loginRoleError">Please select your role.</div>
+
+          <!-- Email -->
+          <div class="login-input-group" id="emailGroup">
+            <i class="fas fa-envelope field-icon"></i>
+            <input type="email" id="loginEmail" placeholder="Enter your email address" required />
+          </div>
+          <div class="login-error-msg" id="loginEmailError">Please enter a valid email address.</div>
+
+          <!-- Password -->
+          <div class="login-input-group" id="passwordGroup">
+            <i class="fas fa-lock field-icon"></i>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+            <button type="button" class="login-password-toggle" id="loginPasswordToggle" aria-label="Show password">
+              <i class="fas fa-eye" id="loginPasswordToggleIcon"></i>
+            </button>
+          </div>
+          <div class="login-error-msg" id="loginPasswordError">Please enter your password.</div>
+
+          <!-- Options -->
+          <div class="login-row-options" id="rowOptions">
+            <label class="login-remember">
+              <input type="checkbox" id="loginRememberMe" /> Remember Me
+            </label>
+            <a href="404.html" class="login-forgot-link">Forgot Password?</a>
+          </div>
+          <div class="login-error-msg" id="loginCheckboxError">Please check "Remember Me" to continue.</div>
+
+          <!-- Submit -->
+          <div class="login-btn-wrapper">
+            <button class="login-submit-btn" id="loginSubmitBtn" type="button">Log In</button>
+          </div>
+
+          <div class="login-signup-text">
+            Not a member yet? <a href="signin.html" id="loginSignupLink">Create an account</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    /* ============================================================
+       SHOW ONE-TIME SIGNUP SUCCESS MESSAGE
+       ============================================================ */
+    (function showSignupSuccess() {
+      try {
+        const msg = sessionStorage.getItem('stackly_signup_success');
+        if (!msg) return;
+        sessionStorage.removeItem('stackly_signup_success');
+        const el = document.getElementById('loginGlobalSuccess');
+        el.innerHTML = '<i class="fas fa-check-circle"></i>' + msg;
+        el.classList.add('show');
+        setTimeout(function () { el.classList.remove('show'); }, 6000);
+      } catch (e) {}
+    })();
+
+    /* ============================================================
+       LOAD HEADER & FOOTER
+       ============================================================ */
+    document.addEventListener('DOMContentLoaded', function () {
+      fetch('header.html')
+        .then(r => r.ok ? r.text() : Promise.reject('Header not found'))
+        .then(d => {
+          document.getElementById('header-placeholder').innerHTML = d;
+          initHeader();
+        })
+        .catch(err => console.error('Error loading header:', err));
+
+      fetch('footer.html')
+        .then(r => r.ok ? r.text() : Promise.reject('Footer not found'))
+        .then(d => {
+          document.getElementById('footer-placeholder').innerHTML = d;
+          initFooter();
+        })
+        .catch(err => console.error('Error loading footer:', err));
+    });
+
+    function initHeader() {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (hamburger && mobileMenu) {
+        function toggleMenu() {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+          document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+          hamburger.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
+        }
+        function closeMenu() {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+        hamburger.addEventListener('click', toggleMenu);
+        document.addEventListener('click', function (e) {
+          if (mobileMenu.classList.contains('active')) {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+          }
+        });
+        window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+        window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+        document.querySelectorAll('.mobile-nav-link, .mobile-action-link').forEach(l =>
+          l.addEventListener('click', closeMenu));
+      }
+    }
+
+    function initFooter() {
+      console.log('✅ Footer initialized');
+    }
+
+    /* ============================================================
+       LOGIN LOGIC — 2 roles only (client / designer)
+       ============================================================ */
+    (function login() {
+      const roleSelect = document.getElementById('loginRoleSelect');
+      const emailInput = document.getElementById('loginEmail');
+      const passwordInput = document.getElementById('loginPassword');
+      const rememberCheck = document.getElementById('loginRememberMe');
+      const passwordToggle = document.getElementById('loginPasswordToggle');
+      const passwordToggleIcon = document.getElementById('loginPasswordToggleIcon');
+
+      const roleGroup = document.getElementById('roleGroup');
+      const emailGroup = document.getElementById('emailGroup');
+      const passwordGroup = document.getElementById('passwordGroup');
+      const rowOptions = document.getElementById('rowOptions');
+
+      const roleError = document.getElementById('loginRoleError');
+      const emailError = document.getElementById('loginEmailError');
+      const passwordError = document.getElementById('loginPasswordError');
+      const checkboxError = document.getElementById('loginCheckboxError');
+      const globalError = document.getElementById('loginGlobalError');
+
+      const loginBtn = document.getElementById('loginSubmitBtn');
+
+      const USERS_KEY = 'stackly_users';
+      const SESSION_KEY = 'stackly_session';
+      const SESSION_TTL_MS = 1000 * 60 * 60 * 2; // 2h
+
+      /* ---- Demo accounts (2 roles only) ---- */
+      const DEMO_USERS = {
+        'client@stackly.com':   { password: 'Client@123',   name: 'Sarah Chen',    userId: 'STK-C001', role: 'client'   },
+        'designer@stackly.com': { password: 'Designer@123', name: 'Daniel Okafor', userId: 'STK-D001', role: 'designer' }
+      };
+
+      function loadRegisteredUsers() {
+        try {
+          const raw = localStorage.getItem(USERS_KEY);
+          const list = raw ? JSON.parse(raw) : [];
+          const map = {};
+          list.forEach(u => {
+            if (!u || !u.email) return;
+            /* Normalize any signup role → client or designer */
+            let role = u.role || 'client';
+            if (role !== 'client') role = 'designer';
+            map[u.email.toLowerCase()] = {
+              password: u.password,
+              name: u.name,
+              userId: u.userId,
+              role: role
+            };
+          });
+          return map;
+        } catch (e) { return {}; }
+      }
+
+      function setError(errEl, group, show, message) {
+        if (show) {
+          errEl.classList.add('show');
+          if (message) errEl.textContent = message;
+          if (group) group.classList.add('has-error');
+        } else {
+          errEl.classList.remove('show');
+          if (group) group.classList.remove('has-error');
+        }
+      }
+      function clearGlobal() {
+        globalError.classList.remove('show');
+        globalError.innerHTML = '';
+      }
+      function showGlobal(msg) {
+        globalError.innerHTML = '<i class="fas fa-exclamation-circle"></i>' + msg;
+        globalError.classList.add('show');
+      }
+
+      /* Password visibility toggle */
+      if (passwordToggle) {
+        passwordToggle.addEventListener('click', function () {
+          const isPassword = passwordInput.type === 'password';
+          passwordInput.type = isPassword ? 'text' : 'password';
+          passwordToggleIcon.className = isPassword ? 'fas fa-eye-slash' : 'fas fa-eye';
+        });
+      }
+
+      /* Live clear errors */
+      roleSelect.addEventListener('change', () => {
+        if (roleSelect.value) setError(roleError, roleGroup, false);
+        clearGlobal();
+      });
+      emailInput.addEventListener('input', () => {
+        if (emailInput.value.trim()) setError(emailError, emailGroup, false);
+        clearGlobal();
+      });
+      passwordInput.addEventListener('input', () => {
+        if (passwordInput.value.trim()) setError(passwordError, passwordGroup, false);
+        clearGlobal();
+      });
+      rememberCheck.addEventListener('change', () => {
+        if (rememberCheck.checked) setError(checkboxError, rowOptions, false);
+        clearGlobal();
+      });
+
+      const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+      loginBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        clearGlobal();
+        let valid = true;
+
+        /* Role — required */
+        if (!roleSelect.value) {
+          setError(roleError, roleGroup, true, 'Please select your role.');
+          valid = false;
+        } else setError(roleError, roleGroup, false);
+
+        /* Email — required + format */
+        const email = emailInput.value.trim().toLowerCase();
+        if (!email || !emailOk(email)) {
+          setError(emailError, emailGroup, true, 'Please enter a valid email address.');
+          valid = false;
+        } else setError(emailError, emailGroup, false);
+
+        /* Password — required (non-empty; no complexity on login) */
+        const pwd = passwordInput.value;
+        if (!pwd) {
+          setError(passwordError, passwordGroup, true, 'Please enter your password.');
+          valid = false;
+        } else setError(passwordError, passwordGroup, false);
+
+        /* Remember Me — required */
+        if (!rememberCheck.checked) {
+          setError(checkboxError, rowOptions, true, 'Please check "Remember Me".');
+          valid = false;
+        } else setError(checkboxError, rowOptions, false);
+
+        if (!valid) return;
+
+        /* Authenticate */
+        const freshUsers = Object.assign({}, DEMO_USERS, loadRegisteredUsers());
+        const record = freshUsers[email];
+
+        if (!record) {
+          showGlobal('No account found with <strong>' + email + '</strong>. Please check your email or create an account.');
+          return;
+        }
+        if (record.password !== pwd) {
+          showGlobal('Incorrect password. Please try again.');
+          return;
+        }
+        if (record.role !== roleSelect.value) {
+          const roleNames = { 'client': 'Client', 'designer': 'Designer' };
+          showGlobal('This account is registered as <strong>' + (roleNames[record.role] || record.role) + '</strong>. Please select the correct role.');
+          return;
+        }
+
+        /* Build session */
+        const session = {
+          authenticated: true,
+          userId: record.userId,
+          name: record.name,
+          email,
+          role: record.role,
+          issuedAt: Date.now(),
+          expiresAt: Date.now() + SESSION_TTL_MS
+        };
+
+        loginBtn.disabled = true;
+        loginBtn.textContent = 'Logging in…';
+
+        try {
+          sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          if (rememberCheck.checked) {
+            localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          } else {
+            localStorage.removeItem(SESSION_KEY);
+          }
+        } catch (err) {
+          showGlobal('Could not save your session.');
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Log In';
+          return;
+        }
+
+        /* ✅ REDIRECT BY ROLE — updated dashboard file names */
+        setTimeout(function () {
+          if (record.role === 'client') {
+            window.location.href = 'client-dashboard.html';
+          } else {
+            window.location.href = 'designer-dashboard.html';
+          }
+        }, 300);
+      });
+
+      /* Enter key submits */
+      document.querySelectorAll('.login-input-group input, .login-input-group select').forEach(el => {
+        el.addEventListener('keydown', e => {
+          if (e.key === 'Enter') loginBtn.click();
+        });
+      });
+
+      /* Signup link */
+      document.getElementById('loginSignupLink').addEventListener('click', e => {
+        e.preventDefault();
+        window.location.href = 'signin.html';
+      });
+
+      console.log('✦ Login page ready — redirects to client-dashboard.html / designer-dashboard.html');
+    })();
+  </script>
+
+</body>
+</html>

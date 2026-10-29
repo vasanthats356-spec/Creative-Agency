@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Creative Agency — Services</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+<style>
+  :root{
+    --paper:#faf7f2;
+    --white:#ffffff;
+    --ink:#1a1625;
+    --ink-2:#4a4358;
+    --ink-3:#6f6880;
+    --violet:#7c3aed;
+    --violet-2:#a78bfa;
+    --violet-3:#f3edff;
+    --border:#ebe6dd;
+    --shadow:0 18px 50px rgba(26,22,37,.07);
+    --shadow-hi:0 28px 70px rgba(26,22,37,.14);
+    --nav-height:110px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.65;overflow-x:hidden;
+    padding-top:var(--nav-height);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora','Inter',sans-serif;
+    letter-spacing:-.025em;line-height:1.12;font-weight:800;
+  }
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  #header-placeholder,#footer-placeholder{width:100%}
+
+  @media (max-width:1100px){:root{--nav-height:160px}}
+  @media (max-width:768px){:root{--nav-height:95px}}
+  @media (max-width:480px){:root{--nav-height:85px}}
+
+  /* ===== LAYOUT ===== */
+  .s-wrap{max-width:1280px;margin:0 auto;padding:0 24px;width:100%}
+  .s-section{padding:100px 0;position:relative}
+
+  /* ===== TYPOGRAPHY ===== */
+  .s-kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Sora',sans-serif;
+    font-size:.7rem;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--violet);
+    margin-bottom:18px;
+  }
+  .s-kicker::before{content:'';width:28px;height:1.5px;background:var(--violet)}
+
+  .s-title{
+    font-size:clamp(1.9rem,4.4vw,3.2rem);
+    line-height:1.08;letter-spacing:-.03em;
+    margin-bottom:16px;
+  }
+  .s-title em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:700;color:var(--violet);
+  }
+
+  .s-sub{
+    font-size:.98rem;color:var(--ink-3);
+    max-width:620px;line-height:1.75;
+  }
+  .s-center{text-align:center}
+  .s-center .s-sub{margin-inline:auto}
+
+  /* ===== BUTTONS ===== */
+  .s-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 28px;border-radius:10px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.86rem;
+    letter-spacing:.01em;border:1.5px solid transparent;
+    cursor:pointer;transition:all .3s ease;white-space:nowrap;
+  }
+  .s-btn.primary{background:var(--violet);color:#fff;box-shadow:0 10px 26px rgba(124,58,237,.28)}
+  .s-btn.primary:hover{background:#6d28d9;transform:translateY(-3px);box-shadow:0 16px 34px rgba(124,58,237,.42)}
+  .s-btn.outline{background:transparent;color:var(--ink);border-color:rgba(26,22,37,.22)}
+  .s-btn.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-3px)}
+  .s-btn.ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(167,139,250,.4);backdrop-filter:blur(8px)}
+  .s-btn.ghost:hover{background:rgba(167,139,250,.25);border-color:var(--violet-2);transform:translateY(-3px)}
+
+  /* =========================================================
+     01 — HERO (split + stats + floating badge)
+     ========================================================= */
+  .s-hero{
+    position:relative;
+    padding:80px 0 90px;
+    overflow:hidden;
+    background:
+      radial-gradient(820px 500px at 92% -10%, rgba(124,58,237,.09) 0%, transparent 60%),
+      radial-gradient(600px 340px at -4% 110%, rgba(124,58,237,.05) 0%, transparent 60%),
+      var(--paper);
+  }
+  .s-hero-inner{
+    display:grid;grid-template-columns:1.1fr 1fr;
+    gap:60px;align-items:center;
+  }
+  .s-hero-left .s-title{margin-bottom:20px}
+  .s-hero-left .s-sub{margin-bottom:32px}
+  .s-hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+
+  .s-hero-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    border-top:1px solid var(--border);
+    padding-top:28px;
+  }
+  .s-hero-stat h4{
+    font-family:'Sora';font-size:clamp(1.6rem,3vw,2.1rem);
+    font-weight:800;color:var(--ink);
+    line-height:1;margin-bottom:6px;
+  }
+  .s-hero-stat p{
+    font-size:.68rem;color:var(--ink-3);
+    text-transform:uppercase;letter-spacing:.14em;
+    font-weight:700;
+  }
+
+  .s-hero-right{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    grid-template-rows:1fr 1fr;
+    gap:14px;height:560px;
+  }
+  .s-hero-img-main{
+    grid-row:1 / 3;width:100%;height:100%;
+    object-fit:cover;border-radius:24px;
+    box-shadow:var(--shadow-hi);
+    background:var(--violet-3);
+  }
+  .s-hero-img-sm-1,
+  .s-hero-img-sm-2{
+    width:100%;height:100%;object-fit:cover;
+    border-radius:20px;box-shadow:var(--shadow);
+    background:var(--violet-3);
+  }
+  .s-hero-badge{
+    position:absolute;top:-20px;left:-30px;
+    background:#fff;border-radius:16px;
+    padding:14px 18px;box-shadow:var(--shadow-hi);
+    display:flex;align-items:center;gap:12px;
+    animation:sFloatY 3.5s ease-in-out infinite;
+    z-index:5;
+  }
+  @keyframes sFloatY{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+  }
+  .s-hero-badge i{
+    width:40px;height:40px;border-radius:12px;
+    background:var(--violet);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.95rem;flex-shrink:0;
+  }
+  .s-hero-badge-text p:first-child{
+    font-size:.62rem;color:var(--ink-3);
+    text-transform:uppercase;font-weight:700;
+    letter-spacing:.1em;margin-bottom:2px;
+  }
+  .s-hero-badge-text p:last-child{
+    font-size:.88rem;font-weight:800;
+    color:var(--ink);line-height:1.2;
+  }
+
+  /* =========================================================
+     02 — MARQUEE
+     ========================================================= */
+  .s-marquee{
+    background:var(--ink);color:#fff;
+    padding:22px 0;overflow:hidden;
+    border-block:1px solid rgba(167,139,250,.2);
+    position:relative;
+  }
+  .s-marquee-track{
+    display:flex;gap:60px;
+    animation:sMarquee 30s linear infinite;
+    width:max-content;
+  }
+  .s-marquee:hover .s-marquee-track{animation-play-state:paused}
+  .s-marquee-track span{
+    font-family:'Sora',sans-serif;
+    font-size:1.4rem;font-weight:700;
+    color:#e8e3f2;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:16px;
+    letter-spacing:-.02em;
+  }
+  .s-marquee-track span i{color:var(--violet-2);font-size:.9rem}
+  @keyframes sMarquee{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+
+  /* =========================================================
+     03 — SERVICE CARDS (horizontal scroll, like team)
+     ========================================================= */
+  .s-cards-scroll{
+    display:grid;grid-auto-flow:column;
+    grid-auto-columns:minmax(300px,1fr);
+    gap:22px;overflow-x:auto;
+    padding:10px 4px 24px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;
+  }
+  .s-cards-scroll::-webkit-scrollbar{height:6px}
+  .s-cards-scroll::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+  .s-cards-scroll::-webkit-scrollbar-track{background:rgba(26,22,37,.06);border-radius:10px}
+
+  .s-service-card{
+    scroll-snap-align:start;
+    background:#fff;border-radius:22px;
+    overflow:hidden;border:1px solid var(--border);
+    transition:all .35s ease;
+    min-width:300px;position:relative;
+    cursor:default;
+    display:flex;flex-direction:column;
+  }
+  .s-service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow-hi);
+    border-color:#ded2f8;
+  }
+
+  .s-service-img-wrap{
+    position:relative;height:220px;overflow:hidden;
+    background:var(--violet-3);
+  }
+  .s-service-img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .s-service-card:hover .s-service-img{transform:scale(1.06)}
+  .s-service-img-wrap::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(26,22,37,.75) 100%);
+  }
+  .s-service-num-badge{
+    position:absolute;top:16px;left:16px;
+    width:40px;height:40px;border-radius:12px;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(8px);
+    color:var(--violet);
+    font-family:'Sora';font-weight:800;font-size:.85rem;
+    display:flex;align-items:center;justify-content:center;
+    z-index:2;
+    letter-spacing:.02em;
+  }
+  .s-service-info{
+    position:absolute;bottom:16px;left:20px;right:20px;
+    z-index:2;color:#fff;
+  }
+  .s-service-info h3{
+    font-size:1.15rem;font-weight:800;
+    letter-spacing:-.015em;margin-bottom:3px;
+  }
+  .s-service-info p{
+    font-size:.72rem;color:var(--violet-2);
+    font-weight:600;letter-spacing:.02em;
+  }
+  .s-service-body{
+    padding:22px 24px 24px;
+    display:flex;flex-direction:column;gap:12px;
+    flex:1;
+  }
+  .s-service-body > p{
+    font-size:.85rem;color:var(--ink-3);
+    line-height:1.65;flex:1;
+  }
+  .s-service-tags{
+    display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .s-service-tags span{
+    background:var(--violet-3);color:var(--violet);
+    padding:3px 10px;border-radius:20px;
+    font-size:.65rem;font-weight:700;
+    letter-spacing:.02em;
+  }
+  .s-service-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Sora';font-size:.76rem;font-weight:700;
+    color:var(--violet);
+    transition:gap .3s ease;
+    align-self:flex-start;
+    padding-top:8px;
+    border-top:1px solid var(--border);
+    width:100%;
+  }
+  .s-service-link:hover{gap:13px}
+  .s-cards-cta{text-align:center;margin-top:40px}
+
+  /* =========================================================
+     04 — PROCESS (dark with 3 images + numbered steps)
+     ========================================================= */
+  .s-process{
+    background:
+      radial-gradient(900px 500px at 88% -10%, rgba(124,58,237,.28) 0%, transparent 60%),
+      radial-gradient(620px 360px at -4% 120%, rgba(124,58,237,.15) 0%, transparent 60%),
+      var(--ink);
+    color:#fff;
+    position:relative;overflow:hidden;
+  }
+  .s-process-inner{
+    display:grid;grid-template-columns:1fr 1.15fr;
+    gap:64px;align-items:center;
+    position:relative;z-index:2;
+  }
+
+  .s-process-imgs{display:grid;grid-template-columns:1fr;gap:16px}
+  .s-process-img-1{
+    width:100%;height:320px;object-fit:cover;
+    border-radius:24px;
+    box-shadow:0 30px 60px rgba(0,0,0,.4);
+    background:#2b2440;
+  }
+  .s-process-imgs-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .s-process-img-2,
+  .s-process-img-3{
+    width:100%;height:180px;object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+    background:#2b2440;
+  }
+
+  .s-process .s-kicker{color:var(--violet-2)}
+  .s-process .s-kicker::before{background:var(--violet-2)}
+  .s-process .s-title{color:#fff}
+  .s-process .s-sub{color:#c7c1d6}
+
+  .s-process-list{display:flex;flex-direction:column;gap:0;margin-top:32px}
+  .s-process-item{
+    display:flex;gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    transition:transform .3s;
+  }
+  .s-process-item:first-child{padding-top:0}
+  .s-process-item:last-child{border-bottom:none}
+  .s-process-item:hover{transform:translateX(6px)}
+  .s-process-num{
+    font-family:'Sora',sans-serif;
+    font-size:1.1rem;font-weight:800;
+    color:var(--violet-2);
+    line-height:1;min-width:44px;
+    letter-spacing:.06em;
+  }
+  .s-process-text h4{
+    font-size:1.05rem;font-weight:700;
+    color:#fff;margin-bottom:5px;
+  }
+  .s-process-text p{
+    font-size:.85rem;color:#c7c1d6;
+    line-height:1.65;
+  }
+  .s-process-cta{
+    margin-top:32px;
+    display:flex;gap:14px;flex-wrap:wrap;
+  }
+
+  /* =========================================================
+     05 — FEATURED SERVICE (image + thumbs + stats)
+     ========================================================= */
+  .s-featured{
+    background:var(--white);
+    border-block:1px solid var(--border);
+  }
+  .s-featured-card{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    border-radius:28px;overflow:hidden;
+    background:#fff;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    margin-top:44px;
+    cursor:default;
+  }
+  .s-featured-left{display:flex;flex-direction:column}
+
+  .s-featured-img-wrap{
+    position:relative;flex:1;min-height:400px;
+    overflow:hidden;background:var(--violet-3);
+  }
+  .s-featured-img{
+    width:100%;height:100%;object-fit:cover;
+    position:absolute;inset:0;
+    transition:transform .6s ease,opacity .3s ease;
+  }
+  .s-featured-card:hover .s-featured-img{transform:scale(1.04)}
+  .s-featured-badge{
+    position:absolute;top:24px;left:24px;
+    background:var(--violet);color:#fff;
+    padding:8px 18px;border-radius:30px;
+    font-family:'Sora',sans-serif;
+    font-size:.68rem;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 8px 20px rgba(124,58,237,.4);
+    z-index:2;
+  }
+  .s-featured-thumbs{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:8px;padding:12px;
+    background:var(--paper);
+  }
+  .s-featured-thumb{
+    width:100%;height:80px;object-fit:cover;
+    border-radius:10px;cursor:pointer;
+    transition:.3s;
+    border:2px solid transparent;
+    background:var(--violet-3);
+  }
+  .s-featured-thumb:hover{
+    border-color:var(--violet);
+    transform:scale(1.03);
+  }
+
+  .s-featured-body{
+    padding:48px 44px;
+    display:flex;flex-direction:column;
+    justify-content:center;gap:18px;
+  }
+  .s-featured-quote{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:600;
+    font-size:1.4rem;
+    color:var(--violet);
+    line-height:1.35;
+  }
+  .s-featured-body h3{
+    font-size:1.7rem;font-weight:800;
+    letter-spacing:-.025em;
+    line-height:1.2;
+  }
+  .s-featured-body .role{
+    font-family:'Sora';
+    font-size:.78rem;font-weight:700;
+    color:var(--violet);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+  }
+  .s-featured-body > p{
+    font-size:.92rem;color:var(--ink-2);
+    line-height:1.75;
+  }
+  .s-featured-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:22px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .s-featured-stat h4{
+    font-family:'Sora';font-size:1.4rem;
+    font-weight:800;color:var(--violet);
+    line-height:1;margin-bottom:4px;
+  }
+  .s-featured-stat p{
+    font-size:.68rem;color:var(--ink-3);
+    text-transform:uppercase;
+    letter-spacing:.08em;font-weight:700;
+  }
+  .s-featured-btns{
+    display:flex;gap:12px;
+    flex-wrap:wrap;margin-top:8px;
+  }
+
+  /* =========================================================
+     06 — CTA (full-bleed + overlay + stats)
+     ========================================================= */
+  .s-cta{
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    padding:120px 24px;
+    background:var(--ink);
+  }
+  .s-cta-bg{
+    position:absolute;inset:0;z-index:1;
+    background-image:url('ca1.webp');
+    background-size:cover;
+    background-position:center;
+  }
+  .s-cta-overlay{
+    position:absolute;inset:0;z-index:2;
+    background:
+      radial-gradient(900px 500px at 50% 30%, rgba(124,58,237,.35) 0%, transparent 60%),
+      linear-gradient(135deg, rgba(26,22,37,.94) 0%, rgba(15,10,25,.92) 100%);
+  }
+  .s-cta::before{
+    content:'';position:absolute;inset:0;z-index:3;
+    background-image:radial-gradient(circle, rgba(167,139,250,.35) 1px, transparent 1px);
+    background-size:34px 34px;
+    opacity:.15;
+    pointer-events:none;
+  }
+  .s-cta-inner{
+    position:relative;z-index:4;
+    max-width:780px;margin:0 auto;
+  }
+  .s-cta-kicker{
+    font-family:'Sora',sans-serif;
+    font-size:.7rem;font-weight:700;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--violet-2);
+    margin-bottom:18px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .s-cta-kicker::before,
+  .s-cta-kicker::after{
+    content:'';width:24px;height:1.5px;background:var(--violet-2);
+  }
+  .s-cta h2{
+    color:#fff;
+    font-size:clamp(2rem,5.2vw,3.4rem);
+    font-weight:800;letter-spacing:-.03em;
+    line-height:1.08;
+    margin-bottom:18px;
+  }
+  .s-cta h2 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--violet-2);
+  }
+  .s-cta > .s-wrap > .s-cta-inner > p{
+    color:#c7c1d6;
+    font-size:1rem;line-height:1.75;
+    margin-bottom:34px;
+  }
+  .s-cta-btns{
+    display:flex;gap:14px;
+    justify-content:center;flex-wrap:wrap;
+    margin-bottom:48px;
+  }
+  .s-cta-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:20px;max-width:620px;
+    margin:0 auto;
+    padding-top:30px;
+    border-top:1px solid rgba(167,139,250,.3);
+  }
+  .s-cta-stat h4{
+    font-family:'Sora';
+    font-size:clamp(1.6rem,3vw,2.1rem);
+    font-weight:800;
+    color:var(--violet-2);
+    line-height:1;margin-bottom:6px;
+  }
+  .s-cta-stat p{
+    font-size:.68rem;color:#c7c1d6;
+    text-transform:uppercase;
+    letter-spacing:.12em;font-weight:700;
+    margin:0;
+  }
+
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  @media (max-width:1100px){
+    .s-hero-inner{grid-template-columns:1fr;gap:48px}
+    .s-hero-right{grid-template-columns:1.5fr 1fr;height:440px}
+    .s-hero-badge{top:-14px;left:-14px;padding:10px 14px}
+
+    .s-process-inner{grid-template-columns:1fr;gap:44px}
+
+    .s-featured-card{grid-template-columns:1fr}
+    .s-featured-img-wrap{min-height:340px}
+    .s-featured-body{padding:40px 32px}
+  }
+
+  @media (max-width:768px){
+    .s-section{padding:70px 0}
+    .s-wrap{padding:0 20px}
+    .s-hero{padding:60px 0 70px}
+
+    .s-hero-right{
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:1.5fr 1fr;
+      height:auto;min-height:420px;
+      gap:10px;
+    }
+    .s-hero-img-main{grid-row:1 / 2;grid-column:1 / 3;height:260px}
+    .s-hero-img-sm-1{height:130px}
+    .s-hero-img-sm-2{height:130px}
+    .s-hero-badge{top:-10px;left:-10px;padding:8px 12px}
+    .s-hero-badge i{width:32px;height:32px;font-size:.85rem}
+    .s-hero-badge-text p:first-child{font-size:.58rem}
+    .s-hero-badge-text p:last-child{font-size:.78rem}
+
+    .s-hero-stats{gap:14px}
+    .s-hero-stat h4{font-size:1.35rem}
+
+    .s-marquee-track span{font-size:1.05rem}
+    .s-marquee-track{gap:40px}
+
+    .s-process-img-1{height:220px}
+    .s-process-img-2,.s-process-img-3{height:130px}
+    .s-process-num{font-size:.9rem;min-width:36px}
+    .s-process-item{gap:14px;padding:16px 0}
+
+    .s-featured-stats{grid-template-columns:repeat(3,1fr);gap:14px}
+    .s-featured-stat h4{font-size:1.1rem}
+    .s-featured-body{padding:32px 26px}
+    .s-featured-body h3{font-size:1.4rem}
+    .s-featured-quote{font-size:1.2rem}
+
+    .s-cta{padding:80px 20px}
+    .s-cta-stats{gap:14px}
+    .s-cta-stat h4{font-size:1.4rem}
+  }
+
+  @media (max-width:480px){
+    .s-section{padding:56px 0}
+    .s-wrap{padding:0 16px}
+
+    .s-hero{padding:50px 0 60px}
+    .s-hero-btns{flex-direction:column;width:100%}
+    .s-hero-btns .s-btn{width:100%}
+
+    .s-hero-right{
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:1.5fr 1fr;
+      min-height:340px;gap:8px;
+    }
+    .s-hero-img-main{height:200px;border-radius:18px}
+    .s-hero-img-sm-1{height:100px;border-radius:14px}
+    .s-hero-img-sm-2{height:100px;border-radius:14px}
+    .s-hero-badge{top:-8px;left:-8px;padding:6px 10px;border-radius:12px;gap:8px}
+    .s-hero-badge i{width:26px;height:26px;font-size:.7rem;border-radius:8px}
+    .s-hero-badge-text p:first-child{display:none}
+    .s-hero-badge-text p:last-child{font-size:.68rem}
+
+    .s-process-imgs-row{grid-template-columns:1fr 1fr}
+    .s-process-img-1{height:180px}
+    .s-process-img-2,.s-process-img-3{height:110px}
+
+    .s-featured-thumb{height:64px}
+    .s-featured-btns{flex-direction:column;width:100%}
+    .s-featured-btns .s-btn{width:100%}
+
+    .s-process-cta{flex-direction:column;width:100%}
+    .s-process-cta .s-btn{width:100%}
+
+    .s-cta-btns{flex-direction:column;width:100%}
+    .s-cta-btns .s-btn{width:100%}
+    .s-cta-stats{grid-template-columns:1fr}
+
+    .s-cards-cta .s-btn{width:100%}
+  }
+
+  ::-webkit-scrollbar{width:8px;height:6px}
+  ::-webkit-scrollbar-track{background:var(--paper)}
+  ::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--violet)}
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- =========================================================
+     01 — HERO
+     ========================================================= -->
+<section class="s-hero">
+  <div class="s-wrap">
+    <div class="s-hero-inner">
+
+      <div class="s-hero-left" data-aos="fade-right" data-aos-duration="900">
+        <div class="s-kicker">Services · 2026</div>
+        <h1 class="s-title">Six crafts.<br><em>One standard.</em></h1>
+        <p class="s-sub">
+          Identity, digital, campaigns, motion, content, and strategy — held together by one senior team, one process, and one quality bar. Every engagement draws from all six, so nothing gets lost between the sketchbook and the screen.
+        </p>
+
+        <div class="s-hero-btns">
+          <a href="404.html" class="s-btn primary"><i class="fa-solid fa-comments"></i> Start a Project</a>
+          <a href="404.html" class="s-btn outline"><i class="fa-solid fa-file-arrow-down"></i> Download Deck</a>
+        </div>
+
+        <div class="s-hero-stats">
+          <div class="s-hero-stat">
+            <h4><span class="counter" data-target="6">0</span></h4>
+            <p>Core Services</p>
+          </div>
+          <div class="s-hero-stat">
+            <h4><span class="counter" data-target="140">0</span>+</h4>
+            <p>Projects Shipped</p>
+          </div>
+          <div class="s-hero-stat">
+            <h4><span class="counter" data-target="4.9" data-decimals="1">0</span>★</h4>
+            <p>Partner Rating</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-hero-right" data-aos="fade-left" data-aos-duration="900">
+        <img class="s-hero-img-main" src="ca2.webp" alt="Studio team working" loading="lazy">
+        <img class="s-hero-img-sm-1" src="ca3.webp" alt="Design work" loading="lazy">
+        <img class="s-hero-img-sm-2" src="ca4.webp" alt="Studio workspace" loading="lazy">
+        <div class="s-hero-badge">
+          <i class="fa-solid fa-trophy"></i>
+          <div class="s-hero-badge-text">
+            <p>Independent Studio</p>
+            <p>Agency of the Year 2025</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     02 — MARQUEE
+     ========================================================= -->
+<div class="s-marquee">
+  <div class="s-marquee-track">
+    <span><i class="fa-solid fa-fingerprint"></i> Brand Identity</span>
+    <span><i class="fa-solid fa-laptop-code"></i> Web &amp; Digital</span>
+    <span><i class="fa-solid fa-bullhorn"></i> Campaigns</span>
+    <span><i class="fa-solid fa-film"></i> Motion &amp; 3D</span>
+    <span><i class="fa-solid fa-feather-pointed"></i> Content &amp; Copy</span>
+    <span><i class="fa-solid fa-compass"></i> Strategy</span>
+    <span><i class="fa-solid fa-fingerprint"></i> Brand Identity</span>
+    <span><i class="fa-solid fa-laptop-code"></i> Web &amp; Digital</span>
+    <span><i class="fa-solid fa-bullhorn"></i> Campaigns</span>
+    <span><i class="fa-solid fa-film"></i> Motion &amp; 3D</span>
+    <span><i class="fa-solid fa-feather-pointed"></i> Content &amp; Copy</span>
+    <span><i class="fa-solid fa-compass"></i> Strategy</span>
+  </div>
+</div>
+
+<!-- =========================================================
+     03 — SERVICE CARDS (horizontal scroll)
+     ========================================================= -->
+<section class="s-section">
+  <div class="s-wrap">
+    <div class="s-center" data-aos="fade-up" style="margin-bottom:44px">
+      <div class="s-kicker" style="justify-content:center">What We Do</div>
+      <h2 class="s-title">Six services. <em>One team.</em></h2>
+      <p class="s-sub">Scroll sideways to explore each discipline — every engagement draws from at least three.</p>
+    </div>
+
+    <div class="s-cards-scroll">
+
+      <div class="s-service-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="s-service-img-wrap">
+          <span class="s-service-num-badge">01</span>
+          <img class="s-service-img" src="ca5.webp" alt="Brand identity" loading="lazy">
+          <div class="s-service-info">
+            <h3>Brand Identity</h3>
+            <p>Positioning · Logo · Guidelines</p>
+          </div>
+        </div>
+        <div class="s-service-body">
+          <p>Naming, positioning, visual systems, and a 40+ page guidelines document your team will actually use.</p>
+          <div class="s-service-tags">
+            <span>Naming</span><span>Logo</span><span>Type</span>
+          </div>
+          <a href="404.html" class="s-service-link">Explore Branding <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="s-service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="s-service-img-wrap">
+          <span class="s-service-num-badge">02</span>
+          <img class="s-service-img" src="ca6.webp" alt="Web design" loading="lazy">
+          <div class="s-service-info">
+            <h3>Web &amp; Digital</h3>
+            <p>UX · UI · Front-end</p>
+          </div>
+        </div>
+        <div class="s-service-body">
+          <p>Sites and products designed in the browser, built on modern stacks, and measured on conversion.</p>
+          <div class="s-service-tags">
+            <span>UX</span><span>Next.js</span><span>Design System</span>
+          </div>
+          <a href="404.html" class="s-service-link">Explore Digital <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="s-service-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="s-service-img-wrap">
+          <span class="s-service-num-badge">03</span>
+          <img class="s-service-img" src="ca7.webp" alt="Campaign" loading="lazy">
+          <div class="s-service-info">
+            <h3>Campaigns</h3>
+            <p>OOH · Film · Social</p>
+          </div>
+        </div>
+        <div class="s-service-body">
+          <p>One big idea, built to survive every channel — from station takeovers to cinema spots.</p>
+          <div class="s-service-tags">
+            <span>Concept</span><span>Film</span><span>Rollout</span>
+          </div>
+          <a href="404.html" class="s-service-link">Explore Campaigns <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="s-service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="s-service-img-wrap">
+          <span class="s-service-num-badge">04</span>
+          <img class="s-service-img" src="ca8.webp" alt="Motion" loading="lazy">
+          <div class="s-service-info">
+            <h3>Motion &amp; 3D</h3>
+            <p>Animation · Film · 3D</p>
+          </div>
+        </div>
+        <div class="s-service-body">
+          <p>Animated identity, product film, and 3D assets made in-house by the same people who designed the brand.</p>
+          <div class="s-service-tags">
+            <span>Motion</span><span>3D</span><span>Product Film</span>
+          </div>
+          <a href="404.html" class="s-service-link">Explore Motion <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="s-service-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="s-service-img-wrap">
+          <span class="s-service-num-badge">05</span>
+          <img class="s-service-img" src="ca9.webp" alt="Content" loading="lazy">
+          <div class="s-service-info">
+            <h3>Content &amp; Copy</h3>
+            <p>Voice · Product · Editorial</p>
+          </div>
+        </div>
+        <div class="s-service-body">
+          <p>Voice, tone, and the words that carry the brand across product, campaign, and editorial contexts.</p>
+          <div class="s-service-tags">
+            <span>Voice</span><span>Copy</span><span>Editorial</span>
+          </div>
+          <a href="404.html" class="s-service-link">Explore Content <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="s-service-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="s-service-img-wrap">
+          <span class="s-service-num-badge">06</span>
+          <img class="s-service-img" src="ca10.webp" alt="Strategy" loading="lazy">
+          <div class="s-service-info">
+            <h3>Strategy</h3>
+            <p>Positioning · Research</p>
+          </div>
+        </div>
+        <div class="s-service-body">
+          <p>Positioning, market research, and creative direction — the work that makes the design easier.</p>
+          <div class="s-service-tags">
+            <span>Workshops</span><span>Audit</span><span>Direction</span>
+          </div>
+          <a href="404.html" class="s-service-link">Explore Strategy <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="s-cards-cta" data-aos="fade-up">
+      <a href="404.html" class="s-btn primary"><i class="fa-solid fa-list-check"></i> See Full Service Catalogue</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     04 — PROCESS (dark + numbered steps)
+     ========================================================= -->
+<section class="s-section s-process">
+  <div class="s-wrap">
+    <div class="s-process-inner">
+
+      <div class="s-process-imgs" data-aos="fade-right" data-aos-duration="900">
+        <img class="s-process-img-1" src="ca11.webp" alt="Studio in process" loading="lazy">
+        <div class="s-process-imgs-row">
+          <img class="s-process-img-2" src="ca12.webp" alt="Team discussion" loading="lazy">
+          <img class="s-process-img-3" src="ca13.webp" alt="Workspace" loading="lazy">
+        </div>
+      </div>
+
+      <div data-aos="fade-left" data-aos-duration="900">
+        <div class="s-kicker">How We Work</div>
+        <h2 class="s-title">Four phases. <em>Every time.</em></h2>
+        <p class="s-sub">
+          Every engagement runs on the same transparent process — so you always know what's happening and what comes next.
+        </p>
+
+        <div class="s-process-list">
+          <div class="s-process-item">
+            <div class="s-process-num">01</div>
+            <div class="s-process-text">
+              <h4>Discover</h4>
+              <p>Stakeholder interviews, market audit, and a written creative brief signed off before design begins.</p>
+            </div>
+          </div>
+          <div class="s-process-item">
+            <div class="s-process-num">02</div>
+            <div class="s-process-text">
+              <h4>Design</h4>
+              <p>Two or three genuinely different routes, presented live with rationale — never one idea in three colours.</p>
+            </div>
+          </div>
+          <div class="s-process-item">
+            <div class="s-process-num">03</div>
+            <div class="s-process-text">
+              <h4>Build</h4>
+              <p>Design and development run together, with weekly demos and no surprises at handover.</p>
+            </div>
+          </div>
+          <div class="s-process-item">
+            <div class="s-process-num">04</div>
+            <div class="s-process-text">
+              <h4>Launch</h4>
+              <p>Rollout plan, asset library, and a month of post-launch support included as standard.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="s-process-cta">
+          <a href="404.html" class="s-btn primary"><i class="fa-solid fa-circle-info"></i> Read Full Process</a>
+          <a href="404.html" class="s-btn ghost"><i class="fa-solid fa-file-arrow-down"></i> Download Deck</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     05 — FEATURED SERVICE (image + thumbs + stats)
+     ========================================================= -->
+<section class="s-section s-featured">
+  <div class="s-wrap">
+    <div class="s-center" data-aos="fade-up">
+      <div class="s-kicker" style="justify-content:center">Flagship Service</div>
+      <h2 class="s-title">Our most <em>in-demand craft.</em></h2>
+      <p class="s-sub">Brand identity — the service most clients come to us for, and the one that anchors everything else we do.</p>
+    </div>
+
+    <div class="s-featured-card" data-aos="fade-up" data-aos-duration="900">
+
+      <div class="s-featured-left">
+        <div class="s-featured-img-wrap">
+          <span class="s-featured-badge"><i class="fa-solid fa-star"></i> Flagship</span>
+          <img class="s-featured-img" id="featuredMainImg" src="ca14.webp" alt="Brand identity work" loading="lazy">
+        </div>
+        <div class="s-featured-thumbs">
+          <img class="s-featured-thumb" src="ca15.webp" alt="thumb 1" loading="lazy" onclick="swapFeatured(this)">
+          <img class="s-featured-thumb" src="ca1.webp" alt="thumb 2" loading="lazy" onclick="swapFeatured(this)">
+          <img class="s-featured-thumb" src="ca2.webp" alt="thumb 3" loading="lazy" onclick="swapFeatured(this)">
+        </div>
+      </div>
+
+      <div class="s-featured-body">
+        <div class="s-featured-quote">"A brand is what people say about you when you leave the room. We give them something worth saying."</div>
+        <h3>Identity that outlasts the trend cycle</h3>
+        <div class="role">Brand Identity · Flagship Service</div>
+        <p>
+          We build identity systems from the inside out — positioning first, then the marks, type, and rules that hold up from a pitch deck to a billboard. Every deliverable ships with a working guidelines document your team can extend, not just admire.
+        </p>
+
+        <div class="s-featured-stats">
+          <div class="s-featured-stat">
+            <h4><span class="counter" data-target="85">0</span>+</h4>
+            <p>Brands Launched</p>
+          </div>
+          <div class="s-featured-stat">
+            <h4><span class="counter" data-target="6">0</span></h4>
+            <p>Weeks Average</p>
+          </div>
+          <div class="s-featured-stat">
+            <h4><span class="counter" data-target="100">0</span>%</h4>
+            <p>Handover Ready</p>
+          </div>
+        </div>
+
+        <div class="s-featured-btns">
+          <a href="404.html" class="s-btn primary"><i class="fa-solid fa-comments"></i> Start a Brand Project</a>
+          <a href="404.html" class="s-btn outline"><i class="fa-solid fa-book-open"></i> See Brand Work</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     06 — CTA
+     ========================================================= -->
+<section class="s-cta">
+  <div class="s-cta-bg"></div>
+  <div class="s-cta-overlay"></div>
+
+  <div class="s-wrap">
+    <div class="s-cta-inner" data-aos="zoom-in" data-aos-duration="900">
+      <div class="s-cta-kicker">Ready When You Are</div>
+      <h2>Let's make something<br><em>worth shipping.</em></h2>
+      <p>Tell us what you're building. We'll come back within two working days with an honest read on scope, timeline, and whether we're the right studio for it.</p>
+
+      <div class="s-cta-btns">
+        <a href="404.html" class="s-btn primary"><i class="fa-solid fa-comments"></i> Start a Project</a>
+        <a href="404.html" class="s-btn ghost"><i class="fa-solid fa-calendar"></i> Book a Call</a>
+      </div>
+
+      <div class="s-cta-stats">
+        <div class="s-cta-stat">
+          <h4><span class="counter" data-target="6">0</span></h4>
+          <p>Core Services</p>
+        </div>
+        <div class="s-cta-stat">
+          <h4><span class="counter" data-target="140">0</span>+</h4>
+          <p>Projects Shipped</p>
+        </div>
+        <div class="s-cta-stat">
+          <h4><span class="counter" data-target="4.9" data-decimals="1">0</span>★</h4>
+          <p>Partner Rating</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  AOS.init({
+    duration: 800,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 60,
+    disable: function () { return window.innerWidth < 480; }
+  });
+
+  /* ============================================================
+     COUNTERS
+     ============================================================ */
+  function animateCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target')) || 0;
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const duration = 1600;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+
+      el.textContent = decimals > 0
+        ? value.toFixed(decimals)
+        : Math.floor(value).toLocaleString();
+
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = decimals > 0
+        ? target.toFixed(decimals)
+        : Math.floor(target).toLocaleString();
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        if (!el.dataset.animated) {
+          el.dataset.animated = 'true';
+          animateCounter(el);
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+  /* ============================================================
+     HEADER / FOOTER
+     ============================================================ */
+  fetch('header.html')
+    .then(r => r.ok ? r.text() : Promise.reject('Header not found'))
+    .then(d => {
+      document.getElementById('header-placeholder').innerHTML = d;
+      initHeader();
+      AOS.refresh();
+    })
+    .catch(err => console.error('Header load failed:', err));
+
+  fetch('footer.html')
+    .then(r => r.ok ? r.text() : Promise.reject('Footer not found'))
+    .then(d => {
+      document.getElementById('footer-placeholder').innerHTML = d;
+      if (typeof initFooter === 'function') initFooter();
+      AOS.refresh();
+    })
+    .catch(err => console.error('Footer load failed:', err));
+
+  function initHeader() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      document.addEventListener('click', function (e) {
+        if (mobileMenu.classList.contains('active')) {
+          if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+    }
+  }
+
+  /* ============================================================
+     FEATURED IMAGE SWAPPER
+     ============================================================ */
+  window.swapFeatured = function (thumb) {
+    const main = document.getElementById('featuredMainImg');
+    if (main) {
+      main.style.opacity = '0';
+      setTimeout(() => {
+        main.src = thumb.src;
+        main.style.opacity = '1';
+      }, 180);
+    }
+  };
+
+  window.handleLogout = function (e) {
+    if (e) e.preventDefault();
+    try {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+    } catch (err) {}
+    window.location.replace('login.html');
+  };
+
+  console.log('✦ Stackly — services page ready');
+});
+</script>
+
+</body>
+</html>

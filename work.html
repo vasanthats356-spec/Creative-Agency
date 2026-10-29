@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Creative Agency — Work</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+<style>
+  :root{
+    --paper:#faf7f2;
+    --white:#ffffff;
+    --ink:#1a1625;
+    --ink-2:#4a4358;
+    --ink-3:#6f6880;
+    --violet:#7c3aed;
+    --violet-2:#a78bfa;
+    --violet-3:#f3edff;
+    --border:#ebe6dd;
+    --lavender:#c7c1d6;
+    --lavender-dim:#a9a2bd;
+    --shadow:0 18px 50px rgba(26,22,37,.07);
+    --shadow-hi:0 28px 70px rgba(26,22,37,.14);
+    --nav-height:110px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.65;overflow-x:hidden;
+    padding-top:var(--nav-height);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Sora','Inter',sans-serif;letter-spacing:-.025em;line-height:1.12;font-weight:800}
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  #header-placeholder,#footer-placeholder{width:100%}
+
+  @media (max-width:1100px){:root{--nav-height:160px}}
+  @media (max-width:768px){:root{--nav-height:95px}}
+  @media (max-width:480px){:root{--nav-height:85px}}
+
+  /* ===== HELPERS ===== */
+  .ca-wrap{max-width:1280px;margin:0 auto;padding:0 24px;width:100%}
+  .ca-section{padding:110px 0;position:relative}
+  .ca-section.alt{background:var(--white);border-block:1px solid var(--border)}
+  .ca-section.lilac{background:var(--violet-3)}
+
+  .ca-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--violet-3);color:var(--violet);
+    border:1px solid #e3d7ff;
+    padding:7px 16px;border-radius:50px;
+    font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .ca-tag i{font-size:.72rem}
+
+  .ca-sub{font-size:.98rem;color:var(--ink-3);max-width:620px;line-height:1.75}
+  .ca-center{text-align:center}
+  .ca-center .ca-sub{margin-inline:auto}
+
+  /* ===== BUTTONS ===== */
+  .ca-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 28px;border-radius:10px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.86rem;
+    letter-spacing:.01em;border:1.5px solid transparent;
+    cursor:pointer;transition:all .3s ease;white-space:nowrap;
+  }
+  .ca-btn.violet{background:var(--violet);color:#fff;box-shadow:0 10px 26px rgba(124,58,237,.28)}
+  .ca-btn.violet:hover{background:#6d28d9;transform:translateY(-3px);box-shadow:0 16px 34px rgba(124,58,237,.42)}
+  .ca-btn.ink{background:var(--ink);color:#fff}
+  .ca-btn.ink:hover{background:#000;transform:translateY(-3px);box-shadow:0 14px 30px rgba(26,22,37,.25)}
+  .ca-btn.outline{background:transparent;color:var(--ink);border-color:rgba(26,22,37,.22)}
+  .ca-btn.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-3px)}
+  .ca-btn.ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+  .ca-btn.ghost:hover{background:rgba(255,255,255,.16);border-color:var(--violet-2);transform:translateY(-3px)}
+
+  /* ============================================================
+     01 — EDITORIAL HERO
+     ============================================================ */
+  .wk-hero{
+    padding:80px 0 0;position:relative;overflow:hidden;
+    background:
+      radial-gradient(760px 460px at 92% -10%, rgba(124,58,237,.10) 0%, transparent 60%),
+      radial-gradient(620px 360px at -4% 108%, rgba(124,58,237,.06) 0%, transparent 60%),
+      var(--paper);
+  }
+  .wk-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding-bottom:64px}
+
+  .wk-hero-copy h1{
+    font-size:clamp(2.6rem,6.2vw,4.9rem);
+    line-height:1.02;margin-bottom:24px;
+  }
+  .wk-hero-copy h1 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--violet)}
+  .wk-hero-copy > p{
+    font-size:clamp(1rem,1.6vw,1.12rem);
+    color:var(--ink-2);line-height:1.78;max-width:560px;margin-bottom:34px;
+  }
+  .wk-hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+
+  .wk-hero-logos{
+    display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+    padding-top:28px;border-top:1px solid var(--border);
+  }
+  .wk-hero-logos span{
+    font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  .wk-hero-logos .row{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .wk-hero-logos .row div{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Sora';font-weight:700;font-size:.82rem;
+    color:var(--ink-2);opacity:.65;transition:opacity .3s ease;
+  }
+  .wk-hero-logos .row div:hover{opacity:1}
+  .wk-hero-logos .row div i{color:var(--violet);font-size:.7rem}
+
+  .wk-hero-visual{position:relative}
+  .wk-hero-main{
+    aspect-ratio:4/5;border-radius:28px;overflow:hidden;
+    background:var(--violet-3);box-shadow:var(--shadow-hi);
+    position:relative;
+  }
+  .wk-hero-main img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease}
+  .wk-hero-main:hover img{transform:scale(1.04)}
+
+  .wk-award-card{
+    position:absolute;left:-22px;bottom:26px;z-index:3;
+    background:#fff;border:1px solid var(--border);border-radius:18px;
+    padding:16px 20px;display:flex;align-items:center;gap:14px;
+    box-shadow:0 24px 60px rgba(26,22,37,.18);
+    max-width:260px;
+  }
+  .wk-award-card i{
+    width:44px;height:44px;border-radius:12px;
+    background:var(--violet);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.95rem;flex-shrink:0;
+  }
+  .wk-award-card strong{display:block;font-family:'Sora';font-size:.88rem;line-height:1.25;margin-bottom:3px}
+  .wk-award-card span{font-size:.7rem;color:var(--ink-3);font-weight:600}
+
+  .wk-hero-badge{
+    position:absolute;top:22px;right:22px;z-index:3;
+    background:rgba(26,22,37,.65);border:1px solid rgba(255,255,255,.24);
+    backdrop-filter:blur(10px);color:#fff;
+    font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    padding:7px 15px;border-radius:50px;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .wk-hero-badge i{color:#4ade80;font-size:.55rem}
+
+  .wk-hero-band{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.6);backdrop-filter:blur(6px);
+  }
+  .wk-hero-band > div{padding:30px 26px;border-right:1px solid var(--border);text-align:center}
+  .wk-hero-band > div:last-child{border-right:none}
+  .wk-hero-band strong{
+    display:block;font-family:'Sora';font-weight:800;
+    font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.05;
+    color:var(--ink);margin-bottom:6px;
+  }
+  .wk-hero-band strong em{font-family:'Playfair Display',serif;color:var(--violet);font-style:italic;font-size:.9em}
+  .wk-hero-band span{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* ============================================================
+     02 — CASE STUDY SHARED
+     ============================================================ */
+  .cs-head{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:30px;
+    flex-wrap:wrap;margin-bottom:56px;padding-bottom:26px;
+    border-bottom:1px solid var(--border);
+  }
+  .cs-num{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+    font-size:clamp(3rem,8vw,6rem);line-height:.9;color:var(--violet-3);
+    -webkit-text-stroke:2px var(--violet-2);letter-spacing:-.02em;
+  }
+  .cs-meta{display:flex;gap:32px;flex-wrap:wrap}
+  .cs-meta > div{text-align:right}
+  .cs-meta small{display:block;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:3px}
+  .cs-meta strong{font-family:'Sora';font-size:.86rem;color:var(--ink)}
+
+  .cs-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:flex-start}
+  .cs-grid.reverse{grid-template-columns:.95fr 1.05fr}
+
+  .cs-media{
+    position:relative;border-radius:24px;overflow:hidden;
+    aspect-ratio:4/3.4;background:var(--violet-3);
+    box-shadow:var(--shadow-hi);
+  }
+  .cs-media img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease}
+  .cs-media:hover img{transform:scale(1.04)}
+
+  .cs-media-stack{display:grid;gap:16px}
+  .cs-media-stack .cs-media{aspect-ratio:16/10}
+
+  .cs-body h2{font-size:clamp(1.7rem,3.6vw,2.6rem);margin-bottom:18px;line-height:1.12}
+  .cs-body h2 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--violet)}
+
+  .cs-body > p{font-size:.98rem;color:var(--ink-2);line-height:1.82;margin-bottom:18px}
+  .cs-body > p strong{color:var(--ink);font-weight:700}
+
+  .cs-body h4{
+    font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--violet);margin-top:30px;margin-bottom:12px;
+  }
+
+  .cs-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:8px}
+  .cs-list li{
+    display:flex;align-items:flex-start;gap:12px;
+    font-size:.9rem;color:var(--ink-2);line-height:1.65;
+  }
+  .cs-list li i{
+    color:var(--violet);font-size:.68rem;
+    margin-top:6px;flex-shrink:0;
+  }
+  .cs-list li strong{color:var(--ink);font-weight:700}
+
+  .cs-brief{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;
+    padding:22px 0;margin:26px 0 30px;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  .cs-brief small{display:block;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:3px}
+  .cs-brief strong{font-family:'Sora';font-size:.88rem;color:var(--ink)}
+
+  .cs-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+  .cs-metric{
+    background:#fff;border:1px solid var(--border);border-radius:14px;
+    padding:18px 14px;text-align:center;transition:all .3s ease;
+  }
+  .cs-metric:hover{border-color:#ded2f8;box-shadow:0 10px 24px rgba(26,22,37,.06)}
+  .cs-metric strong{display:block;font-family:'Sora';font-size:1.45rem;color:var(--violet);line-height:1.1;margin-bottom:4px}
+  .cs-metric span{font-size:.68rem;font-weight:600;color:var(--ink-3);letter-spacing:.03em}
+
+  .cs-quote{
+    background:var(--violet-3);border-left:3px solid var(--violet);
+    border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0;
+  }
+  .cs-quote p{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:600;
+    font-size:1rem;line-height:1.55;color:var(--ink);margin-bottom:10px;
+  }
+  .cs-quote footer{
+    display:flex;align-items:center;gap:10px;
+    font-size:.76rem;color:var(--ink-3);font-weight:600;
+  }
+  .cs-quote footer img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+  .cs-quote footer strong{color:var(--ink);font-weight:700;font-family:'Sora'}
+
+  .cs-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+
+  /* ============================================================
+     03 — BEFORE/AFTER SLIDER
+     ============================================================ */
+  .cs-compare{
+    position:relative;aspect-ratio:16/11;border-radius:20px;
+    overflow:hidden;background:#241d33;
+    box-shadow:var(--shadow-hi);cursor:ew-resize;
+    user-select:none;touch-action:none;
+  }
+  .cs-compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .cs-compare-after{clip-path:inset(0 0 0 50%)}
+
+  .cs-compare-handle{
+    position:absolute;top:0;bottom:0;left:50%;
+    width:3px;background:#fff;z-index:3;
+    box-shadow:0 0 24px rgba(255,255,255,.55);
+    transform:translateX(-50%);
+  }
+  .cs-compare-handle::after{
+    content:'\f337';font-family:'Font Awesome 6 Free';font-weight:900;
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:44px;height:44px;border-radius:50%;
+    background:#fff;color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.9rem;box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .cs-compare-tag{
+    position:absolute;top:14px;z-index:4;
+    background:rgba(26,22,37,.65);border:1px solid rgba(255,255,255,.24);
+    backdrop-filter:blur(8px);color:#fff;
+    font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    padding:5px 13px;border-radius:50px;
+  }
+  .cs-compare-tag.before{left:14px}
+  .cs-compare-tag.after{right:14px}
+
+  .cs-did{display:flex;flex-direction:column;gap:0}
+  .cs-did-item{
+    display:flex;gap:16px;padding:18px 0;
+    border-bottom:1px solid var(--border);transition:all .3s ease;
+  }
+  .cs-did-item:first-child{padding-top:0}
+  .cs-did-item:last-child{border-bottom:none}
+  .cs-did-num{
+    font-family:'Sora';font-weight:800;font-size:.78rem;
+    color:var(--violet-2);min-width:32px;padding-top:2px;
+  }
+  .cs-did-body h4{font-family:'Sora';font-size:.94rem;margin-bottom:5px;font-weight:700}
+  .cs-did-body p{font-size:.84rem;color:var(--ink-3);line-height:1.7}
+
+  /* ============================================================
+     04 — CASE STUDY 03 (light)
+     ============================================================ */
+  .cs-dark-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+
+  .cs-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
+  .cs-mosaic-tile{
+    border-radius:18px;overflow:hidden;background:var(--violet-3);
+    aspect-ratio:1/1;
+    box-shadow:var(--shadow);
+  }
+  .cs-mosaic-tile.tall{aspect-ratio:auto;grid-row:span 2;min-height:420px}
+  .cs-mosaic-tile img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .cs-mosaic-tile:hover img{transform:scale(1.06)}
+
+  .cs-dark-body h2{color:var(--ink);font-size:clamp(1.8rem,3.8vw,2.7rem);margin-bottom:18px;line-height:1.1}
+  .cs-dark-body h2 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--violet)}
+  .cs-dark-body > p{color:var(--ink-2);font-size:.96rem;line-height:1.82;margin-bottom:18px}
+  .cs-dark-body > p strong{color:var(--ink);font-weight:700}
+
+  .cs-impact{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+    margin:30px 0 28px;padding:28px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .cs-impact > div strong{
+    display:block;font-family:'Sora';font-size:clamp(1.5rem,3vw,2rem);
+    color:var(--violet);line-height:1.05;margin-bottom:5px;
+  }
+  .cs-impact > div span{
+    font-size:.7rem;font-weight:600;letter-spacing:.04em;
+    color:var(--ink-3);
+  }
+
+  .cs-dark-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+  .cs-dark-list li{
+    display:flex;align-items:flex-start;gap:12px;
+    font-size:.88rem;color:var(--ink-2);line-height:1.65;
+  }
+  .cs-dark-list li i{
+    color:var(--violet);font-size:.65rem;
+    margin-top:6px;flex-shrink:0;
+  }
+  .cs-dark-list li strong{color:var(--ink)}
+
+  /* ============================================================
+     05 — RECENT WORK
+     ============================================================ */
+  .ca-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:30px;flex-wrap:wrap;margin-bottom:48px;
+  }
+  .ca-head.center{flex-direction:column;align-items:center;text-align:center}
+
+  .wk-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:28px;
+  }
+  .wk-card{
+    background:#fff;border:1px solid var(--border);border-radius:24px;
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:all .4s ease;cursor:default;
+  }
+  .wk-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:#ded2f8}
+
+  .wk-card-img{
+    aspect-ratio:16/10;overflow:hidden;position:relative;
+    background:var(--violet-3);
+  }
+  .wk-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .wk-card:hover .wk-card-img img{transform:scale(1.06)}
+
+  .wk-card-tag{
+    position:absolute;top:14px;left:14px;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    color:var(--violet);font-size:.62rem;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;
+    padding:5px 12px;border-radius:50px;
+    pointer-events:none;
+  }
+  .wk-card-year{
+    position:absolute;top:14px;right:14px;
+    background:rgba(26,22,37,.6);border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(8px);color:#fff;
+    font-size:.62rem;font-weight:800;letter-spacing:.08em;
+    padding:5px 11px;border-radius:50px;
+    pointer-events:none;
+  }
+
+  .wk-card-body{padding:30px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .wk-card-body h3{font-size:1.25rem;line-height:1.26;letter-spacing:-.02em}
+  .wk-card-body > p{font-size:.9rem;color:var(--ink-3);line-height:1.78;flex:1}
+
+  .wk-card-stats{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;
+    padding:16px 0;border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .wk-card-stats > div strong{
+    display:block;font-family:'Sora';font-size:1.2rem;
+    color:var(--violet);line-height:1.1;margin-bottom:3px;
+  }
+  .wk-card-stats > div span{font-size:.66rem;font-weight:600;color:var(--ink-3);letter-spacing:.03em}
+
+  .wk-card-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .wk-card-client{font-size:.72rem;font-weight:700;color:var(--ink-2);letter-spacing:.04em;text-transform:uppercase}
+  .wk-card-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Sora';font-size:.76rem;font-weight:700;color:var(--violet);
+    transition:gap .3s ease,color .25s ease;cursor:pointer;
+  }
+  .wk-card-link:hover{gap:13px;color:#6d28d9}
+
+  /* ============================================================
+     06 — CTA (dark bookend)
+     ============================================================ */
+  .wk-cta{
+    background:
+      radial-gradient(900px 480px at 50% -20%, rgba(124,58,237,.32) 0%, transparent 62%),
+      radial-gradient(600px 360px at 8% 120%, rgba(124,58,237,.16) 0%, transparent 60%),
+      var(--ink);
+    color:#fff;padding:110px 0;position:relative;overflow:hidden;
+  }
+  .wk-cta-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2}
+
+  .wk-cta-pill{
+    display:inline-flex;align-items:center;gap:9px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+    color:var(--violet-2);
+    padding:7px 18px;border-radius:50px;
+    font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .wk-cta-pill .dot{
+    width:7px;height:7px;border-radius:50%;background:#4ade80;
+    box-shadow:0 0 0 3px rgba(74,222,128,.2);
+    animation:wkPulse 2s ease-in-out infinite;
+  }
+  @keyframes wkPulse{
+    0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.2)}
+    50%{box-shadow:0 0 0 7px rgba(74,222,128,0)}
+  }
+
+  .wk-cta h2{font-size:clamp(2.2rem,5.5vw,3.8rem);line-height:1.06;margin-bottom:22px}
+  .wk-cta h2 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--violet-2)}
+  .wk-cta > .ca-wrap > .wk-cta-inner > p{
+    color:var(--lavender);font-size:1.02rem;line-height:1.8;
+    max-width:620px;margin:0 auto 34px;
+  }
+
+  .wk-cta-features{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px;
+    max-width:640px;margin:0 auto 40px;
+    text-align:left;
+  }
+  .wk-cta-features div{
+    display:flex;align-items:flex-start;gap:12px;
+    font-size:.86rem;color:var(--lavender);line-height:1.55;
+  }
+  .wk-cta-features div i{
+    width:22px;height:22px;border-radius:50%;
+    background:rgba(167,139,250,.18);color:var(--violet-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.6rem;flex-shrink:0;margin-top:2px;
+  }
+
+  .wk-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+
+  .wk-cta-contact{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:14px 32px;
+    padding-top:30px;border-top:1px solid rgba(255,255,255,.14);
+    max-width:800px;margin:0 auto;
+  }
+  .wk-cta-contact div{
+    display:flex;align-items:center;gap:9px;
+    font-size:.85rem;color:#cfc9dd;
+  }
+  .wk-cta-contact i{color:var(--violet-2);font-size:.85rem}
+
+  /* ===== BACK TO TOP ===== */
+  .wk-top{
+    position:fixed;right:22px;bottom:22px;z-index:900;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--violet);color:#fff;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;
+    box-shadow:0 12px 30px rgba(124,58,237,.4);
+    opacity:0;visibility:hidden;transform:translateY(12px);
+    transition:all .35s ease;
+  }
+  .wk-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+  .wk-top:hover{background:#6d28d9;transform:translateY(-3px)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:1100px){
+    .wk-hero-grid{grid-template-columns:1fr;gap:48px}
+    .wk-hero-copy > p{max-width:100%}
+    .wk-hero-visual{max-width:480px;margin:0 auto}
+    .wk-hero-band{grid-template-columns:repeat(2,1fr)}
+    .wk-hero-band > div:nth-child(2){border-right:none}
+    .wk-hero-band > div:nth-child(1),
+    .wk-hero-band > div:nth-child(2){border-bottom:1px solid var(--border)}
+
+    .cs-grid,.cs-grid.reverse{grid-template-columns:1fr;gap:44px}
+    .cs-media,.cs-media-stack .cs-media{aspect-ratio:16/10}
+    .cs-dark-grid{grid-template-columns:1fr;gap:44px}
+    .cs-mosaic-tile.tall{min-height:320px}
+  }
+
+  @media (max-width:900px){
+    .cs-head{flex-direction:column;align-items:flex-start}
+    .cs-meta{text-align:left}
+    .cs-meta > div{text-align:left}
+    .wk-grid{grid-template-columns:1fr}
+  }
+
+  @media (max-width:768px){
+    .ca-section{padding:78px 0}
+    .ca-wrap{padding:0 20px}
+    .wk-hero{padding-top:50px}
+    .wk-hero-copy h1{font-size:2.2rem}
+    .wk-hero-btns{flex-direction:column;width:100%}
+    .wk-hero-btns .ca-btn{width:100%}
+    .wk-hero-band{grid-template-columns:1fr}
+    .wk-hero-band > div{border-right:none;border-bottom:1px solid var(--border)}
+    .wk-hero-band > div:last-child{border-bottom:none}
+
+    .cs-body h2,.cs-dark-body h2{font-size:1.6rem}
+    .cs-brief{grid-template-columns:1fr 1fr}
+    .cs-metrics{grid-template-columns:1fr;gap:10px}
+    .cs-impact{grid-template-columns:1fr;gap:18px}
+    .cs-btns{flex-direction:column}
+    .cs-btns .ca-btn{width:100%}
+
+    .cs-mosaic{grid-template-columns:1fr 1fr}
+    .cs-mosaic-tile.tall{grid-row:span 1;aspect-ratio:1/1;min-height:0}
+
+    .wk-grid{gap:20px}
+    .wk-card-body{padding:22px}
+    .wk-card-body h3{font-size:1.1rem}
+
+    .wk-cta{padding:80px 0}
+    .wk-cta h2{font-size:1.85rem}
+    .wk-cta-features{grid-template-columns:1fr;gap:12px}
+    .wk-cta-btns{flex-direction:column;width:100%}
+    .wk-cta-btns .ca-btn{width:100%}
+    .wk-cta-contact{flex-direction:column;align-items:flex-start;text-align:left}
+  }
+
+  @media (max-width:480px){
+    .ca-section{padding:60px 0}
+    .ca-wrap{padding:0 16px}
+    .wk-hero-copy h1{font-size:1.9rem}
+    .wk-hero-band strong{font-size:1.4rem}
+    .cs-mosaic{grid-template-columns:1fr}
+    .wk-card-stats{grid-template-columns:1fr}
+    .wk-cta h2{font-size:1.6rem}
+    .wk-top{right:16px;bottom:16px;width:42px;height:42px}
+  }
+
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:var(--paper)}
+  ::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--violet)}
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- 01 — EDITORIAL HERO -->
+<section class="wk-hero">
+  <div class="ca-wrap">
+    <div class="wk-hero-grid">
+
+      <div class="wk-hero-copy" data-aos="fade-right" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-folder-open"></i> Portfolio · Selected Work 2020–2026</div>
+        <h1>Work that earns its <em>place.</em></h1>
+        <p>
+          Identity systems, digital products, and campaigns for brands that want to be remembered. Every project shipped with a real brief, a senior team, and results we can point to.
+        </p>
+
+        <div class="wk-hero-btns">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-arrow-up-right-from-square"></i> Explore Projects</a>
+          <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-file-arrow-down"></i> Download Deck</a>
+        </div>
+
+        <div class="wk-hero-logos">
+          <span>Trusted by</span>
+          <div class="row">
+            <div><i class="fa-solid fa-shapes"></i> Northwind</div>
+            <div><i class="fa-solid fa-shapes"></i> Lumen Labs</div>
+            <div><i class="fa-solid fa-shapes"></i> Atlas &amp; Co</div>
+            <div><i class="fa-solid fa-shapes"></i> Verve</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wk-hero-visual" data-aos="fade-left" data-aos-duration="900">
+        <div class="wk-hero-main">
+          <img src="ca15.webp" alt="Creative team working">
+          <span class="wk-hero-badge"><i class="fa-solid fa-circle"></i> 12 Live · 2026</span>
+        </div>
+        <div class="wk-award-card">
+          <i class="fa-solid fa-trophy"></i>
+          <div>
+            <strong>Agency of the Year</strong>
+            <span>Design Awards · 2025</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wk-hero-band" data-aos="fade-up" data-aos-delay="140">
+      <div><strong>140+</strong><span>Projects Shipped</span></div>
+      <div><strong>9</strong><span>Industries Served</span></div>
+      <div><strong>23</strong><span>Awards Won</span></div>
+      <div><strong>96<em>%</em></strong><span>Client Retention</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — CASE STUDY 01 · Northwind -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+
+    <div class="cs-head" data-aos="fade-up">
+      <div class="cs-num">01</div>
+      <div class="cs-meta">
+        <div><small>Client</small><strong>Northwind Finance</strong></div>
+        <div><small>Industry</small><strong>Fintech</strong></div>
+        <div><small>Year</small><strong>2025</strong></div>
+        <div><small>Duration</small><strong>6 weeks</strong></div>
+      </div>
+    </div>
+
+    <div class="cs-grid">
+
+      <div class="cs-media" data-aos="fade-right" data-aos-duration="900">
+        <img src="ca14.webp" alt="Northwind brand identity" loading="lazy">
+      </div>
+
+      <div class="cs-body" data-aos="fade-left" data-aos-duration="900">
+        <h2>Northwind — a calmer kind of <em>finance</em></h2>
+
+        <p>
+          Northwind had grown into a regulated fintech serving 140,000 customers — but its brand still looked like a startup. Investors wanted a rebrand; customers wanted a simpler product. Both were right.
+        </p>
+
+        <p>
+          We had six weeks before a funding round to overhaul the identity, site, and product UI as one system — with no downtime and a clean handover to the in-house team.
+        </p>
+
+        <h4>The brief</h4>
+        <div class="cs-brief">
+          <div><small>Scope</small><strong>Brand identity · Web · Product</strong></div>
+          <div><small>Team</small><strong>4 senior designers</strong></div>
+          <div><small>Stack</small><strong>Figma · Next.js · Sanity</strong></div>
+          <div><small>Output</small><strong>Design system + 38 pages</strong></div>
+        </div>
+
+        <h4>What we shipped</h4>
+        <ul class="cs-list">
+          <li><i class="fa-solid fa-circle"></i> <span><strong>New identity system</strong> — logo, type, colour, and guidelines</span></li>
+          <li><i class="fa-solid fa-circle"></i> <span><strong>Marketing site rebuild</strong> — 38 responsive, CMS-driven pages</span></li>
+          <li><i class="fa-solid fa-circle"></i> <span><strong>Product UI overhaul</strong> — dashboard, onboarding, and a 60-component system</span></li>
+        </ul>
+
+        <h4>Outcome</h4>
+        <div class="cs-metrics">
+          <div class="cs-metric"><strong>+68%</strong><span>Conversion rate</span></div>
+          <div class="cs-metric"><strong>4.2×</strong><span>Organic traffic</span></div>
+          <div class="cs-metric"><strong>3</strong><span>Industry awards</span></div>
+        </div>
+
+        <blockquote class="cs-quote">
+          <p>"They rebuilt our identity in six weeks and it still looks fresh two years later. The strategy work was the real surprise."</p>
+          <footer>
+            <img src="ca13.webp" alt="Sarah Chen">
+            <span><strong>Sarah Chen</strong> — CMO, Northwind</span>
+          </footer>
+        </blockquote>
+
+        <div class="cs-btns">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-book-open"></i> Read Full Case Study</a>
+          <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-globe"></i> Visit Live Site</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 — CASE STUDY 02 · Lumen Labs -->
+<section class="ca-section">
+  <div class="ca-wrap">
+
+    <div class="cs-head" data-aos="fade-up">
+      <div class="cs-num">02</div>
+      <div class="cs-meta">
+        <div><small>Client</small><strong>Lumen Labs</strong></div>
+        <div><small>Industry</small><strong>SaaS · Analytics</strong></div>
+        <div><small>Year</small><strong>2025</strong></div>
+        <div><small>Duration</small><strong>10 weeks</strong></div>
+      </div>
+    </div>
+
+    <div class="cs-grid reverse">
+
+      <div class="cs-body" data-aos="fade-right" data-aos-duration="900">
+        <h2>Lumen Labs — the platform, <em>rebuilt properly</em></h2>
+
+        <p>
+          Lumen Labs' analytics dashboard still carried the DNA of its three-year-old MVP: a six-step signup, an 11-second load, and a support queue full of UX questions.
+        </p>
+
+        <p>
+          We rebuilt it from the information architecture up over ten weeks — new onboarding, dashboard, and design system — shipping incrementally behind feature flags.
+        </p>
+
+        <h4>What we did</h4>
+        <div class="cs-did">
+          <div class="cs-did-item">
+            <span class="cs-did-num">01</span>
+            <div class="cs-did-body">
+              <h4>Information architecture</h4>
+              <p>Card-sorting with 22 users; click depth cut from 4.2 to 1.8.</p>
+            </div>
+          </div>
+          <div class="cs-did-item">
+            <span class="cs-did-num">02</span>
+            <div class="cs-did-body">
+              <h4>Onboarding rebuild</h4>
+              <p>Six steps to two screens with smart defaults; completion rose from 41% to 89%.</p>
+            </div>
+          </div>
+          <div class="cs-did-item">
+            <span class="cs-did-num">03</span>
+            <div class="cs-did-body">
+              <h4>Design system</h4>
+              <p>60+ accessible components with token docs the in-house team can extend.</p>
+            </div>
+          </div>
+          <div class="cs-did-item">
+            <span class="cs-did-num">04</span>
+            <div class="cs-did-body">
+              <h4>Performance pass</h4>
+              <p>Dashboard now renders in 1.2s, down from 11s.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-btns" style="margin-top:26px">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-book-open"></i> Read Full Case Study</a>
+          <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-play"></i> Watch Walkthrough</a>
+        </div>
+      </div>
+
+      <div class="cs-media-stack" data-aos="fade-left" data-aos-duration="900">
+        <div class="cs-compare" id="csCompare">
+          <img src="ca12.webp" alt="Before redesign" loading="lazy">
+          <img class="cs-compare-after" src="ca11.webp" alt="After redesign" loading="lazy">
+          <span class="cs-compare-tag before">Before</span>
+          <span class="cs-compare-tag after">After</span>
+          <div class="cs-compare-handle" id="csHandle"></div>
+        </div>
+
+        <div class="cs-media">
+          <img src="ca10.webp" alt="Lumen product detail" loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 — CASE STUDY 03 · Atlas & Co -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+
+    <div class="cs-head" data-aos="fade-up">
+      <div class="cs-num">03</div>
+      <div class="cs-meta">
+        <div><small>Client</small><strong>Atlas &amp; Co</strong></div>
+        <div><small>Industry</small><strong>Outdoor Retail</strong></div>
+        <div><small>Year</small><strong>2024</strong></div>
+        <div><small>Duration</small><strong>8 weeks</strong></div>
+      </div>
+    </div>
+
+    <div class="cs-dark-grid">
+
+      <div class="cs-mosaic" data-aos="fade-right" data-aos-duration="900">
+        <div class="cs-mosaic-tile tall">
+          <img src="ca9.webp" alt="Atlas campaign hero" loading="lazy">
+        </div>
+        <div class="cs-mosaic-tile">
+          <img src="ca8.webp" alt="Atlas campaign detail" loading="lazy">
+        </div>
+        <div class="cs-mosaic-tile">
+          <img src="ca7.webp" alt="Atlas campaign design" loading="lazy">
+        </div>
+      </div>
+
+      <div class="cs-dark-body" data-aos="fade-left" data-aos-duration="900">
+        <h2>"Go Further" — a campaign <em>built for the outdoors</em></h2>
+
+        <p>
+          Atlas &amp; Co makes premium outdoor gear, but its marketing had drifted into stock photography and generic performance language. The brief: a campaign shot with real climbers and trail runners, in real conditions.
+        </p>
+
+        <p>
+          We spent three weeks with the athlete team before writing a line, shot everything on location, and built headlines from their own quotes.
+        </p>
+
+        <div class="cs-impact">
+          <div><strong>+42%</strong><span>Brand recall lift</span></div>
+          <div><strong>2.8M</strong><span>Social impressions</span></div>
+          <div><strong>+31%</strong><span>Online sales in Q3</span></div>
+          <div><strong>6</strong><span>Markets rolled out</span></div>
+        </div>
+
+        <ul class="cs-dark-list">
+          <li><i class="fa-solid fa-circle"></i> <span><strong>12 out-of-home executions</strong> across 6 cities</span></li>
+          <li><i class="fa-solid fa-circle"></i> <span><strong>3-minute brand film</strong>, cut for social and cinema</span></li>
+          <li><i class="fa-solid fa-circle"></i> <span><strong>40-asset social toolkit</strong> with motion system and copy bank</span></li>
+        </ul>
+
+        <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-book-open"></i> Read the Atlas Case</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 05 — RECENT WORK · 6 cards -->
+<section class="ca-section">
+  <div class="ca-wrap">
+
+    <div class="ca-head center" data-aos="fade-up">
+      <div class="ca-tag"><i class="fa-solid fa-clone"></i> Recent Work</div>
+      <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);margin-bottom:16px">More from <span style="color:var(--violet)">the studio floor</span></h2>
+      <p class="ca-sub" style="text-align:center">
+        Six projects from the last eighteen months across identity, product, campaign, and editorial work — each with a live client, a real brief, and measurable outcomes.
+      </p>
+    </div>
+
+    <div class="wk-grid">
+
+      <div class="wk-card" data-aos="fade-up">
+        <div class="wk-card-img">
+          <span class="wk-card-tag">Branding · Web</span>
+          <span class="wk-card-year">2025</span>
+          <img src="ca6.webp" alt="Northwind" loading="lazy">
+        </div>
+        <div class="wk-card-body">
+          <h3>Northwind — a calmer kind of finance</h3>
+          <p>Full rebrand plus site and product UI for a fintech scaling into three new markets ahead of a Series B.</p>
+          <div class="wk-card-stats">
+            <div><strong>+68%</strong><span>Conversion</span></div>
+            <div><strong>3</strong><span>Awards</span></div>
+          </div>
+          <div class="wk-card-foot">
+            <span class="wk-card-client">Northwind Finance</span>
+            <a href="404.html" class="wk-card-link">View case <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wk-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="wk-card-img">
+          <span class="wk-card-tag">Product · Design System</span>
+          <span class="wk-card-year">2025</span>
+          <img src="ca5.webp" alt="Lumen Labs" loading="lazy">
+        </div>
+        <div class="wk-card-body">
+          <h3>Lumen Labs — the platform rebuild</h3>
+          <p>Ten-week overhaul of IA, onboarding, dashboard, and a 60-component design system handed to the in-house team.</p>
+          <div class="wk-card-stats">
+            <div><strong>+128%</strong><span>Signups</span></div>
+            <div><strong>1.2s</strong><span>Load time</span></div>
+          </div>
+          <div class="wk-card-foot">
+            <span class="wk-card-client">Lumen Labs</span>
+            <a href="404.html" class="wk-card-link">View case <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wk-card" data-aos="fade-up" data-aos-delay="40">
+        <div class="wk-card-img">
+          <span class="wk-card-tag">Campaign · Film</span>
+          <span class="wk-card-year">2024</span>
+          <img src="ca4.webp" alt="Atlas & Co" loading="lazy">
+        </div>
+        <div class="wk-card-body">
+          <h3>Atlas &amp; Co — "Go Further"</h3>
+          <p>Nationwide out-of-home and film campaign shot on location with the Atlas athlete team across six markets.</p>
+          <div class="wk-card-stats">
+            <div><strong>+42%</strong><span>Brand recall</span></div>
+            <div><strong>2.8M</strong><span>Impressions</span></div>
+          </div>
+          <div class="wk-card-foot">
+            <span class="wk-card-client">Atlas &amp; Co</span>
+            <a href="404.html" class="wk-card-link">View case <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wk-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="wk-card-img">
+          <span class="wk-card-tag">Motion · 3D</span>
+          <span class="wk-card-year">2024</span>
+          <img src="ca3.webp" alt="Verve Studio" loading="lazy">
+        </div>
+        <div class="wk-card-body">
+          <h3>Verve Studio — animated identity</h3>
+          <p>A fully animated brand system for a motion-first studio: logo behaviour, transitions, and a 3D toolkit.</p>
+          <div class="wk-card-stats">
+            <div><strong>40+</strong><span>Motion assets</span></div>
+            <div><strong>3</strong><span>Platforms</span></div>
+          </div>
+          <div class="wk-card-foot">
+            <span class="wk-card-client">Verve Studio</span>
+            <a href="404.html" class="wk-card-link">View case <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wk-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="wk-card-img">
+          <span class="wk-card-tag">Editorial · Copy</span>
+          <span class="wk-card-year">2023</span>
+          <img src="ca2.webp" alt="Halcyon Journal" loading="lazy">
+        </div>
+        <div class="wk-card-body">
+          <h3>Halcyon Journal — art direction</h3>
+          <p>Editorial art direction and a voice-and-tone system for a quarterly design journal, with cover series and copy framework.</p>
+          <div class="wk-card-stats">
+            <div><strong>4 issues</strong><span>Delivered</span></div>
+            <div><strong>12</strong><span>Contributors</span></div>
+          </div>
+          <div class="wk-card-foot">
+            <span class="wk-card-client">Halcyon Press</span>
+            <a href="404.html" class="wk-card-link">View case <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wk-card" data-aos="fade-up" data-aos-delay="140">
+        <div class="wk-card-img">
+          <span class="wk-card-tag">Branding · Print</span>
+          <span class="wk-card-year">2023</span>
+          <img src="ca1.webp" alt="Meridian Hotel" loading="lazy">
+        </div>
+        <div class="wk-card-body">
+          <h3>Meridian — hospitality rebrand</h3>
+          <p>Naming, identity, and print system for a boutique hotel group opening three properties across Southern Europe.</p>
+          <div class="wk-card-stats">
+            <div><strong>3</strong><span>New properties</span></div>
+            <div><strong>120+</strong><span>Print assets</span></div>
+          </div>
+          <div class="wk-card-foot">
+            <span class="wk-card-client">Meridian Hotels</span>
+            <a href="404.html" class="wk-card-link">View case <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:52px" data-aos="fade-up">
+      <a href="404.html" class="ca-btn ink"><i class="fa-solid fa-grid-2"></i> Browse Full Archive — 140 Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — CTA · dark bookend -->
+<section class="wk-cta">
+  <div class="ca-wrap">
+    <div class="wk-cta-inner">
+
+      <div class="wk-cta-pill" data-aos="fade-up">
+        <span class="dot"></span> Now booking · Q3 2026
+      </div>
+
+      <h2 data-aos="fade-up" data-aos-delay="60">
+        Your project could be<br>the next one <em>here.</em>
+      </h2>
+
+      <p data-aos="fade-up" data-aos-delay="120">
+        We take on a few engagements each quarter so the work stays senior. If you're building something worth a case study, we'd like to hear about it.
+      </p>
+
+      <div class="wk-cta-features" data-aos="fade-up" data-aos-delay="160">
+        <div><i class="fa-solid fa-check"></i> <span>Senior-only teams — no juniors on your project</span></div>
+        <div><i class="fa-solid fa-check"></i> <span>Fixed-scope proposals within 5 working days</span></div>
+        <div><i class="fa-solid fa-check"></i> <span>Full design system handover as standard</span></div>
+        <div><i class="fa-solid fa-check"></i> <span>One month post-launch support included</span></div>
+      </div>
+
+      <div class="wk-cta-btns" data-aos="fade-up" data-aos-delay="200">
+        <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-comments"></i> Start a Project</a>
+        <a href="404.html" class="ca-btn ghost"><i class="fa-solid fa-file-arrow-down"></i> Download Capabilities</a>
+      </div>
+
+      <div class="wk-cta-contact" data-aos="fade-up" data-aos-delay="240">
+        <div><i class="fa-solid fa-envelope"></i> hello@stacklyagency.com</div>
+        <div><i class="fa-solid fa-phone"></i> +1 987 654 321</div>
+        <div><i class="fa-solid fa-location-dot"></i> 22 Studio Lane, Design District</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<!-- <button class="wk-top" id="wkTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button> -->
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+  window.addEventListener('load', () => AOS.refresh());
+
+  /* ===== BEFORE/AFTER COMPARE SLIDER ===== */
+  const compare = document.getElementById('csCompare');
+  const handle  = document.getElementById('csHandle');
+
+  if (compare && handle) {
+    const afterImg = compare.querySelector('.cs-compare-after');
+    let dragging = false;
+
+    function moveTo(clientX) {
+      const rect = compare.getBoundingClientRect();
+      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const pct = (x / rect.width) * 100;
+      afterImg.style.clipPath = `inset(0 0 0 ${pct}%)`;
+      handle.style.left = pct + '%';
+    }
+
+    compare.addEventListener('pointerdown', e => {
+      dragging = true;
+      compare.setPointerCapture(e.pointerId);
+      moveTo(e.clientX);
+    });
+    compare.addEventListener('pointermove', e => {
+      if (dragging) moveTo(e.clientX);
+    });
+    compare.addEventListener('pointerup',   () => dragging = false);
+    compare.addEventListener('pointercancel', () => dragging = false);
+  }
+
+  /* ===== BACK TO TOP ===== */
+  const topBtn = document.getElementById('wkTop');
+  if (topBtn) {
+    window.addEventListener('scroll', () => {
+      topBtn.classList.toggle('show', window.scrollY > 600);
+    }, { passive: true });
+
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ===== HEADER / FOOTER PARTIALS ===== */
+  fetch('header.html')
+    .then(r => r.ok ? r.text() : Promise.reject('header.html missing'))
+    .then(html => {
+      document.getElementById('header-placeholder').innerHTML = html;
+      initHeader();
+      AOS.refresh();
+    })
+    .catch(err => console.warn('Header load failed:', err));
+
+  fetch('footer.html')
+    .then(r => r.ok ? r.text() : Promise.reject('footer.html missing'))
+    .then(html => {
+      document.getElementById('footer-placeholder').innerHTML = html;
+      AOS.refresh();
+    })
+    .catch(err => console.warn('Footer load failed:', err));
+
+  function initHeader() {
+    const burger = document.getElementById('hamburgerBtn');
+    const menu   = document.getElementById('mobileMenu');
+    if (!burger || !menu) return;
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      menu.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    document.addEventListener('click', e => {
+      if (menu.classList.contains('active') &&
+          !burger.contains(e.target) && !menu.contains(e.target)) {
+        burger.classList.remove('active');
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && menu.classList.contains('active')) {
+        burger.classList.remove('active');
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  window.handleLogout = function (e) {
+    if (e) e.preventDefault();
+    try {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+    } catch (err) {}
+    window.location.replace('login.html');
+  };
+
+  console.log('✦ Stackly — work page ready');
+});
+</script>
+
+</body>
+</html>

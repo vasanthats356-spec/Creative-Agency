@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Creative Agency — Home</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+<style>
+  /* ============================================================
+     STACKLY CREATIVE AGENCY — HOME
+     Paper    #FAF7F2      White   #FFFFFF
+     Ink      #1A1625      Ink-2   #4A4358      Ink-3 #6F6880
+     Violet   #7C3AED      Violet2 #A78BFA      Lilac #F3EDFF
+     Border   #EBE6DD
+     ============================================================ */
+  :root{
+    --paper:#faf7f2;
+    --white:#ffffff;
+    --ink:#1a1625;
+    --ink-2:#4a4358;
+    --ink-3:#6f6880;
+    --violet:#7c3aed;
+    --violet-2:#a78bfa;
+    --violet-3:#f3edff;
+    --border:#ebe6dd;
+    --shadow:0 18px 50px rgba(26,22,37,.07);
+    --shadow-hi:0 28px 70px rgba(26,22,37,.14);
+    --nav-height:110px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.65;overflow-x:hidden;
+    padding-top:var(--nav-height);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Sora','Inter',sans-serif;letter-spacing:-.025em;line-height:1.12;font-weight:800}
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  #header-placeholder,#footer-placeholder{width:100%}
+
+  @media (max-width:1100px){:root{--nav-height:160px}}
+  @media (max-width:768px){:root{--nav-height:95px}}
+  @media (max-width:480px){:root{--nav-height:85px}}
+
+  /* ===== LAYOUT HELPERS ===== */
+  .ca-wrap{max-width:1280px;margin:0 auto;padding:0 24px;width:100%}
+  .ca-section{padding:100px 0;position:relative}
+  .ca-section.alt{background:var(--white);border-block:1px solid var(--border)}
+  .ca-section.lilac{background:var(--violet-3)}
+
+  .ca-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--violet-3);color:var(--violet);
+    border:1px solid #e3d7ff;
+    padding:7px 16px;border-radius:50px;
+    font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .ca-tag i{font-size:.72rem}
+
+  .ca-title{
+    font-size:clamp(1.7rem,4vw,2.8rem);
+    color:var(--ink);margin-bottom:16px;
+  }
+  .ca-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--violet)}
+  .ca-title span{color:var(--violet)}
+
+  .ca-sub{font-size:.98rem;color:var(--ink-3);max-width:620px;line-height:1.75}
+  .ca-center{text-align:center}
+  .ca-center .ca-sub{margin-inline:auto}
+
+  .ca-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:30px;flex-wrap:wrap;margin-bottom:48px;
+  }
+  .ca-head.center{flex-direction:column;align-items:center;text-align:center}
+
+  /* ===== BUTTONS ===== */
+  .ca-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 28px;border-radius:10px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.86rem;
+    letter-spacing:.01em;border:1.5px solid transparent;
+    cursor:pointer;transition:all .3s ease;white-space:nowrap;
+  }
+  .ca-btn.violet{background:var(--violet);color:#fff;box-shadow:0 10px 26px rgba(124,58,237,.28)}
+  .ca-btn.violet:hover{background:#6d28d9;transform:translateY(-3px);box-shadow:0 16px 34px rgba(124,58,237,.42)}
+  .ca-btn.ink{background:var(--ink);color:#fff}
+  .ca-btn.ink:hover{background:#000;transform:translateY(-3px);box-shadow:0 14px 30px rgba(26,22,37,.25)}
+  .ca-btn.outline{background:transparent;color:var(--ink);border-color:rgba(26,22,37,.22)}
+  .ca-btn.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-3px)}
+  .ca-btn.light{background:#fff;color:var(--ink)}
+  .ca-btn.light:hover{background:var(--violet-3);transform:translateY(-3px)}
+  .ca-btn.ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+  .ca-btn.ghost:hover{background:rgba(255,255,255,.16);border-color:var(--violet-2);transform:translateY(-3px)}
+
+  /* ============================================================
+     01 — HERO (dark, matches "Let's Talk" CTA combination)
+     ============================================================ */
+  .ca-hero{
+    position:relative;overflow:hidden;padding:64px 0 0;
+    background:
+      radial-gradient(900px 460px at 88% -12%, rgba(124,58,237,.32) 0%, transparent 62%),
+      radial-gradient(700px 400px at -8% 110%, rgba(124,58,237,.16) 0%, transparent 60%),
+      var(--ink);
+    color:#fff;
+  }
+  .ca-hero-grid{
+    display:grid;grid-template-columns:1.06fr .94fr;
+    gap:60px;align-items:center;padding-bottom:74px;
+  }
+  .ca-hero h1{
+    font-size:clamp(2.3rem,5.2vw,4.1rem);
+    margin-bottom:22px;color:#fff;
+  }
+  .ca-hero h1 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--violet-2)}
+  .ca-hero p{font-size:clamp(.98rem,1.5vw,1.08rem);color:#c7c1d6;max-width:490px;margin-bottom:32px;line-height:1.75}
+  .ca-hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+
+  .ca-hero .ca-tag{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.18);
+    color:var(--violet-2);
+  }
+
+  .ca-hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .ca-avatars{display:flex}
+  .ca-avatars img{
+    width:42px;height:42px;border-radius:50%;object-fit:cover;
+    border:3px solid var(--ink);margin-left:-12px;
+  }
+  .ca-avatars img:first-child{margin-left:0}
+  .ca-trust-text strong{display:block;font-family:'Sora';font-size:.9rem;color:#fff}
+  .ca-trust-text span{font-size:.78rem;color:#a9a2bd}
+  .ca-stars{color:#f59e0b;font-size:.72rem;letter-spacing:2px}
+
+  /* collage */
+  .ca-collage{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+  .ca-shot{position:relative;border-radius:22px;overflow:hidden;background:var(--violet-3);box-shadow:var(--shadow)}
+  .ca-shot img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .ca-shot:hover img{transform:scale(1.05)}
+  .ca-shot.tall{aspect-ratio:3/4.2;border-radius:120px 22px 22px 22px}
+  .ca-shot.small{aspect-ratio:4/3}
+  .ca-shot.offset{margin-top:34px}
+
+  .ca-float-card{
+    position:absolute;left:-14px;bottom:18px;z-index:3;
+    background:#fff;border:1px solid var(--border);border-radius:16px;
+    padding:14px 18px;display:flex;align-items:center;gap:12px;
+    box-shadow:var(--shadow-hi);color:var(--ink);
+  }
+  .ca-float-card i{
+    width:38px;height:38px;border-radius:10px;background:var(--violet);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;
+  }
+  .ca-float-card strong{display:block;font-family:'Sora';font-size:.92rem;line-height:1.2}
+  .ca-float-card span{font-size:.72rem;color:var(--ink-3)}
+
+  /* ============================================================
+     02 — CLIENT MARQUEE
+     ============================================================ */
+  .ca-marquee{
+    background:var(--ink);color:#fff;padding:20px 0;overflow:hidden;
+    border-block:1px solid rgba(167,139,250,.2);
+  }
+  .ca-marquee-track{display:flex;gap:56px;width:max-content;animation:caScroll 30s linear infinite}
+  .ca-marquee:hover .ca-marquee-track{animation-play-state:paused}
+  .ca-marquee-item{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:'Sora';font-weight:700;font-size:1rem;letter-spacing:.04em;
+    white-space:nowrap;opacity:.82;transition:opacity .3s;
+  }
+  .ca-marquee-item:hover{opacity:1}
+  .ca-marquee-item i{color:var(--violet-2);font-size:.78rem}
+  @keyframes caScroll{to{transform:translateX(-50%)}}
+
+  /* ============================================================
+     03 — SERVICES BENTO
+     ============================================================ */
+  .ca-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ca-service{
+    background:#fff;border:1px solid var(--border);border-radius:22px;
+    padding:32px 28px;position:relative;overflow:hidden;
+    transition:all .4s ease;display:flex;flex-direction:column;gap:14px;
+    cursor:default;
+  }
+  .ca-service::after{
+    content:'';position:absolute;top:0;left:0;height:3px;width:0;
+    background:var(--violet);transition:width .4s ease;
+  }
+  .ca-service:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:#ded2f8}
+  .ca-service:hover::after{width:100%}
+
+  .ca-service-num{
+    font-family:'Sora';font-weight:800;font-size:.78rem;
+    color:var(--violet);letter-spacing:.16em;
+  }
+  .ca-service-icon{
+    width:50px;height:50px;border-radius:14px;background:var(--violet-3);
+    color:var(--violet);display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;transition:all .4s ease;
+  }
+  .ca-service:hover .ca-service-icon{background:var(--violet);color:#fff;transform:rotate(-8deg)}
+  .ca-service h3{font-size:1.12rem;font-weight:700}
+  .ca-service p{font-size:.86rem;color:var(--ink-3);line-height:1.7;flex:1}
+  .ca-service-link{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Sora';font-size:.78rem;font-weight:700;color:var(--violet);
+    transition:gap .3s ease;align-self:flex-start;cursor:pointer;
+  }
+  .ca-service:hover .ca-service-link{gap:14px}
+
+  .ca-service.feature{
+    grid-column:span 2;
+    background:linear-gradient(135deg,#1a1625 0%,#2b2440 100%);
+    border-color:transparent;color:#fff;justify-content:center;
+  }
+  .ca-service.feature::after{background:var(--violet-2)}
+  .ca-service.feature h3{font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.2}
+  .ca-service.feature h3 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--violet-2)}
+  .ca-service.feature p{color:#c7c1d6;max-width:460px}
+  .ca-service.feature .ca-service-num{color:var(--violet-2)}
+  .ca-service.feature .ca-service-icon{background:rgba(255,255,255,.1);color:#fff}
+  .ca-service.feature:hover .ca-service-icon{background:var(--violet);color:#fff}
+  .ca-service.feature .ca-service-link{color:var(--violet-2)}
+
+  /* ============================================================
+     04 — FEATURED WORK MOSAIC (card non-clickable; only arrow)
+     ============================================================ */
+  .ca-work-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:225px;gap:18px;
+  }
+  .ca-work{
+    grid-column:span 2;position:relative;overflow:hidden;
+    border-radius:20px;background:#ded2f8;box-shadow:var(--shadow);
+    transition:transform .4s ease,box-shadow .4s ease;
+    cursor:default;
+  }
+  .ca-work.big{grid-column:span 4;grid-row:span 2}
+  .ca-work.tall{grid-row:span 2}
+  .ca-work img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .ca-work::after{
+    content:'';position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(26,22,37,0) 30%,rgba(26,22,37,.82) 100%);
+    opacity:.9;transition:opacity .4s ease;
+  }
+  .ca-work:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi)}
+  .ca-work:hover img{transform:scale(1.07)}
+  .ca-work:hover::after{opacity:1}
+
+  .ca-work-meta{position:absolute;inset:auto 0 0 0;padding:24px;z-index:2;color:#fff;pointer-events:none}
+  .ca-work-tag{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+    backdrop-filter:blur(8px);
+    padding:4px 12px;border-radius:50px;
+    font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .ca-work-meta h3{font-size:1.15rem;line-height:1.25;margin-bottom:4px}
+  .ca-work.big .ca-work-meta h3{font-size:clamp(1.3rem,2.6vw,1.75rem)}
+  .ca-work-meta p{font-size:.78rem;color:#d8d3e4}
+
+  /* ⬇ Only this arrow is clickable */
+  .ca-work-arrow{
+    position:absolute;top:20px;right:20px;z-index:3;
+    width:42px;height:42px;border-radius:50%;
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.32);
+    backdrop-filter:blur(8px);color:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:.82rem;
+    opacity:0;transform:translateY(-6px);
+    transition:opacity .35s ease,transform .35s ease,background .3s ease;
+  }
+  .ca-work:hover .ca-work-arrow{opacity:1;transform:translateY(0)}
+  .ca-work-arrow:hover{background:var(--violet);border-color:var(--violet);color:#fff}
+
+  /* ============================================================
+     05 — PROCESS
+     ============================================================ */
+  .ca-process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .ca-step{
+    background:#fff;border:1px solid var(--border);border-radius:20px;
+    padding:32px 26px;position:relative;overflow:hidden;transition:all .4s ease;
+    cursor:default;
+  }
+  .ca-step:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:#ded2f8}
+  .ca-step-num{
+    font-family:'Sora';font-weight:800;font-size:2.8rem;line-height:1;
+    color:transparent;-webkit-text-stroke:1.6px var(--violet-2);
+    margin-bottom:16px;transition:all .35s ease;
+  }
+  .ca-step:hover .ca-step-num{color:var(--violet);-webkit-text-stroke:1.6px var(--violet)}
+  .ca-step h3{font-size:1.02rem;margin-bottom:8px}
+  .ca-step p{font-size:.84rem;color:var(--ink-3);line-height:1.7}
+  .ca-step-icon{
+    position:absolute;top:22px;right:22px;font-size:1rem;color:#ded2f8;
+    transition:color .3s ease;
+  }
+  .ca-step:hover .ca-step-icon{color:var(--violet)}
+
+  /* ============================================================
+     06 — SHOWREEL
+     ============================================================ */
+  .ca-reel{background:var(--ink);color:#fff;padding:100px 0;position:relative;overflow:hidden}
+  .ca-reel::before{
+    content:'';position:absolute;top:-220px;right:-160px;width:620px;height:620px;border-radius:50%;
+    background:radial-gradient(circle,rgba(124,58,237,.35),transparent 68%);
+  }
+  .ca-reel-layout{
+    display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;
+    position:relative;z-index:2;
+  }
+  .ca-video{
+    position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/10;
+    background:#000;box-shadow:0 40px 90px rgba(0,0,0,.5);cursor:pointer;
+  }
+  .ca-video video{width:100%;height:100%;object-fit:cover;display:block}
+  .ca-video-play{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:88px;height:88px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(124,58,237,.95);color:#fff;font-size:1.6rem;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 20px 50px rgba(124,58,237,.55);
+    transition:all .35s ease;z-index:4;
+    animation:caPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes caPulse{
+    0%,100%{box-shadow:0 20px 50px rgba(124,58,237,.55),0 0 0 0 rgba(124,58,237,.45)}
+    50%{box-shadow:0 20px 50px rgba(124,58,237,.55),0 0 0 22px rgba(124,58,237,0)}
+  }
+  .ca-video-play:hover{background:#fff;color:var(--violet);transform:translate(-50%,-50%) scale(1.06);animation:none}
+  .ca-video-play.hidden{opacity:0;pointer-events:none}
+
+  .ca-video-bar{
+    position:absolute;left:0;right:0;bottom:0;z-index:5;
+    padding:38px 18px 14px;
+    background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));
+    display:flex;flex-direction:column;gap:10px;
+    opacity:0;transition:opacity .3s ease;
+  }
+  .ca-video:hover .ca-video-bar,.ca-video.playing .ca-video-bar{opacity:1}
+  .ca-video-progress{height:5px;background:rgba(255,255,255,.25);border-radius:4px;cursor:pointer;overflow:hidden}
+  .ca-video-progress:hover{height:7px}
+  .ca-video-fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--violet-2));border-radius:4px;transition:width .1s linear}
+  .ca-video-btns{display:flex;align-items:center;gap:10px;color:#fff}
+  .ca-video-btn{
+    width:32px;height:32px;border-radius:50%;border:none;background:transparent;
+    color:#fff;cursor:pointer;font-size:.82rem;display:flex;align-items:center;justify-content:center;
+    transition:all .2s ease;
+  }
+  .ca-video-btn:hover{background:rgba(124,58,237,.5);color:#fff}
+  .ca-video-time{font-size:.72rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.03em}
+  .ca-video-time .sep{opacity:.5;margin:0 4px}
+  .ca-video-spacer{flex:1}
+
+  .ca-reel-text .ca-tag{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:var(--violet-2)}
+  .ca-reel-text .ca-title{color:#fff}
+  .ca-reel-text .ca-sub{color:#c7c1d6}
+  .ca-reel-list{display:flex;flex-direction:column;gap:12px;margin:28px 0 32px}
+  .ca-reel-item{
+    display:flex;align-items:center;gap:14px;font-size:.88rem;font-weight:600;
+    padding:13px 16px;border-radius:12px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+    transition:all .3s ease;
+  }
+  .ca-reel-item:hover{background:rgba(124,58,237,.16);border-color:rgba(167,139,250,.5);transform:translateX(6px)}
+  .ca-reel-item i{color:var(--violet-2);font-size:.9rem;width:18px;text-align:center}
+
+  /* ============================================================
+     07 — STATS
+     ============================================================ */
+  .ca-stats{background:var(--violet-3);border-block:1px solid #e6d9ff;padding:70px 0}
+  .ca-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;text-align:center}
+  .ca-stat h3{
+    font-family:'Sora';font-size:clamp(2rem,4vw,3rem);color:var(--violet);
+    line-height:1;margin-bottom:8px;
+  }
+  .ca-stat p{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+  .ca-stat{position:relative}
+  .ca-stat::after{
+    content:'';position:absolute;right:-13px;top:12%;height:76%;width:1px;background:#e0d0ff;
+  }
+  .ca-stat:last-child::after{display:none}
+
+  /* ============================================================
+     08 — TESTIMONIALS
+     ============================================================ */
+  .ca-quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .ca-quote{
+    background:#fff;border:1px solid var(--border);border-radius:22px;
+    padding:34px 30px;display:flex;flex-direction:column;gap:18px;
+    transition:all .4s ease;position:relative;overflow:hidden;
+    cursor:default;
+  }
+  .ca-quote:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:#ded2f8}
+  .ca-quote-mark{
+    font-family:'Playfair Display',serif;font-size:3.4rem;line-height:.6;
+    color:var(--violet-2);opacity:.55;
+  }
+  .ca-quote p{font-size:.93rem;color:var(--ink-2);line-height:1.75;flex:1}
+  .ca-quote-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
+  .ca-quote-author img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .ca-quote-author strong{display:block;font-family:'Sora';font-size:.86rem}
+  .ca-quote-author span{font-size:.74rem;color:var(--ink-3)}
+  .ca-quote-stars{color:#f59e0b;font-size:.68rem;letter-spacing:2px;margin-bottom:2px}
+
+  /* ============================================================
+     09 — TEAM RAIL (card non-clickable; only social icons)
+     ============================================================ */
+  .ca-team-rail{
+    display:flex;gap:20px;overflow-x:auto;padding:6px 24px 26px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;scrollbar-color:var(--violet-2) transparent;
+  }
+  .ca-team-rail::-webkit-scrollbar{height:7px}
+  .ca-team-rail::-webkit-scrollbar-track{background:rgba(26,22,37,.06);border-radius:10px}
+  .ca-team-rail::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+
+  .ca-member{
+    flex:0 0 auto;width:272px;scroll-snap-align:start;
+    background:#fff;border:1px solid var(--border);border-radius:22px;
+    overflow:hidden;transition:all .4s ease;cursor:default;
+  }
+  .ca-member:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:#ded2f8}
+  .ca-member-img{aspect-ratio:1/1;overflow:hidden;background:var(--violet-3)}
+  .ca-member-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+  .ca-member:hover .ca-member-img img{transform:scale(1.06)}
+  .ca-member-body{padding:22px 22px 24px}
+  .ca-member-body h4{font-size:1rem;margin-bottom:3px}
+  .ca-member-body p{font-size:.76rem;color:var(--ink-3);margin-bottom:14px}
+  .ca-member-socials{display:flex;gap:8px}
+  .ca-member-socials a{
+    width:32px;height:32px;border-radius:8px;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;font-size:.72rem;
+    color:var(--ink-2);transition:all .3s ease;cursor:pointer;
+  }
+  .ca-member-socials a:hover{background:var(--violet);border-color:var(--violet);color:#fff;transform:translateY(-2px)}
+
+  /* ============================================================
+     10 — AWARDS
+     ============================================================ */
+  .ca-awards{max-width:920px;margin:0 auto}
+  .ca-award{
+    display:grid;grid-template-columns:92px 1fr auto;gap:22px;align-items:center;
+    padding:24px 8px;border-bottom:1px solid var(--border);
+    transition:all .3s ease;cursor:default;
+  }
+  .ca-award:first-child{border-top:1px solid var(--border)}
+  .ca-award:hover{background:#fff;padding-left:20px;border-radius:10px}
+  .ca-award-year{font-family:'Sora';font-weight:800;font-size:1.3rem;color:var(--violet)}
+  .ca-award-info h4{font-size:1rem;margin-bottom:3px}
+  .ca-award-info p{font-size:.78rem;color:var(--ink-3)}
+  .ca-award-badge{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--violet);background:var(--violet-3);border:1px solid #e3d7ff;
+    padding:6px 13px;border-radius:50px;white-space:nowrap;
+  }
+
+  /* ============================================================
+     11 — JOURNAL (card non-clickable; only "Read article")
+     ============================================================ */
+  .ca-journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ca-post{
+    background:#fff;border:1px solid var(--border);border-radius:22px;
+    overflow:hidden;display:flex;flex-direction:column;transition:all .4s ease;
+    cursor:default;
+  }
+  .ca-post:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:#ded2f8}
+  .ca-post-img{aspect-ratio:16/10;overflow:hidden;position:relative;background:var(--violet-3)}
+  .ca-post-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+  .ca-post:hover .ca-post-img img{transform:scale(1.06)}
+  .ca-post-chip{
+    position:absolute;top:14px;left:14px;background:#fff;color:var(--violet);
+    font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    padding:5px 12px;border-radius:50px;box-shadow:0 6px 16px rgba(26,22,37,.12);
+    pointer-events:none;
+  }
+  .ca-post-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .ca-post-date{font-size:.72rem;font-weight:600;color:var(--ink-3);letter-spacing:.04em}
+  .ca-post-body h3{font-size:1.06rem;line-height:1.3}
+  .ca-post-body p{font-size:.84rem;color:var(--ink-3);line-height:1.7;flex:1}
+
+  /* ⬇ Only this link is clickable */
+  .ca-post-link{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Sora';font-size:.78rem;font-weight:700;color:var(--violet);
+    transition:gap .3s ease;align-self:flex-start;cursor:pointer;
+  }
+  .ca-post:hover .ca-post-link{gap:14px}
+  .ca-post-link:hover{color:#6d28d9;gap:16px}
+
+  /* ============================================================
+     12 — CTA + NEWSLETTER
+     ============================================================ */
+  .ca-cta{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+  .ca-cta::before{
+    content:'';position:absolute;left:-180px;bottom:-220px;width:640px;height:640px;border-radius:50%;
+    background:radial-gradient(circle,rgba(124,58,237,.32),transparent 66%);
+  }
+  .ca-cta-inner{
+    display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center;
+    padding:100px 0;position:relative;z-index:2;
+  }
+  .ca-cta .ca-tag{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:var(--violet-2)}
+  .ca-cta h2{font-size:clamp(1.9rem,4.4vw,3rem);margin-bottom:20px;line-height:1.1}
+  .ca-cta h2 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--violet-2)}
+  .ca-cta p{color:#c7c1d6;font-size:1rem;line-height:1.75;max-width:500px;margin-bottom:30px}
+  .ca-cta-btns{display:flex;gap:14px;flex-wrap:wrap}
+  .ca-cta-contact{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .ca-cta-contact div{display:flex;align-items:center;gap:10px;font-size:.84rem;color:#cfc9dd}
+  .ca-cta-contact i{color:var(--violet-2)}
+
+  .ca-form{
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+    border-radius:22px;padding:36px 32px;backdrop-filter:blur(12px);
+  }
+  .ca-form h3{font-size:1.25rem;margin-bottom:8px}
+  .ca-form > p{font-size:.84rem;color:#a9a2bd;line-height:1.65;margin-bottom:22px}
+  .ca-form-fields{display:flex;flex-direction:column;gap:12px}
+  .ca-form input{
+    width:100%;padding:14px 18px;border-radius:10px;
+    border:1.5px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
+    color:#fff;font-family:'Inter';font-size:.9rem;outline:none;transition:all .3s ease;
+  }
+  .ca-form input::placeholder{color:#8f88a5}
+  .ca-form input:focus{border-color:var(--violet-2);background:rgba(255,255,255,.1)}
+  .ca-form input.error{border-color:#ef4444;background:rgba(239,68,68,.12)}
+  .ca-form-error{display:none;font-size:.72rem;color:#fca5a5;font-weight:600;padding-left:4px;margin-top:-4px}
+  .ca-form-error.show{display:block}
+  .ca-form button{
+    width:100%;padding:14px 24px;border:none;border-radius:10px;cursor:pointer;
+    background:var(--violet);color:#fff;font-family:'Sora';font-weight:700;font-size:.88rem;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    transition:all .3s ease;box-shadow:0 10px 26px rgba(124,58,237,.35);
+  }
+  .ca-form button:hover{background:#6d28d9;transform:translateY(-2px);box-shadow:0 14px 32px rgba(124,58,237,.5)}
+  .ca-form-note{display:flex;align-items:center;gap:7px;font-size:.7rem;color:#8f88a5;margin-top:14px}
+  .ca-form-note i{color:var(--violet-2)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:1100px){
+    .ca-hero-grid{grid-template-columns:1fr;gap:48px;padding-bottom:60px}
+    .ca-hero p{max-width:100%}
+    .ca-collage{max-width:560px}
+    .ca-bento{grid-template-columns:repeat(2,1fr)}
+    .ca-service.feature{grid-column:span 2}
+    .ca-work-grid{grid-auto-rows:200px}
+    .ca-process{grid-template-columns:repeat(2,1fr)}
+    .ca-reel-layout{grid-template-columns:1fr;gap:44px}
+    .ca-stats-grid{grid-template-columns:repeat(2,1fr);gap:34px}
+    .ca-stat:nth-child(2)::after{display:none}
+    .ca-quotes-grid{grid-template-columns:1fr}
+    .ca-journal-grid{grid-template-columns:1fr 1fr}
+    .ca-cta-inner{grid-template-columns:1fr;gap:44px;padding:80px 0}
+    .ca-cta p{max-width:100%}
+  }
+
+  @media (max-width:860px){
+    .ca-section{padding:78px 0}
+    .ca-reel,.ca-cta-inner{padding:78px 0}
+    .ca-work-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:190px}
+    .ca-work.big{grid-column:span 4;grid-row:span 2}
+    .ca-work{grid-column:span 2}
+    .ca-work.tall{grid-row:span 1}
+    .ca-journal-grid{grid-template-columns:1fr}
+    .ca-award{grid-template-columns:70px 1fr;gap:14px}
+    .ca-award-badge{grid-column:1/-1;justify-self:start;margin-left:84px}
+  }
+
+  @media (max-width:768px){
+    .ca-section{padding:66px 0}
+    .ca-wrap{padding:0 20px}
+    .ca-hero{padding-top:44px}
+    .ca-hero h1{font-size:2.15rem}
+    .ca-hero-btns{flex-direction:column;width:100%}
+    .ca-hero-btns .ca-btn{width:100%}
+    .ca-collage{grid-template-columns:1fr 1fr;gap:12px}
+    .ca-shot.tall{aspect-ratio:3/4;border-radius:80px 18px 18px 18px}
+    .ca-float-card{left:0;bottom:10px;padding:11px 14px}
+    .ca-bento{grid-template-columns:1fr}
+    .ca-service.feature{grid-column:span 1}
+    .ca-process{grid-template-columns:1fr}
+    .ca-work-grid{grid-template-columns:1fr;grid-auto-rows:220px}
+    .ca-work,.ca-work.big,.ca-work.tall{grid-column:span 1;grid-row:span 1}
+    .ca-work.big{grid-row:span 2}
+    .ca-stats-grid{grid-template-columns:1fr;gap:28px}
+    .ca-stat::after{display:none}
+    .ca-video-play{width:68px;height:68px;font-size:1.25rem}
+    .ca-video-bar{padding:28px 12px 12px}
+    .ca-member{width:242px}
+    .ca-award{grid-template-columns:1fr;gap:8px;padding:20px 6px}
+    .ca-award-badge{margin-left:0}
+    .ca-award:hover{padding-left:12px}
+    .ca-form{padding:28px 22px}
+    .ca-cta-contact{gap:16px}
+  }
+
+  @media (max-width:480px){
+    .ca-section{padding:56px 0}
+    .ca-wrap{padding:0 16px}
+    .ca-title{font-size:1.55rem}
+    .ca-hero h1{font-size:1.9rem}
+    .ca-hero-trust{gap:12px}
+    .ca-float-card{display:none}
+    .ca-marquee-item{font-size:.85rem}
+    .ca-video-play{width:58px;height:58px;font-size:1.05rem}
+    .ca-cta-btns{flex-direction:column}
+    .ca-cta-btns .ca-btn{width:100%}
+    .ca-team-rail{padding-left:16px;padding-right:16px}
+  }
+
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:var(--paper)}
+  ::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--violet)}
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- =========================================================
+     01 — HERO (dark violet-ink — matches CTA combination)
+     ========================================================= -->
+<section class="ca-hero">
+  <div class="ca-wrap">
+    <div class="ca-hero-grid">
+
+      <div class="ca-hero-copy" data-aos="fade-right" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-asterisk"></i> Independent Creative Studio · Est. 2015</div>
+        <h1>We design brands<br>people <em>remember.</em></h1>
+        <p>Strategy, identity, and digital experiences for companies that refuse to blend in. Small senior team. Big creative ambition. Zero recycled ideas.</p>
+
+        <div class="ca-hero-btns">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-arrow-up-right-from-square"></i> See Our Work</a>
+          <a href="404.html" class="ca-btn ghost"><i class="fa-regular fa-comments"></i> Start a Project</a>
+        </div>
+
+        <div class="ca-hero-trust">
+          <div class="ca-avatars">
+            <img src="ca1.webp" alt="Client">
+            <img src="ca2.webp" alt="Client">
+            <img src="ca3.webp" alt="Client">
+            <img src="ca4.webp" alt="Client">
+          </div>
+          <div class="ca-trust-text">
+            <strong>140+ brands shipped</strong>
+            <span><span class="ca-stars">★★★★★</span> 4.9 average partner rating</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ca-collage" data-aos="fade-left" data-aos-duration="900">
+        <div class="ca-shot tall">
+          <img src="ca1.webp" alt="Creative team collaborating">
+        </div>
+        <div class="ca-shot small offset">
+          <img src="ca2.webp" alt="Brand design work">
+        </div>
+        <div class="ca-shot small">
+          <img src="ca3.webp" alt="Studio workspace">
+        </div>
+
+        <div class="ca-float-card">
+          <i class="fa-solid fa-trophy"></i>
+          <div>
+            <strong>Agency of the Year</strong>
+            <span>Design Awards 2025</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     02 — CLIENT MARQUEE
+     ========================================================= -->
+<div class="ca-marquee" aria-label="Clients">
+  <div class="ca-marquee-track">
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Northwind</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Lumen Labs</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Atlas &amp; Co</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Verve Studio</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Halcyon</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Meridian</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Northwind</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Lumen Labs</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Atlas &amp; Co</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Verve Studio</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Halcyon</span>
+    <span class="ca-marquee-item"><i class="fa-solid fa-shapes"></i> Meridian</span>
+  </div>
+</div>
+
+<!-- =========================================================
+     03 — SERVICES BENTO
+     ========================================================= -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ca-head" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-layer-group"></i> What We Do</div>
+        <h2 class="ca-title">Five disciplines.<br>One <span>creative engine.</span></h2>
+        <p class="ca-sub">We don't hand off between departments. Strategy, design, and build sit in the same room — which is why the work stays sharp from first sketch to final ship.</p>
+      </div>
+      <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-list-check"></i> All Services</a>
+    </div>
+
+    <div class="ca-bento">
+      <div class="ca-service feature" data-aos="fade-up">
+        <div class="ca-service-num">01 — FLAGSHIP</div>
+        <div class="ca-service-icon"><i class="fa-solid fa-fingerprint"></i></div>
+        <h3>Brand identity that <em>sticks</em></h3>
+        <p>Naming, positioning, logo systems, type, color, and a guideline document your team will actually use. Built to scale from a pitch deck to a billboard.</p>
+        <a href="404.html" class="ca-service-link">Explore Branding <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="ca-service" data-aos="fade-up" data-aos-delay="80">
+        <div class="ca-service-num">02</div>
+        <div class="ca-service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Web &amp; Digital</h3>
+        <p>Sites and products designed in the browser, built on modern stacks, and measured on conversion — not just how they look in a dribbble shot.</p>
+        <a href="404.html" class="ca-service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="ca-service" data-aos="fade-up">
+        <div class="ca-service-num">03</div>
+        <div class="ca-service-icon"><i class="fa-solid fa-bullhorn"></i></div>
+        <h3>Campaigns</h3>
+        <p>Concept-led campaigns across social, out-of-home, and film. Big idea first, channel plan second.</p>
+        <a href="404.html" class="ca-service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="ca-service" data-aos="fade-up" data-aos-delay="80">
+        <div class="ca-service-num">04</div>
+        <div class="ca-service-icon"><i class="fa-solid fa-film"></i></div>
+        <h3>Motion &amp; 3D</h3>
+        <p>Illustration systems, animated identities, and product film — made in-house by the same team that designed them.</p>
+        <a href="404.html" class="ca-service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="ca-service" data-aos="fade-up" data-aos-delay="160">
+        <div class="ca-service-num">05</div>
+        <div class="ca-service-icon"><i class="fa-solid fa-feather-pointed"></i></div>
+        <h3>Content &amp; Copy</h3>
+        <p>Voice, tone, and the words that carry the brand. Long-form, product copy, and editorial systems.</p>
+        <a href="404.html" class="ca-service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     04 — FEATURED WORK MOSAIC (only arrow is clickable)
+     ========================================================= -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-star"></i> Selected Work</div>
+        <h2 class="ca-title">Projects we'd show <span>our mums.</span></h2>
+        <p class="ca-sub">A short edit from the last eighteen months — identity, product, and campaign work for teams who wanted something less obvious.</p>
+      </div>
+    </div>
+
+    <div class="ca-work-grid">
+      <!-- Card is a div — only the arrow is clickable -->
+      <div class="ca-work big" data-aos="fade-up">
+        <img src="ca4.webp" alt="Northwind brand system">
+        <a href="404.html" class="ca-work-arrow" aria-label="View Northwind project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="ca-work-meta">
+          <span class="ca-work-tag"><i class="fa-solid fa-fingerprint"></i> Brand Identity</span>
+          <h3>Northwind — a calmer kind of finance</h3>
+          <p>Full rebrand · naming · design system · 2025</p>
+        </div>
+      </div>
+
+      <div class="ca-work tall" data-aos="fade-up" data-aos-delay="80">
+        <img src="ca5.webp" alt="Lumen Labs product design">
+        <a href="404.html" class="ca-work-arrow" aria-label="View Lumen Labs project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="ca-work-meta">
+          <span class="ca-work-tag"><i class="fa-solid fa-laptop-code"></i> Digital Product</span>
+          <h3>Lumen Labs</h3>
+          <p>UX · UI · Design system</p>
+        </div>
+      </div>
+
+      <div class="ca-work" data-aos="fade-up">
+        <img src="ca6.webp" alt="Atlas campaign">
+        <a href="404.html" class="ca-work-arrow" aria-label="View Atlas & Co campaign"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="ca-work-meta">
+          <span class="ca-work-tag"><i class="fa-solid fa-bullhorn"></i> Campaign</span>
+          <h3>Atlas &amp; Co</h3>
+          <p>OOH · film · social</p>
+        </div>
+      </div>
+
+      <div class="ca-work" data-aos="fade-up" data-aos-delay="80">
+        <img src="ca7.webp" alt="Verve motion work">
+        <a href="404.html" class="ca-work-arrow" aria-label="View Verve Studio project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="ca-work-meta">
+          <span class="ca-work-tag"><i class="fa-solid fa-film"></i> Motion</span>
+          <h3>Verve Studio</h3>
+          <p>3D identity · animated system</p>
+        </div>
+      </div>
+
+      <div class="ca-work" data-aos="fade-up" data-aos-delay="160">
+        <img src="ca8.webp" alt="Halcyon editorial">
+        <a href="404.html" class="ca-work-arrow" aria-label="View Halcyon Journal project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="ca-work-meta">
+          <span class="ca-work-tag"><i class="fa-solid fa-feather-pointed"></i> Editorial</span>
+          <h3>Halcyon Journal</h3>
+          <p>Art direction · copy system</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ca-head center" style="margin:48px 0 0" data-aos="fade-up">
+      <a href="404.html" class="ca-btn ink"><i class="fa-solid fa-grid-2"></i> Browse Full Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     05 — PROCESS
+     ========================================================= -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-diagram-project"></i> How We Work</div>
+        <h2 class="ca-title">Four steps. <span>No mystery.</span></h2>
+        <p class="ca-sub">Every engagement runs on the same transparent process — so you always know what's happening and what comes next.</p>
+      </div>
+    </div>
+
+    <div class="ca-process">
+      <div class="ca-step" data-aos="fade-up">
+        <i class="fa-solid fa-magnifying-glass ca-step-icon"></i>
+        <div class="ca-step-num">01</div>
+        <h3>Discover</h3>
+        <p>Stakeholder interviews, market audit, and a clear creative brief. We start by finding out what actually needs solving.</p>
+      </div>
+      <div class="ca-step" data-aos="fade-up" data-aos-delay="80">
+        <i class="fa-solid fa-compass-drafting ca-step-icon"></i>
+        <div class="ca-step-num">02</div>
+        <h3>Design</h3>
+        <p>Two or three genuinely different routes — not one idea in three colours. Presented in context, never on a blank canvas.</p>
+      </div>
+      <div class="ca-step" data-aos="fade-up" data-aos-delay="160">
+        <i class="fa-solid fa-code ca-step-icon"></i>
+        <div class="ca-step-num">03</div>
+        <h3>Build</h3>
+        <p>Design and development move together. Responsive, accessible, and handed over with clean files your team can run with.</p>
+      </div>
+      <div class="ca-step" data-aos="fade-up" data-aos-delay="240">
+        <i class="fa-solid fa-rocket ca-step-icon"></i>
+        <div class="ca-step-num">04</div>
+        <h3>Launch</h3>
+        <p>Rollout plan, asset library, and a measurement framework — plus a month of post-launch support on every project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     06 — SHOWREEL
+     ========================================================= -->
+<section class="ca-reel">
+  <div class="ca-wrap">
+    <div class="ca-reel-layout">
+
+      <div class="ca-video" id="reelPlayer" data-aos="zoom-in" data-aos-duration="900">
+        <video id="reelVideo" muted loop playsinline preload="metadata"
+          poster="ca9.webp">
+          <source src="cav.mp4" type="video/mp4">
+        </video>
+
+        <button class="ca-video-play" id="reelPlayBtn" aria-label="Play showreel">
+          <i class="fa-solid fa-play"></i>
+        </button>
+
+        <div class="ca-video-bar">
+          <div class="ca-video-progress" id="reelProgress">
+            <div class="ca-video-fill" id="reelFill"></div>
+          </div>
+          <div class="ca-video-btns">
+            <button class="ca-video-btn" id="reelSmallPlay" aria-label="Play / pause">
+              <i class="fa-solid fa-play" id="reelSmallIcon"></i>
+            </button>
+            <button class="ca-video-btn" id="reelMuteBtn" aria-label="Mute / unmute">
+              <i class="fa-solid fa-volume-xmark" id="reelMuteIcon"></i>
+            </button>
+            <span class="ca-video-time">
+              <span id="reelCurrent">0:00</span>
+              <span class="sep">/</span>
+              <span id="reelDuration">0:00</span>
+            </span>
+            <div class="ca-video-spacer"></div>
+            <button class="ca-video-btn" id="reelFsBtn" aria-label="Fullscreen">
+              <i class="fa-solid fa-expand" id="reelFsIcon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ca-reel-text" data-aos="fade-left" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-clapperboard"></i> Showreel 2026</div>
+        <h2 class="ca-title">Ninety seconds<br>of <span>what we make.</span></h2>
+        <p class="ca-sub">Identity systems, product interfaces, campaign film, and motion — cut together from work shipped over the last year.</p>
+
+        <div class="ca-reel-list">
+          <div class="ca-reel-item"><i class="fa-solid fa-circle-play"></i> 1 min 42 sec · shot in-house</div>
+          <div class="ca-reel-item"><i class="fa-solid fa-palette"></i> 23 projects · 9 industries</div>
+          <div class="ca-reel-item"><i class="fa-solid fa-award"></i> 3 international design awards</div>
+        </div>
+
+        <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-film"></i> Watch Full Showreel</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     07 — STATS
+     ========================================================= -->
+<section class="ca-stats">
+  <div class="ca-wrap">
+    <div class="ca-stats-grid">
+      <div class="ca-stat" data-aos="fade-up">
+        <h3><span class="ca-counter" data-target="140">0</span>+</h3>
+        <p>Projects Delivered</p>
+      </div>
+      <div class="ca-stat" data-aos="fade-up" data-aos-delay="80">
+        <h3><span class="ca-counter" data-target="11">0</span></h3>
+        <p>Years In Studio</p>
+      </div>
+      <div class="ca-stat" data-aos="fade-up" data-aos-delay="160">
+        <h3><span class="ca-counter" data-target="9">0</span></h3>
+        <p>Design Awards</p>
+      </div>
+      <div class="ca-stat" data-aos="fade-up" data-aos-delay="240">
+        <h3><span class="ca-counter" data-target="96" data-suffix="%">0</span></h3>
+        <p>Client Retention</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     08 — TESTIMONIALS
+     ========================================================= -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-quote-left"></i> Partner Stories</div>
+        <h2 class="ca-title">What it's like to <span>work with us</span></h2>
+        <p class="ca-sub">Straight from the people who signed off on the work.</p>
+      </div>
+    </div>
+
+    <div class="ca-quotes-grid">
+      <div class="ca-quote" data-aos="fade-up">
+        <div class="ca-quote-mark">&ldquo;</div>
+        <p>They rebuilt our identity in six weeks and it still looks fresh two years later. The strategy work was the surprise — we got a clearer business position out of a design project.</p>
+        <div class="ca-quote-author">
+          <img src="ca10.webp" alt="Sarah Chen">
+          <div>
+            <div class="ca-quote-stars">★★★★★</div>
+            <strong>Sarah Chen</strong>
+            <span>CMO · Northwind</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ca-quote" data-aos="fade-up" data-aos-delay="80">
+        <div class="ca-quote-mark">&ldquo;</div>
+        <p>No account managers relaying messages. We talked directly to the people designing the thing. Ship dates held, feedback loops were short, and nothing got lost in translation.</p>
+        <div class="ca-quote-author">
+          <img src="ca1.webp" alt="Marcus Reid">
+          <div>
+            <div class="ca-quote-stars">★★★★★</div>
+            <strong>Marcus Reid</strong>
+            <span>Founder · Lumen Labs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ca-quote" data-aos="fade-up" data-aos-delay="160">
+        <div class="ca-quote-mark">&ldquo;</div>
+        <p>The campaign outperformed our previous three launches combined. More importantly, the team challenged our brief instead of just executing it — that's what we paid for.</p>
+        <div class="ca-quote-author">
+          <img src="ca2.webp" alt="Priya Nair">
+          <div>
+            <div class="ca-quote-stars">★★★★★</div>
+            <strong>Priya Nair</strong>
+            <span>Head of Brand · Atlas &amp; Co</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     09 — TEAM RAIL (only social icons clickable)
+     ========================================================= -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ca-head" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-users"></i> The Studio</div>
+        <h2 class="ca-title">Senior people. <span>No layers.</span></h2>
+        <p class="ca-sub">Eleven of us. Everyone you meet in the pitch is someone who works on the project.</p>
+      </div>
+      <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-arrow-right"></i> Meet The Team</a>
+    </div>
+  </div>
+
+  <div class="ca-team-rail" data-aos="fade-up" data-aos-delay="80">
+    <div class="ca-member">
+      <div class="ca-member-img"><img src="ca3.webp" alt="Creative Director" loading="lazy"></div>
+      <div class="ca-member-body">
+        <h4>Daniel Okafor</h4>
+        <p>Founder · Creative Director</p>
+        <div class="ca-member-socials">
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ca-member">
+      <div class="ca-member-img"><img src="ca4.webp" alt="Design Lead" loading="lazy"></div>
+      <div class="ca-member-body">
+        <h4>Maya Lindqvist</h4>
+        <p>Design Lead</p>
+        <div class="ca-member-socials">
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ca-member">
+      <div class="ca-member-img"><img src="ca5.webp" alt="Strategy Director" loading="lazy"></div>
+      <div class="ca-member-body">
+        <h4>Tom Whitaker</h4>
+        <p>Strategy Director</p>
+        <div class="ca-member-socials">
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="404.html" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ca-member">
+      <div class="ca-member-img"><img src="ca6.webp" alt="Motion Designer" loading="lazy"></div>
+      <div class="ca-member-body">
+        <h4>Aisha Rahman</h4>
+        <p>Motion &amp; 3D Designer</p>
+        <div class="ca-member-socials">
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html" aria-label="Behance"><i class="fab fa-behance"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ca-member">
+      <div class="ca-member-img"><img src="ca7.webp" alt="Developer" loading="lazy"></div>
+      <div class="ca-member-body">
+        <h4>Jonas Berg</h4>
+        <p>Lead Developer</p>
+        <div class="ca-member-socials">
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="404.html" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     10 — AWARDS
+     ========================================================= -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-award"></i> Recognition</div>
+        <h2 class="ca-title">Awards &amp; <span>press</span></h2>
+        <p class="ca-sub">Nice to have, never the reason. But we're not going to pretend it isn't satisfying.</p>
+      </div>
+    </div>
+
+    <div class="ca-awards">
+      <div class="ca-award" data-aos="fade-up">
+        <div class="ca-award-year">2025</div>
+        <div class="ca-award-info">
+          <h4>Agency of the Year — Small Studio</h4>
+          <p>International Design Awards · Branding &amp; Identity</p>
+        </div>
+        <span class="ca-award-badge"><i class="fa-solid fa-trophy"></i> Winner</span>
+      </div>
+
+      <div class="ca-award" data-aos="fade-up" data-aos-delay="70">
+        <div class="ca-award-year">2025</div>
+        <div class="ca-award-info">
+          <h4>Site of the Day — Lumen Labs</h4>
+          <p>Digital Design Awards · Product Experience</p>
+        </div>
+        <span class="ca-award-badge"><i class="fa-solid fa-medal"></i> Winner</span>
+      </div>
+
+      <div class="ca-award" data-aos="fade-up" data-aos-delay="140">
+        <div class="ca-award-year">2024</div>
+        <div class="ca-award-info">
+          <h4>Best Rebrand — Northwind</h4>
+          <p>Brand Impact Awards · Financial Services</p>
+        </div>
+        <span class="ca-award-badge"><i class="fa-solid fa-star"></i> Gold</span>
+      </div>
+
+      <div class="ca-award" data-aos="fade-up" data-aos-delay="210">
+        <div class="ca-award-year">2024</div>
+        <div class="ca-award-info">
+          <h4>Campaign Craft — Atlas &amp; Co</h4>
+          <p>Creative Review · Out-of-Home</p>
+        </div>
+        <span class="ca-award-badge"><i class="fa-solid fa-certificate"></i> Shortlist</span>
+      </div>
+
+      <div class="ca-award" data-aos="fade-up" data-aos-delay="280">
+        <div class="ca-award-year">2023</div>
+        <div class="ca-award-info">
+          <h4>Studio Feature — "Small Teams, Big Work"</h4>
+          <p>Design Week · Independent Studios</p>
+        </div>
+        <span class="ca-award-badge"><i class="fa-solid fa-newspaper"></i> Press</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     11 — JOURNAL (only "Read article" is clickable)
+     ========================================================= -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ca-head" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-pen-nib"></i> From The Journal</div>
+        <h2 class="ca-title">Notes from <span>the studio</span></h2>
+        <p class="ca-sub">Process, opinion, and the occasional post-mortem. Written by the team, not a content agency.</p>
+      </div>
+      <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-arrow-right"></i> All Articles</a>
+    </div>
+
+    <div class="ca-journal-grid">
+      <div class="ca-post" data-aos="fade-up">
+        <div class="ca-post-img">
+          <span class="ca-post-chip">Process</span>
+          <img src="ca8.webp" alt="Design process" loading="lazy">
+        </div>
+        <div class="ca-post-body">
+          <span class="ca-post-date">12 Feb 2026 · 6 min read</span>
+          <h3>Why we present three routes, never one</h3>
+          <p>Single-option pitches train clients to react instead of choose. Here's how we structure creative presentations so the decision is easy.</p>
+          <a href="404.html" class="ca-post-link">Read article <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="ca-post" data-aos="fade-up" data-aos-delay="80">
+        <div class="ca-post-img">
+          <span class="ca-post-chip">Branding</span>
+          <img src="ca9.webp" alt="Typography" loading="lazy">
+        </div>
+        <div class="ca-post-body">
+          <span class="ca-post-date">28 Jan 2026 · 8 min read</span>
+          <h3>Type systems that survive a rebrand</h3>
+          <p>Most identities break the moment a new team touches them. A type system with clear hierarchy rules is the cheapest insurance you can buy.</p>
+          <a href="404.html" class="ca-post-link">Read article <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="ca-post" data-aos="fade-up" data-aos-delay="160">
+        <div class="ca-post-img">
+          <span class="ca-post-chip">Opinion</span>
+          <img src="ca10.webp" alt="Studio culture" loading="lazy">
+        </div>
+        <div class="ca-post-body">
+          <span class="ca-post-date">09 Jan 2026 · 5 min read</span>
+          <h3>Small teams ship better creative</h3>
+          <p>Every person added to a creative review adds a filter. We keep project teams at three and let the work stay uncomfortable for longer.</p>
+          <a href="404.html" class="ca-post-link">Read article <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     12 — CTA + NEWSLETTER
+     ========================================================= -->
+<section class="ca-cta">
+  <div class="ca-wrap">
+    <div class="ca-cta-inner">
+
+      <div data-aos="fade-right" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-paper-plane"></i> Let's Talk</div>
+        <h2>Have a project<br>worth <em>doing properly?</em></h2>
+        <p>Tell us what you're building. We'll come back within two working days with an honest read on scope, timeline, and whether we're the right studio for it.</p>
+
+        <div class="ca-cta-btns">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-comments"></i> Start a Project</a>
+          <a href="404.html" class="ca-btn ghost"><i class="fa-solid fa-briefcase"></i> See Our Work</a>
+        </div>
+
+        <div class="ca-cta-contact">
+          <div><i class="fa-solid fa-envelope"></i> hello@stacklyagency.com</div>
+          <div><i class="fa-solid fa-phone"></i> +1 987 654 321</div>
+          <div><i class="fa-solid fa-location-dot"></i> 22 Studio Lane, Design District</div>
+        </div>
+      </div>
+
+      <form class="ca-form" id="newsForm" novalidate data-aos="fade-left" data-aos-duration="900">
+        <h3>Join the studio newsletter</h3>
+        <p>One email a month: new work, process notes, and the tools we're actually using. No pitch decks.</p>
+
+        <div class="ca-form-fields">
+          <input type="text" id="newsName" placeholder="Your name" autocomplete="name" aria-label="Your name">
+          <div class="ca-form-error" id="newsNameError">Only letters and spaces are allowed.</div>
+
+          <input type="email" id="newsEmail" placeholder="you@company.com" autocomplete="email" aria-label="Your email">
+          <div class="ca-form-error" id="newsEmailError">Please enter a valid email address.</div>
+
+          <button type="submit">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <p class="ca-form-note"><i class="fa-solid fa-lock"></i> No spam. Unsubscribe in one click.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ===== AOS ===== */
+  AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+  window.addEventListener('load', () => AOS.refresh());
+
+  /* ============================================
+     SHOWREEL VIDEO PLAYER
+     ============================================ */
+  const reelVideo   = document.getElementById('reelVideo');
+  const reelPlayer  = document.getElementById('reelPlayer');
+  const reelPlayBtn = document.getElementById('reelPlayBtn');
+  const reelSmall   = document.getElementById('reelSmallPlay');
+  const reelSmallIco= document.getElementById('reelSmallIcon');
+  const reelMuteBtn = document.getElementById('reelMuteBtn');
+  const reelMuteIco = document.getElementById('reelMuteIcon');
+  const reelProgress= document.getElementById('reelProgress');
+  const reelFill    = document.getElementById('reelFill');
+  const reelCurrent = document.getElementById('reelCurrent');
+  const reelDuration= document.getElementById('reelDuration');
+  const reelFsBtn   = document.getElementById('reelFsBtn');
+  const reelFsIcon  = document.getElementById('reelFsIcon');
+
+  if (reelVideo && reelPlayBtn) {
+
+    const fmt = s => {
+      if (!isFinite(s) || s < 0) s = 0;
+      const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    };
+
+    function togglePlay(e) {
+      if (e) e.stopPropagation();
+      if (reelVideo.paused || reelVideo.ended) {
+        reelVideo.muted = false;
+        reelVideo.play().catch(() => { reelVideo.muted = true; reelVideo.play().catch(() => {}); });
+      } else {
+        reelVideo.pause();
+      }
+    }
+
+    reelPlayBtn.addEventListener('click', togglePlay);
+    reelSmall.addEventListener('click', togglePlay);
+    reelVideo.addEventListener('click', e => {
+      if (e.target.closest('.ca-video-bar')) return;
+      togglePlay(e);
+    });
+
+    reelVideo.addEventListener('play', () => {
+      reelPlayBtn.classList.add('hidden');
+      reelPlayer.classList.add('playing');
+      reelSmallIco.className = 'fa-solid fa-pause';
+    });
+    reelVideo.addEventListener('pause', () => {
+      reelPlayBtn.classList.remove('hidden');
+      reelPlayer.classList.remove('playing');
+      reelSmallIco.className = 'fa-solid fa-play';
+    });
+    reelVideo.addEventListener('ended', () => {
+      reelPlayBtn.classList.remove('hidden');
+      reelPlayer.classList.remove('playing');
+      reelSmallIco.className = 'fa-solid fa-play';
+      reelVideo.currentTime = 0;
+    });
+
+    reelVideo.addEventListener('timeupdate', () => {
+      if (reelVideo.duration) {
+        reelFill.style.width = (reelVideo.currentTime / reelVideo.duration) * 100 + '%';
+        reelCurrent.textContent = fmt(reelVideo.currentTime);
+      }
+    });
+    reelVideo.addEventListener('loadedmetadata', () => {
+      reelDuration.textContent = fmt(reelVideo.duration);
+    });
+
+    reelProgress.addEventListener('click', e => {
+      e.stopPropagation();
+      const rect = reelProgress.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      if (reelVideo.duration) reelVideo.currentTime = pct * reelVideo.duration;
+    });
+
+    reelMuteBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      reelVideo.muted = !reelVideo.muted;
+      reelMuteIco.className = reelVideo.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+    });
+
+    reelFsBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (!document.fullscreenElement) reelPlayer.requestFullscreen?.().catch(() => {});
+      else document.exitFullscreen?.();
+    });
+    document.addEventListener('fullscreenchange', () => {
+      reelFsIcon.className = document.fullscreenElement ? 'fa-solid fa-compress' : 'fa-solid fa-expand';
+    });
+
+    new IntersectionObserver(entries => {
+      entries.forEach(en => { if (!en.isIntersecting && !reelVideo.paused) reelVideo.pause(); });
+    }, { threshold: 0.15 }).observe(reelPlayer);
+  }
+
+  /* ============================================
+     NEWSLETTER — name letters+spaces, email regex
+     ============================================ */
+  const newsForm    = document.getElementById('newsForm');
+  const newsName    = document.getElementById('newsName');
+  const newsEmail   = document.getElementById('newsEmail');
+  const nameError   = document.getElementById('newsNameError');
+  const emailError  = document.getElementById('newsEmailError');
+
+  if (newsName) {
+    newsName.addEventListener('input', function () {
+      const cleaned = this.value.replace(/[^A-Za-z\s]/g, '');
+      if (cleaned !== this.value) {
+        this.value = cleaned;
+        nameError.textContent = 'Only letters and spaces are allowed.';
+        nameError.classList.add('show');
+      } else {
+        nameError.classList.remove('show');
+      }
+      this.classList.remove('error');
+    });
+    newsName.addEventListener('blur', function () {
+      if (!this.value.trim()) {
+        this.classList.add('error');
+        nameError.textContent = 'Please enter your name.';
+        nameError.classList.add('show');
+      } else {
+        this.classList.remove('error');
+        nameError.classList.remove('show');
+      }
+    });
+  }
+
+  if (newsEmail) {
+    newsEmail.addEventListener('input', function () {
+      this.classList.remove('error');
+      emailError.classList.remove('show');
+    });
+  }
+
+  if (newsForm) {
+    newsForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      const nameVal = newsName.value.trim();
+      if (!nameVal || !/^[A-Za-z\s]+$/.test(nameVal)) {
+        newsName.classList.add('error');
+        nameError.textContent = 'Please enter a valid name (letters and spaces only).';
+        nameError.classList.add('show');
+        valid = false;
+      }
+
+      const emailVal = newsEmail.value.trim();
+      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        newsEmail.classList.add('error');
+        emailError.textContent = 'Please enter a valid email address.';
+        emailError.classList.add('show');
+        valid = false;
+      }
+
+      if (!valid) return;
+      window.location.href = '404.html';
+    });
+  }
+
+  /* ============================================
+     COUNTERS
+     ============================================ */
+  function animateCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target')) || 0;
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1600;
+    const start = performance.now();
+
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(target * eased).toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = Math.floor(target).toLocaleString() + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting && !en.target.dataset.animated) {
+        en.target.dataset.animated = 'true';
+        animateCounter(en.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.ca-counter').forEach(c => counterObs.observe(c));
+
+  /* ============================================
+     HEADER / FOOTER PARTIALS
+     ============================================ */
+  fetch('header.html')
+    .then(r => r.ok ? r.text() : Promise.reject('header.html missing'))
+    .then(html => {
+      document.getElementById('header-placeholder').innerHTML = html;
+      initHeader();
+      AOS.refresh();
+    })
+    .catch(err => console.warn('Header load failed:', err));
+
+  fetch('footer.html')
+    .then(r => r.ok ? r.text() : Promise.reject('footer.html missing'))
+    .then(html => {
+      document.getElementById('footer-placeholder').innerHTML = html;
+      AOS.refresh();
+    })
+    .catch(err => console.warn('Footer load failed:', err));
+
+  function initHeader() {
+    const burger = document.getElementById('hamburgerBtn');
+    const menu   = document.getElementById('mobileMenu');
+    if (!burger || !menu) return;
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      menu.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    document.addEventListener('click', e => {
+      if (menu.classList.contains('active') && !burger.contains(e.target) && !menu.contains(e.target)) {
+        burger.classList.remove('active');
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && menu.classList.contains('active')) {
+        burger.classList.remove('active');
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  window.handleLogout = function (e) {
+    if (e) e.preventDefault();
+    try {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+    } catch (err) {}
+    window.location.replace('login.html');
+  };
+
+  console.log('✦ Stackly Creative Agency — home ready');
+});
+</script>
+
+</body>
+</html>

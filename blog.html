@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Creative Agency — Blog</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+<style>
+  :root{
+    --paper:#faf7f2;
+    --white:#ffffff;
+    --ink:#1a1625;
+    --ink-2:#4a4358;
+    --ink-3:#6f6880;
+    --violet:#7c3aed;
+    --violet-2:#a78bfa;
+    --violet-3:#f3edff;
+    --border:#ebe6dd;
+    --shadow:0 18px 50px rgba(26,22,37,.07);
+    --shadow-hi:0 28px 70px rgba(26,22,37,.14);
+    --nav-height:110px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.65;overflow-x:hidden;
+    padding-top:var(--nav-height);
+    -webkit-font-smoothing:antialiased;
+    min-width:0;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora','Inter',sans-serif;
+    letter-spacing:-.025em;line-height:1.12;font-weight:800;
+    overflow-wrap:break-word;
+    word-wrap:break-word;
+    hyphens:auto;
+  }
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  #header-placeholder,#footer-placeholder{width:100%}
+
+  @media (max-width:1100px){:root{--nav-height:160px}}
+  @media (max-width:768px){:root{--nav-height:95px}}
+  @media (max-width:480px){:root{--nav-height:85px}}
+
+  /* ===== LAYOUT ===== */
+  .ca-wrap{max-width:1240px;margin:0 auto;padding:0 28px;width:100%}
+  .ca-section{padding:120px 0;position:relative}
+  .ca-section.alt{background:var(--white);border-block:1px solid var(--border)}
+  .ca-section.dark{
+    background:
+      radial-gradient(900px 460px at 88% -12%, rgba(124,58,237,.28) 0%, transparent 62%),
+      radial-gradient(700px 400px at -8% 110%, rgba(124,58,237,.14) 0%, transparent 60%),
+      var(--ink);
+    color:#fff;border-block:1px solid rgba(255,255,255,.06);
+  }
+  .ca-section.dark .ca-tag{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.18);
+    color:var(--violet-2);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .ca-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--violet-3);color:var(--violet);
+    border:1px solid #e3d7ff;
+    padding:7px 16px;border-radius:50px;
+    font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:22px;
+    max-width:100%;
+    flex-wrap:wrap;
+  }
+  .ca-tag i{font-size:.72rem}
+
+  .ca-title{
+    font-size:clamp(1.9rem,4.4vw,3.1rem);
+    color:var(--ink);margin-bottom:18px;
+    line-height:1.06;letter-spacing:-.03em;
+  }
+  .ca-title em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:700;color:var(--violet);
+  }
+  .ca-title span{color:var(--violet)}
+
+  .ca-sub{font-size:.98rem;color:var(--ink-3);max-width:620px;line-height:1.78}
+  .ca-center{text-align:center}
+  .ca-center .ca-sub{margin-inline:auto}
+  .ca-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:30px;flex-wrap:wrap;margin-bottom:56px;
+  }
+  .ca-head.center{flex-direction:column;align-items:center;text-align:center}
+
+  /* ===== BUTTONS ===== */
+  .ca-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 28px;border-radius:10px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.86rem;
+    letter-spacing:.01em;border:1.5px solid transparent;
+    cursor:pointer;transition:all .3s ease;white-space:nowrap;
+  }
+  .ca-btn.violet{background:var(--violet);color:#fff;box-shadow:0 10px 26px rgba(124,58,237,.28)}
+  .ca-btn.violet:hover{background:#6d28d9;transform:translateY(-3px);box-shadow:0 16px 34px rgba(124,58,237,.42)}
+  .ca-btn.ink{background:var(--ink);color:#fff}
+  .ca-btn.ink:hover{background:#000;transform:translateY(-3px);box-shadow:0 14px 30px rgba(26,22,37,.25)}
+  .ca-btn.outline{background:transparent;color:var(--ink);border-color:rgba(26,22,37,.22)}
+  .ca-btn.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-3px)}
+  .ca-btn.ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+  .ca-btn.ghost:hover{background:rgba(255,255,255,.16);border-color:var(--violet-2);transform:translateY(-3px)}
+
+  /* ============================================================
+     01 — HERO
+     ============================================================ */
+  .bl-hero{
+    padding:80px 0 100px;
+    background:
+      radial-gradient(760px 460px at 92% -10%, rgba(124,58,237,.09) 0%, transparent 60%),
+      radial-gradient(620px 360px at -4% 108%, rgba(124,58,237,.05) 0%, transparent 60%),
+      var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .bl-hero-inner{
+    max-width:900px;margin:0 auto;
+    text-align:center;
+    margin-bottom:64px;
+  }
+  .bl-hero-inner .ca-tag{
+    background:transparent;
+    border-color:var(--violet-2);
+    color:var(--violet);
+    justify-content:center;
+  }
+  .bl-hero h1{
+    font-size:clamp(2.6rem,6.5vw,4.8rem);
+    line-height:1;
+    letter-spacing:-.04em;
+    margin-bottom:26px;
+    overflow-wrap:break-word;
+    word-wrap:break-word;
+  }
+  .bl-hero h1 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:700;color:var(--violet);
+  }
+  .bl-hero-lead{
+    font-size:clamp(1rem,1.6vw,1.12rem);
+    color:var(--ink-2);line-height:1.8;
+    max-width:600px;margin:0 auto 34px;
+  }
+  .bl-hero-meta{
+    display:inline-flex;align-items:center;gap:18px;
+    padding:10px 20px;border-radius:50px;
+    background:#fff;border:1px solid var(--border);
+    font-family:'Sora';font-size:.68rem;
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:100%;
+  }
+  .bl-hero-meta strong{color:var(--violet)}
+  .bl-hero-meta .sep{
+    width:4px;height:4px;border-radius:50%;
+    background:var(--border);
+    flex-shrink:0;
+  }
+
+  .bl-hero-feature{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:0;
+    max-width:1080px;margin:0 auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow-hi);
+    cursor:default;
+    width:100%;
+  }
+  .bl-hero-feature-img{
+    position:relative;
+    min-height:380px;
+    overflow:hidden;
+    background:var(--violet-3);
+  }
+  .bl-hero-feature-img img{
+    width:100%;height:100%;object-fit:cover;
+    position:absolute;inset:0;
+    transition:transform .8s ease;
+  }
+  .bl-hero-feature:hover .bl-hero-feature-img img{transform:scale(1.05)}
+
+  .bl-hero-feature-badge{
+    position:absolute;
+    top:20px;left:20px;z-index:2;
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--violet);color:#fff;
+    padding:7px 16px;border-radius:50px;
+    font-family:'Sora';font-size:.62rem;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 8px 22px rgba(124,58,237,.4);
+  }
+
+  .bl-hero-feature-body{
+    padding:44px 40px;
+    display:flex;flex-direction:column;
+    justify-content:center;gap:16px;
+    min-width:0;
+  }
+  .bl-hero-feature-body .meta{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Sora';font-size:.66rem;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);
+    flex-wrap:wrap;
+  }
+  .bl-hero-feature-body .meta span{color:var(--violet)}
+  .bl-hero-feature-body h2{
+    font-size:clamp(1.4rem,2.6vw,1.9rem);
+    line-height:1.15;letter-spacing:-.02em;
+  }
+  .bl-hero-feature-body h2 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--violet);
+  }
+  .bl-hero-feature-body > p{
+    font-size:.92rem;
+    color:var(--ink-3);
+    line-height:1.75;
+  }
+  .bl-hero-feature-body .author{
+    display:flex;align-items:center;gap:12px;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+    margin-top:6px;
+  }
+  .bl-hero-feature-body .author img{
+    width:36px;height:36px;border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--violet-2);
+    flex-shrink:0;
+  }
+  .bl-hero-feature-body .author div strong{
+    display:block;font-family:'Sora';
+    font-size:.8rem;font-weight:700;
+    color:var(--ink);
+  }
+  .bl-hero-feature-body .author div span{
+    font-size:.7rem;color:var(--ink-3);
+  }
+
+  /* ============================================================
+     02 — LATEST ARTICLES
+     ============================================================ */
+  .bl-filter{
+    display:flex;flex-wrap:wrap;
+    justify-content:center;gap:8px;
+    margin-bottom:56px;
+  }
+  .bl-chip{
+    font-family:'Sora';
+    font-size:.76rem;font-weight:700;
+    letter-spacing:.03em;
+    padding:10px 20px;
+    border-radius:50px;
+    background:#fff;
+    border:1.5px solid var(--border);
+    color:var(--ink-2);
+    cursor:pointer;
+    transition:all .25s ease;
+    white-space:nowrap;
+  }
+  .bl-chip:hover{
+    border-color:var(--violet-2);
+    color:var(--violet);
+  }
+  .bl-chip.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+  }
+
+  .bl-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+
+  .bl-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:all .4s ease;
+    cursor:default;
+    min-width:0;
+  }
+  .bl-card:hover{
+    transform:translateY(-6px);
+    border-color:#ded2f8;
+    box-shadow:var(--shadow-hi);
+  }
+  .bl-card.is-hidden{display:none}
+
+  .bl-card-img{
+    position:relative;
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:var(--violet-3);
+  }
+  .bl-card-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .8s ease;
+  }
+  .bl-card:hover .bl-card-img img{transform:scale(1.06)}
+  .bl-card-cat{
+    position:absolute;
+    top:14px;left:14px;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    color:var(--violet);
+    font-family:'Sora';font-size:.62rem;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;
+    padding:5px 12px;border-radius:50px;
+    pointer-events:none;
+  }
+
+  .bl-card-body{
+    padding:26px 24px 26px;
+    display:flex;flex-direction:column;
+    gap:12px;flex:1;
+    min-width:0;
+  }
+  .bl-card-date{
+    font-family:'Sora';font-size:.66rem;
+    font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  .bl-card-body h3{
+    font-size:1.12rem;
+    line-height:1.28;
+    letter-spacing:-.02em;
+    margin-bottom:2px;
+  }
+  .bl-card-body h3 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--violet);
+  }
+  .bl-card-body > p{
+    font-size:.85rem;
+    color:var(--ink-3);
+    line-height:1.7;
+    flex:1;
+  }
+  .bl-card-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding-top:14px;
+    border-top:1px solid var(--border);
+    margin-top:6px;
+    flex-wrap:wrap;
+  }
+  .bl-card-author{
+    font-family:'Sora';
+    font-size:.72rem;font-weight:700;
+    color:var(--ink-2);
+  }
+  .bl-card-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Sora';
+    font-size:.74rem;font-weight:700;
+    color:var(--violet);
+    transition:gap .3s ease;
+    cursor:pointer;
+  }
+  .bl-card-link:hover{gap:13px}
+
+  /* ============================================================
+     03 — EDITOR'S PICK
+     ============================================================ */
+  .bl-pick-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:64px;
+    align-items:center;
+  }
+  .bl-pick-img{
+    position:relative;
+    aspect-ratio:4/3.6;
+    border-radius:24px;
+    overflow:hidden;
+    background:#2b2440;
+    box-shadow:0 40px 90px rgba(0,0,0,.4);
+  }
+  .bl-pick-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .9s ease;
+  }
+  .bl-pick-img:hover img{transform:scale(1.04)}
+  .bl-pick-img::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(26,22,37,0) 45%,rgba(26,22,37,.7) 100%);
+    pointer-events:none;
+  }
+  .bl-pick-badge{
+    position:absolute;
+    top:24px;left:24px;z-index:2;
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--violet);color:#fff;
+    padding:8px 18px;border-radius:50px;
+    font-family:'Sora';font-size:.64rem;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 8px 22px rgba(124,58,237,.5);
+  }
+
+  .bl-pick-content .ca-tag{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.18);
+    color:var(--violet-2);
+  }
+  .bl-pick-content h2{
+    font-size:clamp(1.7rem,3.4vw,2.6rem);
+    line-height:1.1;letter-spacing:-.025em;
+    color:#fff;margin-bottom:20px;
+  }
+  .bl-pick-content h2 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--violet-2);
+  }
+  .bl-pick-content > p{
+    font-size:.98rem;
+    color:#c7c1d6;line-height:1.82;
+    margin-bottom:26px;
+  }
+
+  .bl-pick-quote{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:600;
+    font-size:clamp(1.1rem,1.9vw,1.35rem);
+    line-height:1.5;
+    color:var(--violet-2);
+    padding-left:22px;
+    border-left:2px solid var(--violet-2);
+    margin-bottom:28px;
+  }
+
+  .bl-pick-meta{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.14);
+    margin-bottom:28px;
+  }
+  .bl-pick-meta img{
+    width:44px;height:44px;border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--violet-2);
+    flex-shrink:0;
+  }
+  .bl-pick-meta div strong{
+    display:block;font-family:'Sora';
+    font-size:.86rem;font-weight:700;
+    color:#fff;
+  }
+  .bl-pick-meta div span{
+    font-size:.72rem;color:#8f88a5;
+  }
+
+  .bl-pick-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ============================================================
+     04 — TRENDING
+     ============================================================ */
+  .bl-trending-list{
+    display:flex;flex-direction:column;
+    border-top:1px solid var(--border);
+  }
+  .bl-trend-row{
+    display:grid;
+    grid-template-columns:64px 100px 1fr auto 44px;
+    gap:24px;align-items:center;
+    padding:22px 6px;
+    border-bottom:1px solid var(--border);
+    transition:all .3s ease;
+    cursor:default;
+    min-width:0;
+  }
+  .bl-trend-row:hover{
+    padding-left:20px;
+    background:rgba(124,58,237,.03);
+  }
+  .bl-trend-num{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:700;
+    font-size:1.8rem;line-height:1;
+    color:var(--violet-2);
+    transition:color .3s ease;
+  }
+  .bl-trend-row:hover .bl-trend-num{color:var(--violet)}
+  .bl-trend-thumb{
+    width:100px;height:68px;
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--violet-3);
+    flex-shrink:0;
+  }
+  .bl-trend-thumb img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .bl-trend-row:hover .bl-trend-thumb img{transform:scale(1.08)}
+  .bl-trend-body{
+    min-width:0;
+    overflow-wrap:break-word;
+    word-wrap:break-word;
+  }
+  .bl-trend-body h3{
+    font-size:1.02rem;
+    line-height:1.3;
+    letter-spacing:-.015em;
+    margin-bottom:4px;
+    transition:color .3s ease;
+  }
+  .bl-trend-row:hover .bl-trend-body h3{color:var(--violet)}
+  .bl-trend-body .meta{
+    font-family:'Sora';font-size:.66rem;
+    font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  .bl-trend-body .meta span{color:var(--violet)}
+  .bl-trend-date{
+    font-family:'Sora';font-size:.74rem;
+    font-weight:600;color:var(--ink-3);
+    white-space:nowrap;
+  }
+  .bl-trend-arrow{
+    width:40px;height:40px;
+    border-radius:50%;
+    border:1.5px solid var(--border);
+    background:#fff;
+    color:var(--ink-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.72rem;
+    transition:all .3s ease;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .bl-trend-arrow:hover{
+    background:var(--violet);
+    border-color:var(--violet);
+    color:#fff;
+    transform:rotate(-45deg);
+  }
+
+  /* ============================================================
+     05 — CATEGORIES
+     ============================================================ */
+  .bl-cat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .bl-cat-card{
+    padding:36px 30px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    display:flex;flex-direction:column;gap:16px;
+    transition:all .4s ease;
+    cursor:default;
+    position:relative;overflow:hidden;
+    min-width:0;
+  }
+  .bl-cat-card::after{
+    content:'';position:absolute;
+    top:0;left:0;height:3px;width:0;
+    background:var(--violet);
+    transition:width .4s ease;
+  }
+  .bl-cat-card:hover{
+    transform:translateY(-6px);
+    border-color:#ded2f8;
+    box-shadow:var(--shadow-hi);
+  }
+  .bl-cat-card:hover::after{width:100%}
+
+  .bl-cat-head{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:6px;
+    gap:12px;
+  }
+  .bl-cat-icon{
+    width:48px;height:48px;
+    border-radius:13px;
+    background:var(--violet-3);color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.02rem;
+    transition:all .35s ease;
+    flex-shrink:0;
+  }
+  .bl-cat-card:hover .bl-cat-icon{
+    background:var(--violet);color:#fff;
+    transform:rotate(-8deg);
+  }
+  .bl-cat-count{
+    font-family:'Sora';font-size:.7rem;
+    font-weight:800;letter-spacing:.06em;
+    color:var(--ink-3);
+    white-space:nowrap;
+  }
+  .bl-cat-card h3{
+    font-size:1.15rem;
+    letter-spacing:-.015em;
+  }
+  .bl-cat-card > p{
+    font-size:.86rem;
+    color:var(--ink-3);
+    line-height:1.65;
+    flex:1;
+  }
+  .bl-cat-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Sora';
+    font-size:.74rem;font-weight:700;
+    color:var(--violet);
+    transition:gap .3s ease;
+    align-self:flex-start;
+    cursor:pointer;
+  }
+  .bl-cat-card:hover .bl-cat-link{gap:13px}
+
+  /* ============================================================
+     06 — NEWSLETTER
+     ============================================================ */
+  .bl-news-inner{
+    max-width:680px;margin:0 auto;
+    text-align:center;
+  }
+  .bl-news-inner h2{
+    font-size:clamp(2rem,4.6vw,3.2rem);
+    line-height:1.08;letter-spacing:-.03em;
+    color:#fff;margin-bottom:18px;
+  }
+  .bl-news-inner h2 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--violet-2);
+  }
+  .bl-news-inner > p{
+    color:#c7c1d6;
+    font-size:1rem;line-height:1.78;
+    max-width:520px;margin:0 auto 38px;
+  }
+
+  .bl-news-form{
+    display:flex;gap:10px;
+    max-width:520px;margin:0 auto 20px;
+    width:100%;
+  }
+  .bl-news-form input{
+    flex:1;
+    min-width:0;
+    padding:15px 20px;
+    border-radius:10px;
+    border:1.5px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    color:#fff;
+    font-family:'Inter';font-size:.9rem;
+    outline:none;transition:all .3s ease;
+  }
+  .bl-news-form input::placeholder{color:#8f88a5}
+  .bl-news-form input:focus{
+    border-color:var(--violet-2);
+    background:rgba(255,255,255,.1);
+  }
+  .bl-news-form input.error{
+    border-color:#ef4444;
+    background:rgba(239,68,68,.12);
+  }
+  .bl-news-form button{
+    padding:15px 26px;
+    border-radius:10px;
+    border:none;
+    background:var(--violet);
+    color:#fff;
+    font-family:'Sora';font-weight:700;font-size:.86rem;
+    cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:all .3s ease;
+    box-shadow:0 10px 26px rgba(124,58,237,.35);
+    white-space:nowrap;
+  }
+  .bl-news-form button:hover{
+    background:#6d28d9;
+    transform:translateY(-2px);
+    box-shadow:0 14px 32px rgba(124,58,237,.5);
+  }
+  .bl-news-form button:disabled{opacity:.7;cursor:not-allowed}
+
+  .bl-news-error{
+    display:none;
+    font-size:.72rem;color:#fca5a5;
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .bl-news-error.show{display:block}
+
+  .bl-news-note{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:.7rem;color:#8f88a5;
+    flex-wrap:wrap;justify-content:center;
+  }
+  .bl-news-note i{color:var(--violet-2)}
+
+  /* ============================================================
+     RESPONSIVE — TABLET (≤1100px)
+     ============================================================ */
+  @media (max-width:1100px){
+    .ca-wrap{padding:0 24px}
+    .bl-hero{padding:70px 0 80px}
+    .bl-hero-feature{grid-template-columns:1fr;max-width:560px}
+    .bl-hero-feature-img{min-height:280px}
+    .bl-hero-feature-body{padding:36px 32px}
+
+    .bl-grid{grid-template-columns:repeat(2,1fr);gap:22px}
+    .bl-pick-grid{grid-template-columns:1fr;gap:44px}
+    .bl-cat-grid{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ============================================================
+     RESPONSIVE — SMALL TABLET (≤860px)
+     ============================================================ */
+  @media (max-width:860px){
+    .bl-trend-row{
+      grid-template-columns:44px 84px 1fr 40px;
+      gap:18px;
+    }
+    .bl-trend-date{display:none}
+    .bl-trend-thumb{width:84px;height:58px}
+  }
+
+  /* ============================================================
+     RESPONSIVE — MOBILE (≤768px)
+     ============================================================ */
+  @media (max-width:768px){
+    .ca-section{padding:80px 0}
+    .ca-wrap{padding:0 20px}
+    .ca-head{margin-bottom:44px;gap:20px}
+
+    /* Hero padding fix */
+    .bl-hero{padding:50px 0 70px}
+    .bl-hero-inner{margin-bottom:40px}
+    .bl-hero h1{font-size:2.2rem;letter-spacing:-.03em}
+    .bl-hero-lead{font-size:.95rem;margin-bottom:26px}
+    .bl-hero-meta{font-size:.62rem;padding:9px 16px;gap:12px}
+
+    .bl-hero-feature{max-width:100%;border-radius:20px}
+    .bl-hero-feature-img{min-height:220px}
+    .bl-hero-feature-body{padding:30px 26px;gap:14px}
+    .bl-hero-feature-body h2{font-size:1.35rem}
+    .bl-hero-feature-body > p{font-size:.88rem}
+
+    /* Filter chips — touch friendly */
+    .bl-filter{gap:6px;margin-bottom:36px}
+    .bl-chip{
+      font-size:.72rem;
+      padding:9px 16px;
+      min-height:38px;
+      display:inline-flex;
+      align-items:center;
+    }
+
+    .bl-grid{grid-template-columns:1fr;gap:20px}
+    .bl-card-body{padding:22px 20px}
+    .bl-card-body h3{font-size:1.05rem}
+
+    .bl-pick-img{aspect-ratio:16/10}
+    .bl-pick-content h2{font-size:1.6rem}
+    .bl-pick-content > p{font-size:.9rem}
+    .bl-pick-quote{font-size:1rem;padding-left:16px}
+    .bl-pick-btns{flex-direction:column}
+    .bl-pick-btns .ca-btn{width:100%}
+
+    /* Trending rows — remove date + thumb */
+    .bl-trend-row{
+      grid-template-columns:36px 1fr 40px;
+      gap:14px;
+      padding:18px 4px;
+    }
+    .bl-trend-row:hover{padding-left:4px}
+    .bl-trend-thumb{display:none}
+    .bl-trend-num{font-size:1.4rem}
+    .bl-trend-body h3{font-size:.95rem}
+    .bl-trend-body .meta{font-size:.62rem}
+    .bl-trend-arrow{width:38px;height:38px;font-size:.68rem}
+
+    .bl-cat-grid{grid-template-columns:1fr 1fr;gap:14px}
+    .bl-cat-card{padding:26px 22px}
+    .bl-cat-card h3{font-size:1.02rem}
+    .bl-cat-card > p{font-size:.82rem}
+
+    .bl-news-inner h2{font-size:1.85rem}
+    .bl-news-inner > p{font-size:.92rem;margin-bottom:30px}
+    .bl-news-form{flex-direction:column}
+    .bl-news-form button{justify-content:center;padding:14px 24px}
+  }
+
+  /* ============================================================
+     RESPONSIVE — SMALL PHONE (≤480px)
+     ============================================================ */
+  @media (max-width:480px){
+    .ca-section{padding:60px 0}
+    .ca-wrap{padding:0 16px}
+
+    /* Compact hero */
+    .bl-hero{padding:40px 0 60px}
+    .bl-hero-inner{margin-bottom:32px}
+    .bl-hero h1{font-size:1.85rem;line-height:1.08}
+    .bl-hero h1 br{display:none}
+    .bl-hero-lead{font-size:.9rem;line-height:1.7;margin-bottom:24px}
+
+    /* Meta row — force wrap, hide separators */
+    .bl-hero-meta{
+      font-size:.55rem;
+      padding:8px 12px;
+      gap:6px 10px;
+    }
+    .bl-hero-meta .sep{display:none}
+    .bl-hero-meta strong{font-size:.58rem}
+
+    .bl-hero-feature{border-radius:18px}
+    .bl-hero-feature-img{min-height:180px}
+    .bl-hero-feature-body{padding:24px 20px;gap:12px}
+    .bl-hero-feature-body h2{font-size:1.18rem}
+    .bl-hero-feature-body > p{font-size:.82rem;line-height:1.65}
+    .bl-hero-feature-body .meta{font-size:.6rem}
+    .bl-hero-feature-body .author{padding-top:12px}
+    .bl-hero-feature-body .author img{width:32px;height:32px}
+    .bl-hero-feature-body .author div strong{font-size:.76rem}
+    .bl-hero-feature-body .author div span{font-size:.65rem}
+
+    .ca-title{font-size:1.55rem}
+    .ca-sub{font-size:.9rem}
+
+    /* Chips — smaller */
+    .bl-filter{gap:6px;margin-bottom:28px}
+    .bl-chip{font-size:.68rem;padding:8px 14px;min-height:34px}
+
+    .bl-card{border-radius:16px}
+    .bl-card-body{padding:20px 18px;gap:10px}
+    .bl-card-body h3{font-size:1rem}
+    .bl-card-body > p{font-size:.78rem}
+    .bl-card-date{font-size:.6rem}
+    .bl-card-author{font-size:.68rem}
+    .bl-card-link{font-size:.7rem}
+
+    .bl-pick-content h2{font-size:1.4rem}
+    .bl-pick-content > p{font-size:.85rem}
+    .bl-pick-quote{font-size:.92rem;padding-left:14px;line-height:1.5}
+    .bl-pick-badge{font-size:.58rem;padding:6px 14px;top:16px;left:16px}
+    .bl-pick-meta img{width:38px;height:38px}
+    .bl-pick-meta div strong{font-size:.82rem}
+
+    .bl-trend-row{grid-template-columns:30px 1fr 36px;gap:10px;padding:14px 2px}
+    .bl-trend-num{font-size:1.15rem}
+    .bl-trend-body h3{font-size:.88rem;line-height:1.3}
+    .bl-trend-body .meta{font-size:.56rem;letter-spacing:.06em}
+    .bl-trend-arrow{width:34px;height:34px;font-size:.62rem}
+
+    .bl-cat-grid{grid-template-columns:1fr;gap:12px}
+    .bl-cat-card{padding:22px 20px;gap:12px}
+    .bl-cat-card h3{font-size:.98rem}
+    .bl-cat-card > p{font-size:.78rem}
+    .bl-cat-icon{width:42px;height:42px;font-size:.92rem}
+    .bl-cat-count{font-size:.62rem}
+
+    .bl-news-inner h2{font-size:1.6rem}
+    .bl-news-inner > p{font-size:.85rem;line-height:1.7;margin-bottom:26px}
+    .bl-news-form input{padding:13px 16px;font-size:.85rem}
+    .bl-news-form button{padding:13px 20px;font-size:.8rem}
+    .bl-news-note{font-size:.62rem}
+  }
+
+  /* ============================================================
+     RESPONSIVE — TINY PHONE (≤380px)
+     ============================================================ */
+  @media (max-width:380px){
+    .ca-wrap{padding:0 14px}
+    .bl-hero h1{font-size:1.7rem}
+    .bl-hero-meta{font-size:.5rem;padding:6px 10px;gap:4px 8px}
+    .bl-hero-feature-body{padding:20px 16px}
+    .bl-hero-feature-body h2{font-size:1.08rem}
+    .ca-title{font-size:1.35rem}
+    .bl-chip{font-size:.62rem;padding:7px 11px}
+    .bl-trend-row{grid-template-columns:26px 1fr 32px;gap:8px}
+    .bl-trend-num{font-size:1rem}
+    .bl-trend-body h3{font-size:.82rem}
+    .bl-trend-arrow{width:30px;height:30px;font-size:.58rem}
+    .bl-news-inner h2{font-size:1.4rem}
+  }
+
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:var(--paper)}
+  ::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--violet)}
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- 01 — HERO -->
+<section class="bl-hero">
+  <div class="ca-wrap">
+
+    <div class="bl-hero-inner" data-aos="fade-up" data-aos-duration="900">
+      <div class="ca-tag"><i class="fa-solid fa-pen-nib"></i> The Stackly Journal</div>
+      <h1>Notes from<br>the <em>studio floor.</em></h1>
+      <p class="bl-hero-lead">
+        Process, opinion, and the occasional post-mortem. Written by the team — not a content agency. Everything you read here comes from real projects we've shipped.
+      </p>
+      <div class="bl-hero-meta">
+        <strong>42</strong> Articles
+        <span class="sep"></span>
+        <strong>6</strong> Categories
+        <span class="sep"></span>
+        <strong>Monthly</strong> Digest
+      </div>
+    </div>
+
+    <div class="bl-hero-feature" data-aos="fade-up" data-aos-delay="120">
+      <div class="bl-hero-feature-img">
+        <span class="bl-hero-feature-badge"><i class="fa-solid fa-star"></i> Latest</span>
+        <img src="ca1.webp" alt="Featured article" loading="lazy">
+      </div>
+      <div class="bl-hero-feature-body">
+        <div class="meta"><span>Process</span> · 8 min read</div>
+        <h2>Why we present <em>three routes</em>, never one</h2>
+        <p>Single-option pitches train clients to react instead of choose. Here's how we structure creative presentations so the decision is easy — and the work stays honest.</p>
+        <div class="author">
+          <img src="ca2.webp" alt="Daniel Okafor">
+          <div>
+            <strong>Daniel Okafor</strong>
+            <span>12 Feb 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — LATEST ARTICLES -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-list"></i> Latest Articles</div>
+        <h2 class="ca-title">Fresh from <span>the journal.</span></h2>
+        <p class="ca-sub">Filter by discipline. Every article is written by the person who did the work.</p>
+      </div>
+    </div>
+
+    <div class="bl-filter" data-aos="fade-up" data-aos-delay="80">
+      <button class="bl-chip active" data-filter="all">All</button>
+      <button class="bl-chip" data-filter="process">Process</button>
+      <button class="bl-chip" data-filter="branding">Branding</button>
+      <button class="bl-chip" data-filter="design">Design</button>
+      <button class="bl-chip" data-filter="opinion">Opinion</button>
+      <button class="bl-chip" data-filter="strategy">Strategy</button>
+    </div>
+
+    <div class="bl-grid">
+
+      <article class="bl-card" data-cat="process" data-aos="fade-up">
+        <div class="bl-card-img">
+          <span class="bl-card-cat">Process</span>
+          <img src="ca3.webp" alt="Article" loading="lazy">
+        </div>
+        <div class="bl-card-body">
+          <span class="bl-card-date">12 Feb 2026 · 6 min read</span>
+          <h3>Why we present three routes, never one</h3>
+          <p>Single-option pitches train clients to react instead of choose. Here's how we structure creative presentations.</p>
+          <div class="bl-card-foot">
+            <span class="bl-card-author">Daniel Okafor</span>
+            <a href="404.html" class="bl-card-link">Read <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="bl-card" data-cat="branding" data-aos="fade-up" data-aos-delay="60">
+        <div class="bl-card-img">
+          <span class="bl-card-cat">Branding</span>
+          <img src="ca4.webp" alt="Article" loading="lazy">
+        </div>
+        <div class="bl-card-body">
+          <span class="bl-card-date">28 Jan 2026 · 8 min read</span>
+          <h3>Type systems that survive a rebrand</h3>
+          <p>Most identities break the moment a new team touches them. A clear hierarchy is the cheapest insurance you can buy.</p>
+          <div class="bl-card-foot">
+            <span class="bl-card-author">Maya Lindqvist</span>
+            <a href="404.html" class="bl-card-link">Read <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="bl-card" data-cat="opinion" data-aos="fade-up" data-aos-delay="120">
+        <div class="bl-card-img">
+          <span class="bl-card-cat">Opinion</span>
+          <img src="ca5.webp" alt="Article" loading="lazy">
+        </div>
+        <div class="bl-card-body">
+          <span class="bl-card-date">09 Jan 2026 · 5 min read</span>
+          <h3>Small teams ship better creative</h3>
+          <p>Every person added to a creative review adds a filter. We keep project teams at three and let the work stay uncomfortable.</p>
+          <div class="bl-card-foot">
+            <span class="bl-card-author">Daniel Okafor</span>
+            <a href="404.html" class="bl-card-link">Read <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="bl-card" data-cat="design" data-aos="fade-up">
+        <div class="bl-card-img">
+          <span class="bl-card-cat">Design</span>
+          <img src="ca6.webp" alt="Article" loading="lazy">
+        </div>
+        <div class="bl-card-body">
+          <span class="bl-card-date">22 Dec 2025 · 7 min read</span>
+          <h3>The case against mood boards</h3>
+          <p>Mood boards are a shortcut that skips the strategy. Here's what we use instead — and why it makes the pitch better.</p>
+          <div class="bl-card-foot">
+            <span class="bl-card-author">Tom Whitaker</span>
+            <a href="404.html" class="bl-card-link">Read <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="bl-card" data-cat="strategy" data-aos="fade-up" data-aos-delay="60">
+        <div class="bl-card-img">
+          <span class="bl-card-cat">Strategy</span>
+          <img src="ca7.webp" alt="Article" loading="lazy">
+        </div>
+        <div class="bl-card-body">
+          <span class="bl-card-date">08 Dec 2025 · 9 min read</span>
+          <h3>How we brief an identity project</h3>
+          <p>The brief is the most important document in any rebrand. Here's the exact template we use to get alignment.</p>
+          <div class="bl-card-foot">
+            <span class="bl-card-author">Tom Whitaker</span>
+            <a href="404.html" class="bl-card-link">Read <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="bl-card" data-cat="design" data-aos="fade-up" data-aos-delay="120">
+        <div class="bl-card-img">
+          <span class="bl-card-cat">Design</span>
+          <img src="ca8.webp" alt="Article" loading="lazy">
+        </div>
+        <div class="bl-card-body">
+          <span class="bl-card-date">24 Nov 2025 · 6 min read</span>
+          <h3>Motion as part of identity, not an afterthought</h3>
+          <p>Animated identity should be designed with the static system — not patched on at the end by a separate team.</p>
+          <div class="bl-card-foot">
+            <span class="bl-card-author">Aisha Rahman</span>
+            <a href="404.html" class="bl-card-link">Read <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="ca-head center" style="margin:44px 0 0" data-aos="fade-up">
+      <a href="404.html" class="ca-btn ink"><i class="fa-solid fa-grid-2"></i> Load More Articles</a>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — EDITOR'S PICK -->
+<section class="ca-section dark">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-star"></i> Editor's Pick</div>
+        <h2 class="ca-title" style="color:#fff">The one we'd <em style="color:var(--violet-2)">read first.</em></h2>
+        <p class="ca-sub" style="color:#c7c1d6">Our most-read article of the year — a candid look at how we run the studio and why it works.</p>
+      </div>
+    </div>
+
+    <div class="bl-pick-grid">
+
+      <div class="bl-pick-img" data-aos="fade-right" data-aos-duration="900">
+        <span class="bl-pick-badge"><i class="fa-solid fa-bookmark"></i> Editor's Pick</span>
+        <img src="ca9.webp" alt="Editor's Pick" loading="lazy">
+      </div>
+
+      <div class="bl-pick-content" data-aos="fade-left" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-lightbulb"></i> Opinion · 9 min read</div>
+        <h2>What "good design" <em>actually means</em></h2>
+        <p>
+          Good design isn't about what wins awards. It's about what makes the client's team more effective tomorrow than they were yesterday. That sounds obvious, but most agencies still measure success by how the work looks on a design wall — not how it performs on the ground.
+        </p>
+
+        <blockquote class="bl-pick-quote">
+          "The work isn't done when it looks right. It's done when it works — for the client, for their team, and for the person on the other end of the screen."
+        </blockquote>
+
+        <div class="bl-pick-meta">
+          <img src="ca10.webp" alt="Daniel Okafor">
+          <div>
+            <strong>Daniel Okafor</strong>
+            <span>Founder · Feb 2026</span>
+          </div>
+        </div>
+
+        <div class="bl-pick-btns">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-book-open"></i> Read Full Article</a>
+          <a href="404.html" class="ca-btn ghost"><i class="fa-solid fa-bookmark"></i> Save for Later</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 — TRENDING -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ca-head" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-fire"></i> Trending Now</div>
+        <h2 class="ca-title">Most read <span>this month.</span></h2>
+        <p class="ca-sub">The articles clients and designers keep coming back to.</p>
+      </div>
+      <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-arrow-right"></i> All Articles</a>
+    </div>
+
+    <div class="bl-trending-list">
+
+      <div class="bl-trend-row" data-aos="fade-up">
+        <span class="bl-trend-num">01</span>
+        <div class="bl-trend-thumb">
+          <img src="ca11.webp" alt="" loading="lazy">
+        </div>
+        <div class="bl-trend-body">
+          <h3>Why we present three routes, never one</h3>
+          <div class="meta"><span>Process</span> · Daniel Okafor</div>
+        </div>
+        <span class="bl-trend-date">12 Feb 2026</span>
+        <a href="404.html" class="bl-trend-arrow" aria-label="Read article"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-trend-row" data-aos="fade-up" data-aos-delay="50">
+        <span class="bl-trend-num">02</span>
+        <div class="bl-trend-thumb">
+          <img src="ca12.webp" alt="" loading="lazy">
+        </div>
+        <div class="bl-trend-body">
+          <h3>Type systems that survive a rebrand</h3>
+          <div class="meta"><span>Branding</span> · Maya Lindqvist</div>
+        </div>
+        <span class="bl-trend-date">28 Jan 2026</span>
+        <a href="404.html" class="bl-trend-arrow" aria-label="Read article"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-trend-row" data-aos="fade-up" data-aos-delay="100">
+        <span class="bl-trend-num">03</span>
+        <div class="bl-trend-thumb">
+          <img src="ca13.webp" alt="" loading="lazy">
+        </div>
+        <div class="bl-trend-body">
+          <h3>Small teams ship better creative</h3>
+          <div class="meta"><span>Opinion</span> · Daniel Okafor</div>
+        </div>
+        <span class="bl-trend-date">09 Jan 2026</span>
+        <a href="404.html" class="bl-trend-arrow" aria-label="Read article"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-trend-row" data-aos="fade-up" data-aos-delay="150">
+        <span class="bl-trend-num">04</span>
+        <div class="bl-trend-thumb">
+          <img src="ca14.webp" alt="" loading="lazy">
+        </div>
+        <div class="bl-trend-body">
+          <h3>The case against mood boards</h3>
+          <div class="meta"><span>Design</span> · Tom Whitaker</div>
+        </div>
+        <span class="bl-trend-date">22 Dec 2025</span>
+        <a href="404.html" class="bl-trend-arrow" aria-label="Read article"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-trend-row" data-aos="fade-up" data-aos-delay="200">
+        <span class="bl-trend-num">05</span>
+        <div class="bl-trend-thumb">
+          <img src="ca15.webp" alt="" loading="lazy">
+        </div>
+        <div class="bl-trend-body">
+          <h3>How we brief an identity project</h3>
+          <div class="meta"><span>Strategy</span> · Tom Whitaker</div>
+        </div>
+        <span class="bl-trend-date">08 Dec 2025</span>
+        <a href="404.html" class="bl-trend-arrow" aria-label="Read article"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-trend-row" data-aos="fade-up" data-aos-delay="250">
+        <span class="bl-trend-num">06</span>
+        <div class="bl-trend-thumb">
+          <img src="ca1.webp" alt="" loading="lazy">
+        </div>
+        <div class="bl-trend-body">
+          <h3>Motion as part of identity, not an afterthought</h3>
+          <div class="meta"><span>Design</span> · Aisha Rahman</div>
+        </div>
+        <span class="bl-trend-date">24 Nov 2025</span>
+        <a href="404.html" class="bl-trend-arrow" aria-label="Read article"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 05 — CATEGORIES -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-folder-open"></i> Browse by Topic</div>
+        <h2 class="ca-title">Everything in <span>one place.</span></h2>
+        <p class="ca-sub">Six categories covering everything we think about — from process to opinion.</p>
+      </div>
+    </div>
+
+    <div class="bl-cat-grid">
+
+      <div class="bl-cat-card" data-aos="fade-up">
+        <div class="bl-cat-head">
+          <div class="bl-cat-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <span class="bl-cat-count">12 Articles</span>
+        </div>
+        <h3>Process</h3>
+        <p>How we run projects — the workflows, templates, and rituals that keep the work sharp.</p>
+        <a href="404.html" class="bl-cat-link">Browse Process <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-cat-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="bl-cat-head">
+          <div class="bl-cat-icon"><i class="fa-solid fa-fingerprint"></i></div>
+          <span class="bl-cat-count">8 Articles</span>
+        </div>
+        <h3>Branding</h3>
+        <p>Identity systems, naming, positioning, and the thinking behind a brand that lasts.</p>
+        <a href="404.html" class="bl-cat-link">Browse Branding <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-cat-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="bl-cat-head">
+          <div class="bl-cat-icon"><i class="fa-solid fa-pen-nib"></i></div>
+          <span class="bl-cat-count">9 Articles</span>
+        </div>
+        <h3>Design</h3>
+        <p>Craft, type, colour, motion — the details that make the work feel considered.</p>
+        <a href="404.html" class="bl-cat-link">Browse Design <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-cat-card" data-aos="fade-up">
+        <div class="bl-cat-head">
+          <div class="bl-cat-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <span class="bl-cat-count">6 Articles</span>
+        </div>
+        <h3>Opinion</h3>
+        <p>Strong takes on how the industry works — and what we'd change if we could.</p>
+        <a href="404.html" class="bl-cat-link">Browse Opinion <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-cat-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="bl-cat-head">
+          <div class="bl-cat-icon"><i class="fa-solid fa-compass"></i></div>
+          <span class="bl-cat-count">5 Articles</span>
+        </div>
+        <h3>Strategy</h3>
+        <p>Positioning, research, and the creative direction that makes design easier.</p>
+        <a href="404.html" class="bl-cat-link">Browse Strategy <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="bl-cat-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="bl-cat-head">
+          <div class="bl-cat-icon"><i class="fa-solid fa-book-open"></i></div>
+          <span class="bl-cat-count">4 Articles</span>
+        </div>
+        <h3>Case Studies</h3>
+        <p>Post-mortems from real projects — what worked, what didn't, what we'd do differently.</p>
+        <a href="404.html" class="bl-cat-link">Browse Cases <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 06 — NEWSLETTER -->
+<section class="ca-section dark">
+  <div class="ca-wrap">
+    <div class="bl-news-inner" data-aos="fade-up" data-aos-duration="900">
+      <div class="ca-tag"><i class="fa-solid fa-envelope"></i> The Newsletter</div>
+      <h2>Get the studio<br>notes, <em>monthly.</em></h2>
+      <p>One email a month: new articles, process notes, and the tools we're actually using. No pitch decks, no spam, unsubscribe in one click.</p>
+
+      <form class="bl-news-form" id="blogNewsForm" novalidate>
+        <input type="email" id="blogNewsEmail" placeholder="you@company.com" aria-label="Your email" autocomplete="email">
+        <button type="submit" id="blogNewsBtn">
+          Subscribe <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="bl-news-error" id="blogNewsError">Please enter a valid email address.</div>
+
+      <div class="bl-news-note">
+        <i class="fa-solid fa-lock"></i> We respect your inbox. No spam, ever.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  AOS.init({
+    duration: 800,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 60,
+    disable: function () { return window.innerWidth < 480; }
+  });
+
+  const chips = document.querySelectorAll('.bl-chip');
+  const cards = document.querySelectorAll('.bl-card');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.getAttribute('data-filter');
+
+      cards.forEach((card, i) => {
+        const cat = card.getAttribute('data-cat');
+        const match = filter === 'all' || cat === filter;
+
+        if (match) {
+          card.classList.remove('is-hidden');
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity .35s ease, transform .35s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 20 + i * 40);
+        } else {
+          card.style.transition = 'opacity .2s ease';
+          card.style.opacity = '0';
+          setTimeout(() => card.classList.add('is-hidden'), 180);
+        }
+      });
+    });
+  });
+
+  const form     = document.getElementById('blogNewsForm');
+  const email    = document.getElementById('blogNewsEmail');
+  const error    = document.getElementById('blogNewsError');
+  const submitBtn = document.getElementById('blogNewsBtn');
+
+  if (email) {
+    email.addEventListener('input', () => {
+      email.classList.remove('error');
+      error.classList.remove('show');
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = email.value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+
+      if (!valid) {
+        email.classList.add('error');
+        error.textContent = 'Please enter a valid email address.';
+        error.classList.add('show');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Subscribing…';
+      }
+      setTimeout(() => { window.location.href = '404.html'; }, 600);
+    });
+  }
+
+  fetch('header.html')
+    .then(r => r.ok ? r.text() : Promise.reject('Header not found'))
+    .then(d => {
+      document.getElementById('header-placeholder').innerHTML = d;
+      initHeader();
+      AOS.refresh();
+    })
+    .catch(err => console.error('Header load failed:', err));
+
+  fetch('footer.html')
+    .then(r => r.ok ? r.text() : Promise.reject('Footer not found'))
+    .then(d => {
+      document.getElementById('footer-placeholder').innerHTML = d;
+      if (typeof initFooter === 'function') initFooter();
+      AOS.refresh();
+    })
+    .catch(err => console.error('Footer load failed:', err));
+
+  function initHeader() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      document.addEventListener('click', function (e) {
+        if (mobileMenu.classList.contains('active')) {
+          if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+    }
+  }
+
+  window.handleLogout = function (e) {
+    if (e) e.preventDefault();
+    try {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+    } catch (err) {}
+    window.location.replace('login.html');
+  };
+
+  console.log('✦ Stackly — blog page ready');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Creative Agency — Designer Dashboard</title>
+
+<!-- ============================================================
+     AUTH GUARD — Blocks direct access unless logged in as designer.
+     ============================================================ -->
+<script>
+(function guardDesignerDashboard() {
+  try {
+    const raw = sessionStorage.getItem('stackly_session') || localStorage.getItem('stackly_session');
+    const session = raw ? JSON.parse(raw) : null;
+    const now = Date.now();
+    const isValid = session &&
+                    session.authenticated === true &&
+                    typeof session.expiresAt === 'number' &&
+                    session.expiresAt > now &&
+                    session.role === 'designer';
+    if (!isValid) {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+      window.location.replace('login.html');
+      throw new Error('AUTH_REDIRECT');
+    }
+    window.__STACKLY_USER__ = session;
+  } catch (err) {
+    if (err && err.message === 'AUTH_REDIRECT') return;
+    try {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+    } catch (_) {}
+    window.location.replace('login.html');
+  }
+})();
+</script>
+
+<style>
+  html, body { visibility: hidden; }
+  body.sh-ready { visibility: visible; }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        display: ['Sora', 'sans-serif']
+      },
+      colors: {
+        ca: {
+          ink:      '#1a1625',
+          inkDark:  '#2b2440',
+          inkSoft:  '#4a4358',
+          muted:    '#6f6880',
+          violet:   '#7c3aed',
+          violetDk: '#6d28d9',
+          violetLt: '#a78bfa',
+          violetBg: '#f3edff',
+          paper:    '#faf7f2',
+          border:   '#ebe6dd'
+        }
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #faf7f2; }
+  ::-webkit-scrollbar-thumb { background: #a78bfa; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #faf7f2;
+    overflow: hidden;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(26, 22, 37, 0.08);
+    box-shadow: 0 4px 18px rgba(26, 22, 37, 0.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s ease;
+    overflow: visible;
+  }
+  .card:hover {
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.12);
+    transform: translateY(-2px);
+    border-color: rgba(124, 58, 237, 0.25);
+  }
+
+  .chart-h-2 { height: 130px; width: 100%; }
+
+  /* ===== SIDEBAR — LIGHT THEME ===== */
+  .sidebar {
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    border: none;
+    border-right: 2px solid #ebe6dd;
+    box-shadow: 2px 0 12px rgba(26, 22, 37, 0.04);
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 0 !important;
+  }
+
+  .sidebar-logo-area {
+    height: 76px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ebe6dd;
+    flex-shrink: 0;
+    background: #ffffff;
+  }
+
+  .sidebar-logo-img {
+    height: 48px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-logo-area a:hover .sidebar-logo-img {
+    transform: scale(1.02);
+  }
+
+  .sidebar .nav-link {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+    color: #4a4358;
+    border-left: 3px solid transparent;
+    border-radius: 0 12px 12px 0;
+    font-weight: 600;
+  }
+  .sidebar .nav-link i { color: #7c3aed; transition: all 0.3s ease; }
+  .sidebar .nav-link:hover {
+    background: rgba(124, 58, 237, 0.08);
+    color: #7c3aed;
+    border-left-color: #7c3aed;
+  }
+  .sidebar .nav-link:hover i { color: #6d28d9; }
+  .sidebar .nav-link.active {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+    color: #ffffff !important;
+    border-radius: 12px;
+    border-left-color: #7c3aed;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+  }
+  .sidebar .nav-link.active i { color: #ffffff !important; }
+  .sidebar hr { border-color: #ebe6dd; }
+
+  .nav-scroll { overflow-y: auto; flex: 1; }
+  .nav-scroll::-webkit-scrollbar { width: 3px; }
+  .nav-scroll::-webkit-scrollbar-thumb { background: #a78bfa; border-radius: 10px; }
+  .nav-scroll::-webkit-scrollbar-track { background: transparent; }
+
+  .content-section { display: none; }
+  .content-section.active { display: block; }
+
+  /* ===== MOBILE NAV — LIGHT THEME ===== */
+  .mobile-nav-bar {
+    display: none;
+    background: #ffffff;
+    border-bottom: 2px solid #ebe6dd;
+    padding: 12px 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px;
+  }
+  .mobile-nav-bar::-webkit-scrollbar { display: none; }
+  .mobile-nav-bar .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1.5px solid transparent;
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4a4358;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s;
+    font-family: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .mobile-nav-bar .nav-btn i { color: #7c3aed; font-size: 0.9rem; }
+  .mobile-nav-bar .nav-btn:hover {
+    background: rgba(124, 58, 237, 0.08);
+    color: #7c3aed;
+    border-color: rgba(124, 58, 237, 0.2);
+  }
+  .mobile-nav-bar .nav-btn.active {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #ffffff;
+    border-color: #7c3aed;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+  }
+  .mobile-nav-bar .nav-btn.active i { color: #ffffff; }
+  .mobile-header-logo { display: none; }
+
+  /* ===== NOTIFICATIONS ===== */
+  .notification-dropdown {
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid rgba(26, 22, 37, 0.1);
+    box-shadow: 0 20px 60px rgba(26, 22, 37, 0.25);
+    width: 380px;
+    z-index: 99999;
+    padding: 8px 0;
+    max-height: 460px;
+    overflow-y: auto;
+    border-top: 3px solid #7c3aed;
+  }
+  .notification-dropdown.show {
+    display: block;
+    animation: dropdownSlide 0.25s ease;
+  }
+  @keyframes dropdownSlide {
+    from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .notification-dropdown .notif-header {
+    padding: 12px 20px 10px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: #1a1625;
+    border-bottom: 1px solid rgba(26, 22, 37, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    z-index: 2;
+  }
+  .notification-dropdown .notif-header .notif-badge {
+    background: #7c3aed;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+  .notification-dropdown .notif-item {
+    padding: 12px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-bottom: 1px solid #f0ede4;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .notification-dropdown .notif-item:hover { background: #faf7f2; }
+  .notification-dropdown .notif-item .notif-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+  .notification-dropdown .notif-item .notif-content { flex: 1; min-width: 0; }
+  .notification-dropdown .notif-item .notif-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a1625;
+  }
+  .notification-dropdown .notif-item .notif-desc {
+    font-size: 0.75rem;
+    color: #6f6880;
+    margin-top: 2px;
+    word-wrap: break-word;
+  }
+  .notification-dropdown .notif-item .notif-time {
+    font-size: 0.6rem;
+    color: #a8a2b8;
+    margin-top: 3px;
+  }
+  .notification-dropdown .notif-footer {
+    display: block;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #7c3aed;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border-top: 1px solid rgba(26, 22, 37, 0.08);
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-radius: 0 0 16px 16px;
+  }
+  .notification-dropdown .notif-footer:hover { background: #faf7f2; color: #6d28d9; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1023px) {
+    .sidebar { display: none !important; }
+    body { padding: 0 !important; overflow-x: hidden !important; }
+    .ml-4 { margin-left: 0 !important; }
+    .mobile-nav-bar { display: flex !important; padding: 12px 20px !important; gap: 10px !important; }
+    .mobile-nav-bar .nav-btn { padding: 10px 20px !important; font-size: 0.85rem !important; gap: 10px !important; }
+    .mobile-nav-bar .nav-btn i { font-size: 1rem !important; }
+    .mobile-header-logo { display: block !important; }
+    .mobile-header-logo .sidebar-logo-img { height: 38px !important; }
+    .main-header { padding-left: 16px !important; padding-right: 16px !important; min-height: 72px !important; height: auto !important; flex-wrap: wrap !important; gap: 8px !important; }
+    .main-header .flex.items-center.gap-4 { flex-wrap: wrap !important; gap: 6px !important; }
+    .main-header .header-title-block { display: none !important; }
+    .content-title-block { display: block !important; margin-bottom: 16px !important; }
+    .content-title-block h1 { font-size: 1.05rem !important; font-weight: 800 !important; color: #1a1625 !important; line-height: 1.2 !important; }
+    .content-title-block p { font-size: 0.7rem !important; color: #6f6880 !important; margin-top: 2px !important; font-weight: 500 !important; }
+    .main-content-wrapper { height: 100vh !important; max-width: 100vw !important; overflow-x: hidden !important; }
+    .dashboard-body-scroll { overflow-x: hidden !important; max-width: 100% !important; padding: 16px !important; }
+    .card, .card-shadow { max-width: 100% !important; overflow: visible !important; }
+    .grid-cols-2.lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr) !important; }
+    .chart-h-2 { height: 160px; }
+    .section-gap { margin-bottom: 24px !important; }
+    .card.p-4 { padding: 16px !important; }
+    .notification-dropdown { width: 360px !important; right: 20px !important; top: 68px !important; }
+  }
+  @media (max-width: 640px) {
+    .header-date-range { display: none !important; }
+    .header-user-text { display: none !important; }
+    .grid-cols-2.lg\:grid-cols-4 { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .p-4.lg\:p-6 { padding: 12px !important; }
+    .gap-6 { gap: 10px !important; }
+    .mobile-nav-bar { padding: 10px 14px !important; gap: 8px !important; }
+    .mobile-nav-bar .nav-btn { padding: 8px 16px !important; font-size: 0.75rem !important; }
+    .dashboard-body-scroll { padding: 12px !important; }
+    .section-gap { margin-bottom: 16px !important; }
+    .mobile-header-logo .sidebar-logo-img { height: 34px !important; }
+    .notification-dropdown { width: 320px !important; right: 12px !important; top: 64px !important; max-height: 380px !important; }
+    .content-section.active { display: block !important; width: 100% !important; }
+  }
+
+  .main-content-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background: #faf7f2;
+  }
+  .dashboard-body-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-width: 100%;
+    background: #faf7f2;
+  }
+  .main-header { border-radius: 0 !important; }
+  .section-gap { margin-bottom: 28px; }
+  .sidebar .nav-link i { width: 20px; font-size: 0.85rem; }
+  #profileDropdownMenu { display: none; }
+  #profileDropdownMenu.show { display: block; }
+
+  /* Status pills */
+  .status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .status-active     { background: rgba(124,58,237,0.12); color: #5b21b6; }
+  .status-review     { background: rgba(245,158,11,0.14); color: #b45309; }
+  .status-completed  { background: rgba(34,197,94,0.14); color: #15803d; }
+  .status-pending    { background: rgba(107,114,128,0.14); color: #374151; }
+  .status-urgent     { background: rgba(239,68,68,0.12); color: #b91c1c; }
+
+  /* Progress bars */
+  .prog-bar-bg { background: #ece8dd; height: 6px; border-radius: 10px; overflow: hidden; }
+  .prog-bar-fill { height: 100%; border-radius: 10px; transition: width 0.6s ease; }
+
+  /* Avatar stack */
+  .avatar-stack { display: flex; }
+  .avatar-stack .avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid #fff; margin-left: -8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; color: #fff;
+  }
+  .avatar-stack .avatar:first-child { margin-left: 0; }
+
+  .content-title-block { display: none; }
+</style>
+</head>
+<body class="flex h-screen overflow-hidden bg-[#faf7f2] p-0">
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="w-64 bg-white border-r border-gray-200 flex flex-col overflow-hidden flex-shrink-0 z-20 sidebar">
+  <div class="sidebar-logo-area">
+    <a href="index.html">
+      <img src="stacklylogo.webp" alt="Stackly Creative Agency" class="sidebar-logo-img"
+           onerror="this.outerHTML='<span style=&quot;color:#7c3aed;font-family:Sora,sans-serif;font-weight:800;font-size:1.15rem;display:flex;align-items:center;gap:8px;&quot;><i class=&quot;fa-solid fa-wand-magic-sparkles&quot;></i> Stackly</span>';">
+    </a>
+  </div>
+
+  <nav class="nav-scroll px-4 py-3 space-y-0.5 flex-1">
+    <a href="#" class="flex items-center gap-3 px-4 py-2.5 nav-link active mt-2" data-page="dashboard">
+      <i class="fa-solid fa-border-all w-5 text-sm"></i>
+      <span class="font-semibold text-sm">Dashboard</span>
+    </a>
+    <a href="#" class="flex items-center gap-3 px-4 py-2.5 nav-link" data-page="projects">
+      <i class="fa-solid fa-briefcase w-5 text-sm"></i>
+      <span class="font-semibold">Projects</span>
+    </a>
+    <a href="#" class="flex items-center gap-3 px-4 py-2.5 nav-link" data-page="files">
+      <i class="fa-solid fa-folder-open w-5 text-sm"></i>
+      <span class="font-semibold">Files</span>
+    </a>
+    <a href="#" class="flex items-center gap-3 px-4 py-2.5 nav-link" data-page="clients">
+      <i class="fa-solid fa-users w-5 text-sm"></i>
+      <span class="font-semibold">Clients</span>
+    </a>
+    <a href="#" class="flex items-center gap-3 px-4 py-2.5 nav-link" data-page="messages">
+      <i class="fa-solid fa-comments w-5 text-sm"></i>
+      <span class="font-semibold">Messages</span>
+    </a>
+    <a href="#" class="flex items-center gap-3 px-4 py-2.5 nav-link" data-page="settings">
+      <i class="fa-solid fa-gear w-5 text-sm"></i>
+      <span class="font-semibold">Settings</span>
+    </a>
+
+    <div class="pt-2 pb-1.5"><hr></div>
+
+    <a href="login.html" class="flex items-center gap-3 px-4 py-2.5 text-red-600 hover:bg-red-50 transition text-sm nav-link" onclick="handleLogout(event)">
+      <i class="fa-solid fa-right-from-bracket w-5 text-sm"></i>
+      <span class="font-semibold">Logout</span>
+    </a>
+    <div class="h-4"></div>
+  </nav>
+
+  <div class="px-4 pb-4 flex-shrink-0">
+    <div class="bg-[#f3edff] rounded-2xl p-3 border border-[#7c3aed]/25 text-center relative overflow-hidden">
+      <div class="absolute -top-4 -right-4 w-10 h-10 bg-[#7c3aed]/15 rounded-full opacity-60"></div>
+      <div class="w-7 h-7 bg-[#7c3aed]/20 rounded-full flex items-center justify-center text-[#7c3aed] mx-auto mb-1">
+        <i class="fa-solid fa-palette text-xs"></i>
+      </div>
+      <p class="text-[9px] font-bold text-[#1a1625]">Designer Account</p>
+      <p class="text-[8px] text-[#6f6880] mt-0.5 mb-1.5" id="sidebarUserName">Stackly Studio</p>
+      <div class="flex items-center justify-center gap-1.5 bg-white rounded-full px-2.5 py-1 border border-[#7c3aed]/30 shadow-sm w-max mx-auto">
+        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+        <span class="text-[8px] font-bold text-green-600">On duty</span>
+      </div>
+    </div>
+    <div class="text-center mt-2 text-[8px] text-[#6f6880]">© 2026 Stackly</div>
+  </div>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#faf7f2] ml-0 main-content-wrapper">
+
+  <header class="bg-white border-b border-gray-200 px-8 flex items-center justify-between h-[72px] flex-shrink-0 main-header">
+    <div class="flex items-center gap-4">
+      <div class="mobile-header-logo">
+        <a href="index.html">
+          <img src="stacklylogo.webp" alt="Stackly" class="sidebar-logo-img" style="height: 38px;">
+        </a>
+      </div>
+      <div class="header-title-block">
+        <h1 class="text-lg font-extrabold text-[#1a1625] tracking-tight" id="pageTitle">Designer Dashboard</h1>
+        <p class="text-xs text-[#6f6880] leading-tight mt-0.5 font-medium" id="pageSubtitle">Your assigned work at a glance.</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-2 bg-[#faf7f2] border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-[#1a1625] cursor-pointer hover:bg-gray-50 transition desktop-date font-semibold header-date-range" id="dateRangePicker">
+        <i class="fa-regular fa-calendar text-[#7c3aed]"></i>
+        <span class="font-medium" id="dateRangeText">Today, Jun 10 2026</span>
+        <i class="fa-solid fa-chevron-down text-[9px] ml-1 text-[#6f6880]"></i>
+      </div>
+      <div class="relative cursor-pointer text-[#1a1625] hover:text-[#7c3aed] transition" id="notificationBell">
+        <i class="fa-regular fa-bell text-base sm:text-lg"></i>
+        <span class="absolute -top-1 -right-1 bg-[#7c3aed] text-white text-[8px] font-extrabold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">2</span>
+
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notif-header">
+            <span>Notifications</span>
+            <span class="notif-badge">2 new</span>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon bg-[#7c3aed]/15 text-[#7c3aed]"><i class="fa-solid fa-comment-dots"></i></div>
+            <div class="notif-content">
+              <div class="notif-title">New feedback on Northwind</div>
+              <div class="notif-desc">Sarah Chen left notes on the logo direction</div>
+              <div class="notif-time">8 min ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon bg-amber-50 text-amber-600"><i class="fa-solid fa-clock"></i></div>
+            <div class="notif-content">
+              <div class="notif-title">Lumen Labs deadline approaching</div>
+              <div class="notif-desc">Homepage sign-off due in 2 days</div>
+              <div class="notif-time">1 hour ago</div>
+            </div>
+          </div>
+          <a href="404.html" class="notif-footer">View all notifications →</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 border-l pl-6 border-gray-200">
+        <div class="text-right hidden sm:block header-user-text">
+          <p class="text-xs font-extrabold text-[#1a1625] leading-tight" id="headerUserName">Designer</p>
+          <p class="text-[9px] text-[#6f6880] font-bold leading-tight mt-0.5 uppercase">Designer</p>
+        </div>
+        <div class="w-8 h-8 bg-[#7c3aed] rounded-full flex items-center justify-center text-white font-extrabold text-[10px] cursor-pointer relative hover:bg-[#6d28d9] transition" id="profileDropdown">
+          <span id="avatarInitials">D</span>
+          <span class="absolute bottom-0 right-0 w-3 h-3 bg-white rounded-full flex items-center justify-center border-2 border-[#7c3aed]">
+            <i class="fa-solid fa-chevron-down text-[6px] text-[#7c3aed]"></i>
+          </span>
+          <div class="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg w-40 py-1 z-50" id="profileDropdownMenu">
+            <a href="404.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"><i class="fa-regular fa-user mr-2 text-[#7c3aed]"></i>Profile</a>
+            <a href="404.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"><i class="fa-solid fa-gear mr-2 text-[#7c3aed]"></i>Settings</a>
+            <hr class="my-1">
+            <a href="login.html" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50" onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE NAV ===== -->
+  <div class="mobile-nav-bar">
+    <a href="#" class="nav-btn active" data-page="dashboard"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+    <a href="#" class="nav-btn" data-page="projects"><i class="fa-solid fa-briefcase"></i> Projects</a>
+    <a href="#" class="nav-btn" data-page="files"><i class="fa-solid fa-folder-open"></i> Files</a>
+    <a href="#" class="nav-btn" data-page="clients"><i class="fa-solid fa-users"></i> Clients</a>
+    <a href="#" class="nav-btn" data-page="messages"><i class="fa-solid fa-comments"></i> Messages</a>
+    <a href="#" class="nav-btn" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+    <a href="login.html" class="nav-btn" onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="flex-1 overflow-y-auto p-4 lg:p-6 bg-[#faf7f2] dashboard-body-scroll">
+
+    <div class="content-title-block">
+      <h1 id="pageTitleMobile">Designer Dashboard</h1>
+      <p id="pageSubtitleMobile">Your assigned work at a glance.</p>
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="section-dashboard" class="content-section active">
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 section-gap">
+        <div class="card p-3">
+          <div class="flex items-center justify-between mb-1">
+            <div class="w-8 h-8 bg-[#7c3aed]/15 rounded-lg flex items-center justify-center text-[#7c3aed]"><i class="fa-solid fa-briefcase text-sm"></i></div>
+            <span class="text-[9px] text-green-600 font-bold"><i class="fa-solid fa-arrow-up"></i> +1</span>
+          </div>
+          <p class="text-[10px] text-[#6f6880] font-bold uppercase tracking-wide">Assigned Projects</p>
+          <p class="text-xl font-extrabold text-[#1a1625]">4</p>
+        </div>
+        <div class="card p-3">
+          <div class="flex items-center justify-between mb-1">
+            <div class="w-8 h-8 bg-[#a78bfa]/25 rounded-lg flex items-center justify-center text-[#6d28d9]"><i class="fa-solid fa-list-check text-sm"></i></div>
+            <span class="text-[9px] text-amber-600 font-bold">7 open</span>
+          </div>
+          <p class="text-[10px] text-[#6f6880] font-bold uppercase tracking-wide">Tasks Pending</p>
+          <p class="text-xl font-extrabold text-[#1a1625]">7</p>
+        </div>
+        <div class="card p-3">
+          <div class="flex items-center justify-between mb-1">
+            <div class="w-8 h-8 bg-[#7c3aed]/15 rounded-lg flex items-center justify-center text-[#7c3aed]"><i class="fa-solid fa-cloud-arrow-up text-sm"></i></div>
+            <span class="text-[9px] text-[#6f6880] font-medium">+6 this week</span>
+          </div>
+          <p class="text-[10px] text-[#6f6880] font-bold uppercase tracking-wide">Files Uploaded</p>
+          <p class="text-xl font-extrabold text-[#1a1625]">24</p>
+        </div>
+        <div class="card p-3">
+          <div class="flex items-center justify-between mb-1">
+            <div class="w-8 h-8 bg-[#7c3aed]/15 rounded-lg flex items-center justify-center text-[#7c3aed]"><i class="fa-solid fa-star text-sm"></i></div>
+            <span class="text-[9px] text-[#6f6880] font-medium">Rating</span>
+          </div>
+          <p class="text-[10px] text-[#6f6880] font-bold uppercase tracking-wide">Client Rating</p>
+          <p class="text-xl font-extrabold text-[#1a1625]">4.9★</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4 section-gap">
+        <div class="card p-4">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-extrabold text-[#1a1625] text-[13px]">📈 Tasks completed</h3>
+            <span class="text-[8px] text-[#6f6880] bg-[#ece8dd] px-1.5 py-0.5 rounded-full font-bold uppercase">Last 6 weeks</span>
+          </div>
+          <div class="chart-h-2"><canvas id="tasksChart"></canvas></div>
+        </div>
+        <div class="card p-4">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-extrabold text-[#1a1625] text-[13px]">🎯 Work by type</h3>
+            <span class="text-[8px] text-[#6f6880] bg-[#ece8dd] px-1.5 py-0.5 rounded-full font-bold uppercase">Distribution</span>
+          </div>
+          <div class="chart-h-2"><canvas id="workTypesChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-3 lg:gap-4 section-gap">
+        <div class="card p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-extrabold text-[#1a1625] text-[13px]">🎨 Assigned projects</h3>
+            <a href="404.html" class="text-[10px] text-[#7c3aed] font-bold hover:underline uppercase">View All</a>
+          </div>
+          <div class="space-y-2">
+            <div class="bg-[#faf7f2] p-3 rounded-xl border border-gray-100 flex justify-between items-center gap-2">
+              <div class="min-w-0">
+                <p class="text-[11px] font-extrabold text-[#1a1625] truncate">💜 Northwind — Brand Identity</p>
+                <p class="text-[9px] text-[#6f6880]">Client: Sarah Chen · 68% complete</p>
+                <div class="prog-bar-bg mt-1.5"><div class="prog-bar-fill" style="width:68%;background:#7c3aed;"></div></div>
+              </div>
+              <span class="status-pill status-active">Active</span>
+            </div>
+            <div class="bg-[#faf7f2] p-3 rounded-xl border border-gray-100 flex justify-between items-center gap-2">
+              <div class="min-w-0">
+                <p class="text-[11px] font-extrabold text-[#1a1625] truncate">🎨 Lumen Labs — Website Redesign</p>
+                <p class="text-[9px] text-[#6f6880]">Client: Marcus Reid · 92% complete</p>
+                <div class="prog-bar-bg mt-1.5"><div class="prog-bar-fill" style="width:92%;background:#a78bfa;"></div></div>
+              </div>
+              <span class="status-pill status-review">Review</span>
+            </div>
+            <div class="bg-[#faf7f2] p-3 rounded-xl border border-gray-100 flex justify-between items-center gap-2">
+              <div class="min-w-0">
+                <p class="text-[11px] font-extrabold text-[#1a1625] truncate">📣 Atlas &amp; Co — Go Further</p>
+                <p class="text-[9px] text-[#6f6880]">Client: Priya Nair · 45% complete</p>
+                <div class="prog-bar-bg mt-1.5"><div class="prog-bar-fill" style="width:45%;background:#6d28d9;"></div></div>
+              </div>
+              <span class="status-pill status-pending">Awaiting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-4">
+          <h3 class="font-extrabold text-[#1a1625] text-[13px] mb-3">📋 Today's tasks</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-[10px]">
+              <input type="checkbox" checked class="accent-[#7c3aed]">
+              <span class="text-[#6f6880] line-through">Upload Northwind logo directions</span>
+            </div>
+            <div class="flex items-center gap-2 text-[10px]">
+              <input type="checkbox" class="accent-[#7c3aed]">
+              <span class="text-[#1a1625] font-semibold flex-1">Finalize Lumen homepage</span>
+              <span class="text-[8px] bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded font-bold">HIGH</span>
+            </div>
+            <div class="flex items-center gap-2 text-[10px]">
+              <input type="checkbox" class="accent-[#7c3aed]">
+              <span class="text-[#6f6880]">Review Atlas campaign brief</span>
+            </div>
+            <div class="flex items-center gap-2 text-[10px]">
+              <input type="checkbox" class="accent-[#7c3aed]">
+              <span class="text-[#6f6880]">Reply to Sarah's feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROJECTS ===== -->
+    <div id="section-projects" class="content-section">
+      <div class="card p-5">
+        <h2 class="text-lg font-extrabold text-[#1a1625] mb-4"><i class="fa-solid fa-briefcase text-[#7c3aed] mr-2"></i> My Projects</h2>
+        <div class="space-y-3">
+          <div class="bg-[#faf7f2] p-4 rounded-xl border border-gray-100 flex justify-between items-center gap-2 flex-wrap">
+            <div class="min-w-0">
+              <p class="font-bold text-[#1a1625] text-sm">💜 Northwind — Brand Identity</p>
+              <p class="text-xs text-[#6f6880]">Client: Sarah Chen · Design + UX · Due Feb 28, 2026</p>
+            </div>
+            <span class="status-pill status-active">Active</span>
+          </div>
+          <div class="bg-[#faf7f2] p-4 rounded-xl border border-gray-100 flex justify-between items-center gap-2 flex-wrap">
+            <div class="min-w-0">
+              <p class="font-bold text-[#1a1625] text-sm">🎨 Lumen Labs — Website Redesign</p>
+              <p class="text-xs text-[#6f6880]">Client: Marcus Reid · UI + Front-end · Due Feb 12, 2026</p>
+            </div>
+            <span class="status-pill status-review">Review</span>
+          </div>
+          <div class="bg-[#faf7f2] p-4 rounded-xl border border-gray-100 flex justify-between items-center gap-2 flex-wrap">
+            <div class="min-w-0">
+              <p class="font-bold text-[#1a1625] text-sm">📣 Atlas &amp; Co — Go Further</p>
+              <p class="text-xs text-[#6f6880]">Client: Priya Nair · Motion + Copy · Due Mar 15, 2026</p>
+            </div>
+            <span class="status-pill status-pending">Awaiting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FILES ===== -->
+    <div id="section-files" class="content-section">
+      <div class="card p-5">
+        <h2 class="text-lg font-extrabold text-[#1a1625] mb-4"><i class="fa-solid fa-folder-open text-[#7c3aed] mr-2"></i> My Files</h2>
+        <div class="space-y-2">
+          <a href="404.html" class="flex items-center gap-2 p-3 bg-[#faf7f2] rounded-lg border border-gray-100 hover:border-[#7c3aed] transition">
+            <div class="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center text-sm"><i class="fa-solid fa-file-pdf"></i></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-[#1a1625] truncate">Northwind-Brand-Guidelines.pdf</p>
+              <p class="text-[9px] text-[#6f6880]">4.2 MB · Uploaded Feb 8</p>
+            </div>
+            <i class="fa-solid fa-download text-[#7c3aed] text-xs"></i>
+          </a>
+          <a href="404.html" class="flex items-center gap-2 p-3 bg-[#faf7f2] rounded-lg border border-gray-100 hover:border-[#7c3aed] transition">
+            <div class="w-9 h-9 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center text-sm"><i class="fa-solid fa-file-image"></i></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-[#1a1625] truncate">Logo-Suite-Final.zip</p>
+              <p class="text-[9px] text-[#6f6880]">12.8 MB · Uploaded Feb 6</p>
+            </div>
+            <i class="fa-solid fa-download text-[#7c3aed] text-xs"></i>
+          </a>
+          <a href="404.html" class="flex items-center gap-2 p-3 bg-[#faf7f2] rounded-lg border border-gray-100 hover:border-[#7c3aed] transition">
+            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm"><i class="fa-solid fa-file-lines"></i></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-[#1a1625] truncate">Homepage-Wireframes.fig</p>
+              <p class="text-[9px] text-[#6f6880]">3.6 MB · Uploaded Feb 3</p>
+            </div>
+            <i class="fa-solid fa-download text-[#7c3aed] text-xs"></i>
+          </a>
+        </div>
+        <a href="404.html" class="inline-block mt-4 bg-[#7c3aed] hover:bg-[#6d28d9] transition text-white font-bold text-xs px-5 py-2 rounded-lg">
+          <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Upload File
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== CLIENTS ===== -->
+    <div id="section-clients" class="content-section">
+      <div class="card p-5">
+        <h2 class="text-lg font-extrabold text-[#1a1625] mb-4"><i class="fa-solid fa-users text-[#7c3aed] mr-2"></i> My Clients</h2>
+        <div class="space-y-2">
+          <div class="bg-[#faf7f2] p-3 rounded-xl border border-gray-100 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-[#7c3aed] text-white flex items-center justify-center font-bold text-xs flex-shrink-0">SC</div>
+            <div class="min-w-0 flex-1">
+              <p class="font-bold text-[#1a1625] text-sm truncate">Sarah Chen</p>
+              <p class="text-[10px] text-[#6f6880]">Northwind · Brand Identity</p>
+            </div>
+            <a href="404.html" class="text-[10px] text-[#7c3aed] font-bold hover:underline">Message →</a>
+          </div>
+          <div class="bg-[#faf7f2] p-3 rounded-xl border border-gray-100 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-[#a78bfa] text-white flex items-center justify-center font-bold text-xs flex-shrink-0">MR</div>
+            <div class="min-w-0 flex-1">
+              <p class="font-bold text-[#1a1625] text-sm truncate">Marcus Reid</p>
+              <p class="text-[10px] text-[#6f6880]">Lumen Labs · Website Redesign</p>
+            </div>
+            <a href="404.html" class="text-[10px] text-[#7c3aed] font-bold hover:underline">Message →</a>
+          </div>
+          <div class="bg-[#faf7f2] p-3 rounded-xl border border-gray-100 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-[#6d28d9] text-white flex items-center justify-center font-bold text-xs flex-shrink-0">PN</div>
+            <div class="min-w-0 flex-1">
+              <p class="font-bold text-[#1a1625] text-sm truncate">Priya Nair</p>
+              <p class="text-[10px] text-[#6f6880]">Atlas &amp; Co · Go Further Campaign</p>
+            </div>
+            <a href="404.html" class="text-[10px] text-[#7c3aed] font-bold hover:underline">Message →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MESSAGES ===== -->
+    <div id="section-messages" class="content-section">
+      <div class="card p-5">
+        <h2 class="text-lg font-extrabold text-[#1a1625] mb-4"><i class="fa-solid fa-comments text-[#7c3aed] mr-2"></i> Messages</h2>
+        <div class="space-y-3">
+          <div class="bg-[#faf7f2] p-4 rounded-xl border border-gray-100 flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-full bg-[#7c3aed] text-white flex items-center justify-center font-bold text-xs flex-shrink-0">SC</div>
+              <div class="min-w-0">
+                <p class="font-bold text-[#1a1625] text-sm truncate">Sarah Chen</p>
+                <p class="text-xs text-[#6f6880] truncate">Love the new logo direction — let's push further.</p>
+              </div>
+            </div>
+            <span class="text-[9px] text-[#a8a2b8] whitespace-nowrap">8 min</span>
+          </div>
+          <div class="bg-[#faf7f2] p-4 rounded-xl border border-gray-100 flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-full bg-[#a78bfa] text-white flex items-center justify-center font-bold text-xs flex-shrink-0">MR</div>
+              <div class="min-w-0">
+                <p class="font-bold text-[#1a1625] text-sm truncate">Marcus Reid</p>
+                <p class="text-xs text-[#6f6880] truncate">When can we see the final homepage mockup?</p>
+              </div>
+            </div>
+            <span class="text-[9px] text-[#a8a2b8] whitespace-nowrap">1h</span>
+          </div>
+        </div>
+        <a href="404.html" class="inline-block mt-4 bg-[#7c3aed] hover:bg-[#6d28d9] transition text-white font-bold text-xs px-5 py-2 rounded-lg">
+          <i class="fa-solid fa-paper-plane mr-1"></i> New Message
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== SETTINGS ===== -->
+    <div id="section-settings" class="content-section">
+      <div class="card p-5">
+        <h2 class="text-lg font-extrabold text-[#1a1625] mb-4"><i class="fa-solid fa-gear text-[#7c3aed] mr-2"></i> Settings</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="404.html" class="bg-[#faf7f2] p-4 rounded-xl border border-gray-200 hover:border-[#7c3aed] transition block">
+            <i class="fa-solid fa-user text-[#7c3aed] text-xl mb-2"></i>
+            <p class="font-bold text-[#1a1625] text-sm">Profile Info</p>
+            <p class="text-xs text-[#6f6880]">Name, role, portfolio</p>
+          </a>
+          <a href="404.html" class="bg-[#faf7f2] p-4 rounded-xl border border-gray-200 hover:border-[#7c3aed] transition block">
+            <i class="fa-solid fa-bell text-[#7c3aed] text-xl mb-2"></i>
+            <p class="font-bold text-[#1a1625] text-sm">Notifications</p>
+            <p class="text-xs text-[#6f6880]">Task alerts, client messages</p>
+          </a>
+          <a href="404.html" class="bg-[#faf7f2] p-4 rounded-xl border border-gray-200 hover:border-[#7c3aed] transition block">
+            <i class="fa-solid fa-palette text-[#7c3aed] text-xl mb-2"></i>
+            <p class="font-bold text-[#1a1625] text-sm">Availability</p>
+            <p class="text-xs text-[#6f6880]">Working hours, capacity</p>
+          </a>
+          <a href="404.html" class="bg-[#faf7f2] p-4 rounded-xl border border-gray-200 hover:border-[#7c3aed] transition block">
+            <i class="fa-solid fa-shield-halved text-[#7c3aed] text-xl mb-2"></i>
+            <p class="font-bold text-[#1a1625] text-sm">Privacy &amp; Security</p>
+            <p class="text-xs text-[#6f6880]">Password, sessions</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-4"></div>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  document.body.classList.add('sh-ready');
+
+  const session = window.__STACKLY_USER__;
+  if (session && session.name) {
+    const displayName = session.name || 'Designer';
+    const initial = displayName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+    const subtitle = document.getElementById('pageSubtitle');
+    if (subtitle) subtitle.textContent = "Welcome back, " + displayName.split(' ')[0] + ". Here's your work.";
+    const subtitleMobile = document.getElementById('pageSubtitleMobile');
+    if (subtitleMobile) subtitleMobile.textContent = "Welcome back, " + displayName.split(' ')[0] + ". Here's your work.";
+    const hn = document.getElementById('headerUserName');
+    if (hn) hn.textContent = displayName;
+    const av = document.getElementById('avatarInitials');
+    if (av) av.textContent = initial;
+    const su = document.getElementById('sidebarUserName');
+    if (su) su.textContent = displayName;
+  }
+
+  const pageTitles = {
+    dashboard: ['Designer Dashboard', 'Your assigned work at a glance.'],
+    projects:  ['My Projects', 'All projects currently assigned to you.'],
+    files:     ['My Files', 'Files you have uploaded and delivered.'],
+    clients:   ['My Clients', 'Clients you are working with.'],
+    messages:  ['Messages', 'Direct line to your clients.'],
+    settings:  ['Settings', 'Manage your designer profile.']
+  };
+
+  window.navigateTo = function (page) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById('section-' + page);
+    if (target) target.classList.add('active');
+    if (pageTitles[page]) {
+      document.getElementById('pageTitle').textContent = pageTitles[page][0];
+      document.getElementById('pageSubtitle').textContent = pageTitles[page][1];
+      const pm = document.getElementById('pageTitleMobile');
+      const psm = document.getElementById('pageSubtitleMobile');
+      if (pm) pm.textContent = pageTitles[page][0];
+      if (psm) psm.textContent = pageTitles[page][1];
+    }
+    document.querySelectorAll('.sidebar .nav-link').forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('data-page') === page) l.classList.add('active');
+    });
+    document.querySelectorAll('.mobile-nav-bar .nav-btn').forEach(b => {
+      b.classList.remove('active');
+      if (b.getAttribute('data-page') === page) b.classList.add('active');
+    });
+    const scroll = document.querySelector('.dashboard-body-scroll');
+    if (scroll) scroll.scrollTop = 0;
+  };
+
+  document.querySelectorAll('.sidebar .nav-link').forEach(l => {
+    l.addEventListener('click', function (e) {
+      e.preventDefault();
+      const p = this.getAttribute('data-page');
+      if (p) navigateTo(p);
+    });
+  });
+  document.querySelectorAll('.mobile-nav-bar .nav-btn').forEach(b => {
+    b.addEventListener('click', function (e) {
+      const p = b.getAttribute('data-page');
+      if (p) { e.preventDefault(); navigateTo(p); }
+    });
+  });
+
+  const datePicker = document.getElementById('dateRangePicker');
+  const dateText = document.getElementById('dateRangeText');
+  if (datePicker) {
+    datePicker.addEventListener('click', function () {
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const today = new Date();
+      const formatted = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+      dateText.textContent = 'Today, ' + formatted;
+    });
+  }
+
+  const bell = document.getElementById('notificationBell');
+  const drop = document.getElementById('notificationDropdown');
+  if (bell && drop) {
+    bell.addEventListener('click', function (e) {
+      e.stopPropagation();
+      drop.classList.toggle('show');
+    });
+    document.addEventListener('click', function (e) {
+      if (!bell.contains(e.target)) drop.classList.remove('show');
+    });
+  }
+
+  const prof = document.getElementById('profileDropdown');
+  const profMenu = document.getElementById('profileDropdownMenu');
+  if (prof && profMenu) {
+    prof.addEventListener('click', function (e) {
+      e.stopPropagation();
+      profMenu.classList.toggle('show');
+    });
+    document.addEventListener('click', function (e) {
+      if (!prof.contains(e.target)) profMenu.classList.remove('show');
+    });
+  }
+
+  console.log('✦ Designer Dashboard ready');
+});
+
+function handleLogout(e) {
+  if (e) e.preventDefault();
+  try {
+    sessionStorage.removeItem('stackly_session');
+    localStorage.removeItem('stackly_session');
+  } catch (err) {}
+  window.location.replace('login.html');
+}
+</script>
+
+<!-- CHARTS -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const colors = { ink: '#1a1625', violet: '#7c3aed', violetDk: '#6d28d9', violetLt: '#a78bfa', violetPale: '#c4b5fd' };
+
+  const tasksEl = document.getElementById('tasksChart');
+  if (tasksEl) {
+    new Chart(tasksEl, {
+      type: 'line',
+      data: {
+        labels: ['W1','W2','W3','W4','W5','W6'],
+        datasets: [{
+          data: [3, 5, 4, 7, 6, 9],
+          borderColor: colors.violet,
+          backgroundColor: 'rgba(124,58,237,0.14)',
+          tension: 0.4, borderWidth: 2.5, pointRadius: 3,
+          pointBackgroundColor: colors.violet, fill: true
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, grid: { color: '#ece8dd' }, ticks: { font: { size: 8 } } },
+          x: { grid: { display: false }, ticks: { font: { size: 8 } } }
+        }
+      }
+    });
+  }
+
+  const workEl = document.getElementById('workTypesChart');
+  if (workEl) {
+    new Chart(workEl, {
+      type: 'doughnut',
+      data: {
+        labels: ['Branding','UI','Motion','Copy'],
+        datasets: [{
+          data: [2, 1, 1, 1],
+          backgroundColor: [colors.violet, colors.violetLt, colors.violetDk, colors.violetPale],
+          borderWidth: 2, borderColor: '#fff', hoverOffset: 5
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 6, font: { size: 8 } } } },
+        cutout: '60%'
+      }
+    });
+  }
+});
+</script>
+
+<!-- ===== BFCACHE GUARD ===== -->
+<script>
+window.addEventListener('pageshow', function (e) {
+  if (!e.persisted) return;
+  const raw = sessionStorage.getItem('stackly_session') || localStorage.getItem('stackly_session');
+  const session = raw ? JSON.parse(raw) : null;
+  const valid = session &&
+                session.authenticated === true &&
+                session.expiresAt > Date.now() &&
+                session.role === 'designer';
+  if (!valid) window.location.replace('login.html');
+});
+</script>
+
+</body>
+</html>

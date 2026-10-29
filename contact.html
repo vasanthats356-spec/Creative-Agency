@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Creative Agency — Contact</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+<style>
+  :root{
+    --paper:#faf7f2;
+    --white:#ffffff;
+    --ink:#1a1625;
+    --ink-2:#4a4358;
+    --ink-3:#6f6880;
+    --violet:#7c3aed;
+    --violet-2:#a78bfa;
+    --violet-3:#f3edff;
+    --border:#ebe6dd;
+    --shadow:0 18px 50px rgba(26,22,37,.07);
+    --shadow-hi:0 28px 70px rgba(26,22,37,.14);
+    --nav-height:110px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.65;overflow-x:hidden;
+    padding-top:var(--nav-height);
+    -webkit-font-smoothing:antialiased;
+    min-width:0;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora','Inter',sans-serif;
+    letter-spacing:-.025em;line-height:1.12;font-weight:800;
+    overflow-wrap:break-word;word-wrap:break-word;
+  }
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  #header-placeholder,#footer-placeholder{width:100%}
+
+  @media (max-width:1100px){:root{--nav-height:160px}}
+  @media (max-width:768px){:root{--nav-height:95px}}
+  @media (max-width:480px){:root{--nav-height:85px}}
+
+  .ca-wrap{max-width:1240px;margin:0 auto;padding:0 28px;width:100%}
+  .ca-section{padding:120px 0;position:relative}
+  .ca-section.alt{background:var(--white);border-block:1px solid var(--border)}
+  .ca-section.dark{
+    background:
+      radial-gradient(900px 460px at 88% -12%, rgba(124,58,237,.28) 0%, transparent 62%),
+      radial-gradient(700px 400px at -8% 110%, rgba(124,58,237,.14) 0%, transparent 60%),
+      var(--ink);
+    color:#fff;border-block:1px solid rgba(255,255,255,.06);
+  }
+  .ca-section.dark .ca-tag{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.18);
+    color:var(--violet-2);
+  }
+  .ca-section.dark .ca-title{color:#fff}
+  .ca-section.dark .ca-title em{color:var(--violet-2)}
+  .ca-section.dark .ca-sub{color:#c7c1d6}
+
+  .ca-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--violet-3);color:var(--violet);
+    border:1px solid #e3d7ff;
+    padding:7px 16px;border-radius:50px;
+    font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:22px;
+    max-width:100%;flex-wrap:wrap;
+  }
+  .ca-tag i{font-size:.72rem}
+
+  .ca-title{
+    font-size:clamp(1.9rem,4.4vw,3.1rem);
+    color:var(--ink);margin-bottom:18px;
+    line-height:1.06;letter-spacing:-.03em;
+  }
+  .ca-title em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:700;color:var(--violet);
+  }
+  .ca-title span{color:var(--violet)}
+
+  .ca-sub{font-size:.98rem;color:var(--ink-3);max-width:620px;line-height:1.78}
+  .ca-center{text-align:center}
+  .ca-center .ca-sub{margin-inline:auto}
+  .ca-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:30px;flex-wrap:wrap;margin-bottom:56px;
+  }
+  .ca-head.center{flex-direction:column;align-items:center;text-align:center}
+
+  .ca-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 28px;border-radius:10px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.86rem;
+    letter-spacing:.01em;border:1.5px solid transparent;
+    cursor:pointer;transition:all .3s ease;white-space:nowrap;
+  }
+  .ca-btn.violet{background:var(--violet);color:#fff;box-shadow:0 10px 26px rgba(124,58,237,.28)}
+  .ca-btn.violet:hover{background:#6d28d9;transform:translateY(-3px);box-shadow:0 16px 34px rgba(124,58,237,.42)}
+  .ca-btn.ink{background:var(--ink);color:#fff}
+  .ca-btn.ink:hover{background:#000;transform:translateY(-3px);box-shadow:0 14px 30px rgba(26,22,37,.25)}
+  .ca-btn.outline{background:transparent;color:var(--ink);border-color:rgba(26,22,37,.22)}
+  .ca-btn.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-3px)}
+  .ca-btn.ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+  .ca-btn.ghost:hover{background:rgba(255,255,255,.16);border-color:var(--violet-2);transform:translateY(-3px)}
+
+  /* 01 — HERO */
+  .ct-hero{
+    padding:72px 0 100px;
+    background:
+      radial-gradient(760px 460px at 92% -10%, rgba(124,58,237,.09) 0%, transparent 60%),
+      radial-gradient(620px 360px at -4% 108%, rgba(124,58,237,.05) 0%, transparent 60%),
+      var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .ct-hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;
+    gap:80px;align-items:center;
+  }
+  .ct-hero-copy h1{
+    font-size:clamp(2.4rem,5.4vw,4.2rem);
+    line-height:1.02;letter-spacing:-.035em;
+    margin-bottom:24px;
+  }
+  .ct-hero-copy h1 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:700;color:var(--violet);
+  }
+  .ct-hero-lead{
+    font-size:1.02rem;color:var(--ink-2);
+    line-height:1.82;max-width:520px;margin-bottom:32px;
+  }
+  .ct-hero-inline{
+    display:flex;gap:14px 28px;
+    padding-top:26px;
+    border-top:1px solid var(--border);
+    margin-bottom:36px;
+    flex-wrap:wrap;
+  }
+  .ct-hero-inline-item{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Sora';font-size:.86rem;font-weight:700;
+    color:var(--ink-2);
+    transition:color .25s ease;
+    word-break:break-word;
+    max-width:100%;
+  }
+  .ct-hero-inline-item i{
+    width:32px;height:32px;border-radius:10px;
+    background:var(--violet-3);color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.78rem;
+    flex-shrink:0;
+  }
+  .ct-hero-inline-item a{color:inherit;transition:color .25s ease}
+  .ct-hero-inline-item a:hover{color:var(--violet)}
+  .ct-hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+
+  .ct-hero-visual{position:relative;padding-bottom:44px}
+  .ct-hero-img{
+    position:relative;
+    aspect-ratio:4/4.4;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:var(--shadow-hi);
+    background:var(--violet-3);
+  }
+  .ct-hero-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .9s ease;
+  }
+  .ct-hero-img:hover img{transform:scale(1.04)}
+
+  .ct-hero-badge{
+    position:absolute;
+    left:-20px;bottom:0;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:12px 18px;
+    display:flex;align-items:center;gap:12px;
+    box-shadow:var(--shadow-hi);
+    animation:ctFloat 3.5s ease-in-out infinite;
+    z-index:3;
+    max-width:calc(100% + 20px);
+  }
+  @keyframes ctFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+  }
+  .ct-hero-badge-dot{
+    position:relative;
+    width:36px;height:36px;border-radius:10px;
+    background:var(--violet);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;
+    flex-shrink:0;
+  }
+  .ct-hero-badge-dot::after{
+    content:'';position:absolute;
+    top:-3px;right:-3px;
+    width:10px;height:10px;border-radius:50%;
+    background:#4ade80;
+    border:2px solid #fff;
+    box-shadow:0 0 0 3px rgba(74,222,128,.22);
+    animation:ctPulse 2s ease-in-out infinite;
+  }
+  @keyframes ctPulse{
+    0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.22)}
+    50%{box-shadow:0 0 0 6px rgba(74,222,128,.1)}
+  }
+  .ct-hero-badge div strong{
+    display:block;font-family:'Sora';
+    font-size:.82rem;line-height:1.2;margin-bottom:2px;
+  }
+  .ct-hero-badge div span{
+    font-size:.66rem;color:var(--ink-3);font-weight:600;
+  }
+
+  /* 02 — CONTACT FORM */
+  .ct-form-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:56px;align-items:start;
+  }
+  .ct-form-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:48px 44px;
+    box-shadow:var(--shadow);
+    position:relative;
+  }
+  .ct-form-card h2{
+    font-size:1.55rem;
+    margin-bottom:8px;
+    letter-spacing:-.02em;
+  }
+  .ct-form-card > p{
+    font-size:.9rem;
+    color:var(--ink-3);
+    line-height:1.7;
+    margin-bottom:28px;
+  }
+  .ct-form-fields{display:flex;flex-direction:column;gap:18px}
+  .ct-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  .ct-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+  .ct-field label{
+    font-family:'Sora';
+    font-size:.72rem;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-2);
+  }
+  .ct-field label span{color:var(--violet)}
+
+  .ct-field input,
+  .ct-field select,
+  .ct-field textarea{
+    width:100%;
+    padding:13px 16px;
+    border-radius:10px;
+    border:1.5px solid var(--border);
+    background:#fff;
+    color:var(--ink);
+    font-family:'Inter';font-size:16px;
+    outline:none;
+    transition:all .25s ease;
+    min-width:0;
+  }
+  .ct-field input::placeholder,
+  .ct-field textarea::placeholder{color:#a8a2b8}
+  .ct-field input:focus,
+  .ct-field select:focus,
+  .ct-field textarea:focus{
+    border-color:var(--violet);
+    box-shadow:0 0 0 3px rgba(124,58,237,.12);
+    background:#fff;
+  }
+  .ct-field input.error,
+  .ct-field select.error,
+  .ct-field textarea.error{
+    border-color:#ef4444;
+    background:rgba(239,68,68,.04);
+  }
+  .ct-field input.error:focus,
+  .ct-field select.error:focus,
+  .ct-field textarea.error:focus{
+    box-shadow:0 0 0 3px rgba(239,68,68,.12);
+  }
+  .ct-field select{
+    appearance:none;
+    background-image:url("ca15.webp");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+    background-size:14px;
+    padding-right:40px;
+    cursor:pointer;
+  }
+  .ct-field textarea{
+    resize:vertical;
+    min-height:110px;
+    font-family:'Inter';
+  }
+  .ct-field-error{
+    font-size:.7rem;font-weight:600;
+    color:#ef4444;
+    padding-left:2px;
+    margin-top:-2px;
+    display:none;
+  }
+  .ct-field-error.show{display:block}
+
+  .ct-form-submit{
+    margin-top:6px;
+    width:100%;
+    padding:15px 24px;
+    border:none;border-radius:10px;
+    background:var(--violet);color:#fff;
+    font-family:'Sora';font-weight:700;font-size:.9rem;
+    cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    transition:all .3s ease;
+    box-shadow:0 10px 26px rgba(124,58,237,.3);
+  }
+  .ct-form-submit:hover{
+    background:#6d28d9;
+    transform:translateY(-2px);
+    box-shadow:0 16px 34px rgba(124,58,237,.45);
+  }
+  .ct-form-submit:disabled{opacity:.7;cursor:not-allowed;transform:none}
+
+  .ct-form-note{
+    display:flex;align-items:center;gap:7px;
+    font-size:.72rem;color:var(--ink-3);
+    margin-top:14px;
+    line-height:1.5;
+  }
+  .ct-form-note i{color:var(--violet);flex-shrink:0}
+
+  .ct-form-success{
+    display:none;
+    text-align:center;
+    padding:24px 0;
+  }
+  .ct-form-success.show{display:block}
+  .ct-form-success i{
+    width:64px;height:64px;
+    border-radius:50%;
+    background:rgba(74,222,128,.12);
+    color:#16a34a;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:1.6rem;
+    margin-bottom:18px;
+  }
+  .ct-form-success h3{
+    font-size:1.35rem;margin-bottom:10px;
+    color:var(--ink);
+  }
+  .ct-form-success p{
+    font-size:.9rem;color:var(--ink-3);
+    line-height:1.65;max-width:360px;margin:0 auto;
+  }
+
+  .ct-form-info{display:flex;flex-direction:column;gap:16px}
+  .ct-form-info-card{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:26px 24px;
+    display:flex;gap:16px;
+    transition:all .3s ease;
+    cursor:default;
+  }
+  .ct-form-info-card:hover{
+    border-color:#ded2f8;
+    background:#fff;
+    box-shadow:0 12px 30px rgba(26,22,37,.06);
+  }
+  .ct-form-info-icon{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:var(--violet-3);color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.95rem;flex-shrink:0;
+  }
+  .ct-form-info-body{flex:1;min-width:0}
+  .ct-form-info-body .label{
+    font-family:'Sora';font-size:.62rem;
+    font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    margin-bottom:5px;
+  }
+  .ct-form-info-body strong{
+    display:block;
+    font-family:'Sora';font-size:.94rem;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:4px;
+    overflow-wrap:break-word;
+  }
+  .ct-form-info-body a{
+    font-size:.82rem;
+    color:var(--violet);
+    font-weight:700;
+    transition:color .25s ease;
+    overflow-wrap:break-word;
+    word-break:break-word;
+  }
+  .ct-form-info-body a:hover{color:#6d28d9}
+
+  .ct-form-social{
+    padding-top:14px;
+    display:flex;gap:8px;flex-wrap:wrap;
+  }
+  .ct-form-social a{
+    width:40px;height:40px;
+    border-radius:10px;
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--ink-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;
+    transition:all .25s ease;
+  }
+  .ct-form-social a:hover{
+    background:var(--violet);
+    border-color:var(--violet);
+    color:#fff;
+    transform:translateY(-2px);
+  }
+
+  /* 03 — MAP */
+  .ct-map-grid{
+    display:grid;
+    grid-template-columns:1fr 1.35fr;
+    gap:56px;
+    align-items:stretch;
+  }
+  .ct-map-content{
+    display:flex;flex-direction:column;
+    justify-content:center;
+  }
+  .ct-map-content h2{
+    font-size:clamp(1.7rem,3.4vw,2.5rem);
+    line-height:1.1;letter-spacing:-.025em;
+    margin-bottom:18px;
+  }
+  .ct-map-content h2 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--violet);
+  }
+  .ct-map-content > p{
+    font-size:.95rem;
+    color:var(--ink-3);
+    line-height:1.78;
+    margin-bottom:26px;
+  }
+  .ct-map-address{
+    display:flex;flex-direction:column;gap:14px;
+    padding:22px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    margin-bottom:26px;
+  }
+  .ct-map-address-row{
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .ct-map-address-row i{
+    width:36px;height:36px;border-radius:10px;
+    background:var(--violet-3);color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.78rem;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .ct-map-address-row div strong{
+    display:block;
+    font-family:'Sora';font-size:.82rem;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .ct-map-address-row div span{
+    font-size:.82rem;
+    color:var(--ink-3);
+    line-height:1.5;
+  }
+  .ct-map-btns{display:flex;gap:12px;flex-wrap:wrap}
+  .ct-map-frame{
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow-hi);
+    background:var(--violet-3);
+    min-height:420px;
+  }
+  .ct-map-frame iframe{
+    display:block;
+    width:100%;height:100%;
+    min-height:420px;
+    border:0;
+  }
+  .ct-map-badge{
+    position:absolute;
+    top:20px;left:20px;
+    z-index:2;
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border:1px solid var(--border);
+    padding:8px 16px;border-radius:50px;
+    font-family:'Sora';font-size:.66rem;
+    font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;
+    color:var(--violet);
+    box-shadow:0 8px 22px rgba(26,22,37,.12);
+  }
+
+  /* 04 — QUICK CHANNELS */
+  .ct-channels-list{
+    display:flex;flex-direction:column;
+    border-top:1px solid var(--border);
+  }
+  .ct-channel-row{
+    display:grid;
+    grid-template-columns:56px 1fr auto 44px;
+    gap:24px;align-items:center;
+    padding:26px 8px;
+    border-bottom:1px solid var(--border);
+    transition:all .3s ease;
+    cursor:pointer;
+    text-decoration:none;
+    color:inherit;
+    min-width:0;
+  }
+  .ct-channel-row:hover{
+    padding-left:20px;
+    background:rgba(124,58,237,.03);
+  }
+  .ct-channel-icon{
+    width:56px;height:56px;
+    border-radius:14px;
+    background:var(--violet-3);color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;
+    transition:all .35s ease;
+    flex-shrink:0;
+  }
+  .ct-channel-row:hover .ct-channel-icon{
+    background:var(--violet);color:#fff;
+    transform:rotate(-6deg);
+  }
+  .ct-channel-body{
+    min-width:0;
+    overflow-wrap:break-word;
+  }
+  .ct-channel-body h3{
+    font-size:1.05rem;
+    margin-bottom:4px;
+    letter-spacing:-.015em;
+    transition:color .25s ease;
+  }
+  .ct-channel-row:hover .ct-channel-body h3{color:var(--violet)}
+  .ct-channel-body p{
+    font-size:.85rem;
+    color:var(--ink-3);
+    line-height:1.6;
+  }
+  .ct-channel-value{
+    font-family:'Sora';
+    font-size:.86rem;
+    font-weight:700;
+    color:var(--ink-2);
+    white-space:nowrap;
+  }
+  .ct-channel-arrow{
+    width:40px;height:40px;
+    border-radius:50%;
+    border:1.5px solid var(--border);
+    background:#fff;
+    color:var(--ink-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.72rem;
+    transition:all .3s ease;
+    flex-shrink:0;
+  }
+  .ct-channel-row:hover .ct-channel-arrow{
+    background:var(--violet);
+    border-color:var(--violet);
+    color:#fff;
+    transform:rotate(-45deg);
+  }
+
+  /* 05 — FAQ */
+  .ct-faq-wrap{
+    max-width:820px;margin:0 auto;
+  }
+  .ct-faq-item{
+    border-bottom:1px solid var(--border);
+  }
+  .ct-faq-item:first-child{
+    border-top:1px solid var(--border);
+  }
+  .ct-faq-q{
+    width:100%;
+    background:transparent;
+    border:none;
+    padding:26px 4px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    text-align:left;
+    cursor:pointer;
+    font-family:'Sora';
+    font-size:1.02rem;
+    font-weight:700;
+    letter-spacing:-.015em;
+    color:var(--ink);
+    transition:color .25s ease;
+  }
+  .ct-faq-q:hover{color:var(--violet)}
+  .ct-faq-item.is-open .ct-faq-q{color:var(--violet)}
+  .ct-faq-icon{
+    width:36px;height:36px;
+    border-radius:50%;
+    background:var(--violet-3);color:var(--violet);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.72rem;
+    flex-shrink:0;
+    transition:all .3s ease;
+  }
+  .ct-faq-item.is-open .ct-faq-icon{
+    background:var(--violet);
+    color:#fff;
+    transform:rotate(180deg);
+  }
+  .ct-faq-a-wrap{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s ease;
+  }
+  .ct-faq-item.is-open .ct-faq-a-wrap{
+    grid-template-rows:1fr;
+  }
+  .ct-faq-a{overflow:hidden}
+  .ct-faq-a p{
+    padding:0 4px 26px 4px;
+    font-size:.92rem;
+    color:var(--ink-3);
+    line-height:1.78;
+    max-width:680px;
+  }
+
+  /* 06 — OFFICES */
+  .ct-offices-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    margin-bottom:64px;
+  }
+  .ct-office{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:all .4s ease;
+    cursor:default;
+    min-width:0;
+  }
+  .ct-office:hover{
+    background:rgba(255,255,255,.07);
+    border-color:rgba(167,139,250,.5);
+    transform:translateY(-6px);
+    box-shadow:0 24px 60px rgba(0,0,0,.35);
+  }
+  .ct-office-img{
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:#2b2440;
+    position:relative;
+  }
+  .ct-office-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .8s ease;
+  }
+  .ct-office:hover .ct-office-img img{transform:scale(1.06)}
+  .ct-office-tag{
+    position:absolute;
+    top:14px;left:14px;
+    background:var(--violet);
+    color:#fff;
+    font-family:'Sora';font-size:.62rem;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;
+    padding:5px 12px;border-radius:50px;
+    z-index:2;
+    pointer-events:none;
+  }
+  .ct-office-body{
+    padding:26px 24px 24px;
+    display:flex;flex-direction:column;gap:14px;flex:1;
+    color:#fff;
+  }
+  .ct-office-body h3{
+    font-size:1.25rem;
+    letter-spacing:-.015em;
+    margin-bottom:2px;
+  }
+  .ct-office-body h3 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:var(--violet-2);
+  }
+  .ct-office-body > p{
+    font-size:.85rem;
+    color:#c7c1d6;
+    line-height:1.7;
+    flex:1;
+  }
+  .ct-office-meta{
+    display:flex;flex-direction:column;gap:8px;
+    padding:16px 0;
+    border-top:1px solid rgba(255,255,255,.1);
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .ct-office-meta-row{
+    display:flex;align-items:center;gap:10px;
+    font-size:.78rem;
+    color:#c7c1d6;
+  }
+  .ct-office-meta-row i{
+    color:var(--violet-2);
+    font-size:.72rem;
+    width:14px;flex-shrink:0;
+  }
+  .ct-office-meta-row span{
+    overflow-wrap:break-word;
+    word-break:break-word;
+    min-width:0;
+  }
+  .ct-office-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 20px;
+    border-radius:8px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    color:#fff;
+    font-family:'Sora';font-size:.78rem;
+    font-weight:700;
+    transition:all .3s ease;
+  }
+  .ct-office-btn:hover{
+    background:var(--violet);
+    border-color:var(--violet);
+    color:#fff;
+  }
+  .ct-offices-cta{
+    text-align:center;
+    padding-top:56px;
+    border-top:1px solid rgba(255,255,255,.14);
+    max-width:680px;margin:0 auto;
+  }
+  .ct-offices-cta h2{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    line-height:1.1;
+    letter-spacing:-.025em;
+    color:#fff;
+    margin-bottom:16px;
+  }
+  .ct-offices-cta h2 em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:var(--violet-2);
+  }
+  .ct-offices-cta p{
+    font-size:.95rem;
+    color:#c7c1d6;
+    line-height:1.75;
+    margin-bottom:28px;
+  }
+  .ct-offices-cta-btns{
+    display:flex;gap:14px;
+    justify-content:center;flex-wrap:wrap;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:1100px){
+    .ca-wrap{padding:0 24px}
+    .ct-hero{padding:60px 0 80px}
+    .ct-hero-grid{grid-template-columns:1fr;gap:56px}
+    .ct-hero-lead{max-width:100%}
+    .ct-hero-visual{max-width:480px;margin:0 auto}
+    .ct-hero-badge{left:0}
+    .ct-form-grid{grid-template-columns:1fr;gap:44px}
+    .ct-form-card{padding:36px 32px}
+    .ct-map-grid{grid-template-columns:1fr;gap:32px}
+    .ct-offices-grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media (max-width:860px){
+    .ct-channel-row{grid-template-columns:48px 1fr auto 40px;gap:18px}
+    .ct-channel-value{display:none}
+    .ct-channel-icon{width:48px;height:48px;font-size:.95rem}
+  }
+
+  @media (max-width:768px){
+    .ca-section{padding:80px 0}
+    .ca-wrap{padding:0 20px}
+    .ca-head{margin-bottom:44px;gap:20px}
+    .ct-hero{padding:50px 0 70px}
+    .ct-hero-copy h1{font-size:2.2rem}
+    .ct-hero-lead{font-size:.95rem}
+    .ct-hero-inline{margin-bottom:32px}
+    .ct-hero-inline-item{font-size:.78rem}
+    .ct-hero-btns{flex-direction:column;width:100%}
+    .ct-hero-btns .ca-btn{width:100%}
+    .ct-hero-visual{max-width:100%;padding-bottom:36px}
+    .ct-hero-badge{padding:10px 14px}
+    .ct-hero-badge-dot{width:32px;height:32px;font-size:.78rem}
+    .ct-hero-badge div strong{font-size:.76rem}
+    .ct-hero-badge div span{font-size:.6rem}
+    .ct-form-card{padding:30px 24px;border-radius:20px}
+    .ct-form-card h2{font-size:1.3rem}
+    .ct-form-card > p{font-size:.86rem;margin-bottom:24px}
+    .ct-form-row{grid-template-columns:1fr;gap:18px}
+    .ct-form-fields{gap:16px}
+    .ct-form-info-card{padding:22px 20px}
+    .ct-map-content h2{font-size:1.6rem}
+    .ct-map-content > p{font-size:.9rem}
+    .ct-map-frame{min-height:300px;border-radius:20px}
+    .ct-map-frame iframe{min-height:300px}
+    .ct-map-badge{top:14px;left:14px;padding:6px 12px;font-size:.58rem}
+    .ct-map-btns{flex-direction:column;width:100%}
+    .ct-map-btns .ca-btn{width:100%}
+    .ct-channel-row{grid-template-columns:44px 1fr 40px;gap:14px;padding:18px 4px}
+    .ct-channel-row:hover{padding-left:4px}
+    .ct-channel-icon{width:44px;height:44px;font-size:.9rem}
+    .ct-channel-body h3{font-size:.95rem}
+    .ct-channel-body p{font-size:.78rem}
+    .ct-faq-q{padding:20px 2px;font-size:.94rem;gap:14px}
+    .ct-faq-icon{width:32px;height:32px;font-size:.62rem}
+    .ct-faq-a p{font-size:.85rem;line-height:1.7;padding-bottom:20px}
+    .ct-offices-grid{grid-template-columns:1fr;gap:16px;margin-bottom:48px}
+    .ct-office-body{padding:22px 20px}
+    .ct-office-body h3{font-size:1.15rem}
+    .ct-offices-cta{padding-top:44px}
+    .ct-offices-cta h2{font-size:1.65rem}
+    .ct-offices-cta p{font-size:.88rem}
+    .ct-offices-cta-btns{flex-direction:column;width:100%}
+    .ct-offices-cta-btns .ca-btn{width:100%}
+  }
+
+  @media (max-width:480px){
+    .ca-section{padding:60px 0}
+    .ca-wrap{padding:0 16px}
+    .ct-hero{padding:40px 0 60px}
+    .ct-hero-copy h1{font-size:1.85rem;line-height:1.08}
+    .ct-hero-lead{font-size:.9rem;line-height:1.7;margin-bottom:26px}
+    .ct-hero-inline{padding-top:20px;gap:10px 18px;margin-bottom:26px}
+    .ct-hero-inline-item{font-size:.72rem;gap:8px}
+    .ct-hero-inline-item i{width:28px;height:28px;font-size:.68rem}
+    .ca-title{font-size:1.55rem}
+    .ca-sub{font-size:.9rem}
+    .ct-form-card{padding:26px 20px}
+    .ct-form-card h2{font-size:1.15rem}
+    .ct-form-card > p{font-size:.82rem}
+    .ct-field label{font-size:.66rem}
+    .ct-field input,
+    .ct-field select,
+    .ct-field textarea{padding:12px 14px;font-size:16px}
+    .ct-field textarea{min-height:100px}
+    .ct-form-submit{padding:14px 20px;font-size:.85rem}
+    .ct-form-info-card{padding:18px 16px;gap:12px}
+    .ct-form-info-icon{width:38px;height:38px;font-size:.85rem}
+    .ct-form-info-body strong{font-size:.86rem}
+    .ct-form-info-body a{font-size:.76rem}
+    .ct-form-social a{width:36px;height:36px;font-size:.78rem}
+    .ct-map-content h2{font-size:1.4rem}
+    .ct-map-content > p{font-size:.85rem}
+    .ct-map-address{padding:18px 0;margin-bottom:22px}
+    .ct-map-address-row i{width:32px;height:32px;font-size:.7rem}
+    .ct-map-address-row div strong{font-size:.76rem}
+    .ct-map-address-row div span{font-size:.78rem}
+    .ct-map-frame{min-height:260px}
+    .ct-map-frame iframe{min-height:260px}
+    .ct-channel-row{grid-template-columns:40px 1fr 36px;gap:12px;padding:16px 2px}
+    .ct-channel-icon{width:40px;height:40px;font-size:.82rem}
+    .ct-channel-body h3{font-size:.9rem}
+    .ct-channel-body p{font-size:.74rem;line-height:1.5}
+    .ct-channel-arrow{width:36px;height:36px;font-size:.62rem}
+    .ct-faq-q{padding:18px 2px;font-size:.88rem;gap:12px}
+    .ct-faq-icon{width:28px;height:28px;font-size:.55rem}
+    .ct-faq-a p{font-size:.8rem;line-height:1.65;padding-bottom:18px}
+    .ct-office-body{padding:20px 18px}
+    .ct-office-body h3{font-size:1.05rem}
+    .ct-office-body > p{font-size:.8rem}
+    .ct-office-meta-row{font-size:.72rem}
+    .ct-office-btn{padding:10px 16px;font-size:.74rem}
+    .ct-offices-cta h2{font-size:1.45rem}
+    .ct-offices-cta p{font-size:.82rem}
+  }
+
+  @media (max-width:380px){
+    .ca-wrap{padding:0 14px}
+    .ct-hero-copy h1{font-size:1.65rem}
+    .ca-title{font-size:1.35rem}
+    .ct-form-card{padding:22px 16px}
+    .ct-channel-row{grid-template-columns:36px 1fr 32px;gap:10px}
+    .ct-channel-icon{width:36px;height:36px;font-size:.75rem}
+    .ct-channel-body h3{font-size:.85rem}
+    .ct-channel-body p{font-size:.7rem}
+    .ct-channel-arrow{width:32px;height:32px;font-size:.58rem}
+    .ct-map-frame{min-height:220px}
+    .ct-map-frame iframe{min-height:220px}
+  }
+
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:var(--paper)}
+  ::-webkit-scrollbar-thumb{background:var(--violet-2);border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--violet)}
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- 01 — HERO -->
+<section class="ct-hero">
+  <div class="ca-wrap">
+    <div class="ct-hero-grid">
+
+      <div class="ct-hero-copy" data-aos="fade-right" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-paper-plane"></i> Contact The Studio</div>
+        <h1>Start a<br><em>conversation.</em></h1>
+        <p class="ct-hero-lead">
+          Have a project, an idea, or just a question? We reply to every message within two working days — often sooner. Tell us what you're building and we'll come back with an honest read on scope, timeline, and fit.
+        </p>
+
+        <div class="ct-hero-inline">
+          <div class="ct-hero-inline-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="404.html">hello@stacklyagency.com</a>
+          </div>
+          <div class="ct-hero-inline-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="404.html">987 654 3210</a>
+          </div>
+        </div>
+
+        <div class="ct-hero-btns">
+          <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-comments"></i> Send a Message</a>
+          <a href="404.html" class="ca-btn outline"><i class="fa-solid fa-location-dot"></i> Find the Studio</a>
+        </div>
+      </div>
+
+      <div class="ct-hero-visual" data-aos="fade-left" data-aos-duration="900">
+        <div class="ct-hero-img">
+          <img src="ca1.webp" alt="Studio team" loading="lazy">
+        </div>
+        <div class="ct-hero-badge">
+          <div class="ct-hero-badge-dot"><i class="fa-solid fa-comments"></i></div>
+          <div>
+            <strong>Available now</strong>
+            <span>Replying within 48h</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 02 — CONTACT FORM -->
+<section class="ca-section alt" id="contact-form">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-envelope"></i> Send a Message</div>
+        <h2 class="ca-title">Tell us about <span>your project.</span></h2>
+        <p class="ca-sub">Fill in the form below and we'll get back to you within two working days. No pitch decks, no sales calls — just an honest conversation.</p>
+      </div>
+    </div>
+
+    <div class="ct-form-grid">
+
+      <div class="ct-form-card" data-aos="fade-right" data-aos-duration="900">
+        <form id="contactForm" novalidate>
+          <div class="ct-form-content" id="ctFormContent">
+            <h2>Project enquiry</h2>
+            <p>Fields marked with <span style="color:var(--violet)">*</span> are required.</p>
+
+            <div class="ct-form-fields">
+
+              <div class="ct-form-row">
+                <div class="ct-field">
+                  <label for="ctName">Full name <span>*</span></label>
+                  <input type="text" id="ctName" name="name" placeholder="Your name" autocomplete="name" required>
+                  <div class="ct-field-error" id="ctNameError">Please enter your name.</div>
+                </div>
+
+                <div class="ct-field">
+                  <label for="ctEmail">Email <span>*</span></label>
+                  <input type="email" id="ctEmail" name="email" placeholder="you@company.com" autocomplete="email" required>
+                  <div class="ct-field-error" id="ctEmailError">Please enter a valid email address.</div>
+                </div>
+              </div>
+
+              <div class="ct-form-row">
+                <div class="ct-field">
+                  <label for="ctPhone">Phone <span>*</span></label>
+                  <input type="tel" id="ctPhone" name="phone" placeholder="555 123 4567" autocomplete="tel" required>
+                  <div class="ct-field-error" id="ctPhoneError">Please enter a valid 10-digit phone number.</div>
+                </div>
+
+                <div class="ct-field">
+                  <label for="ctSubject">Subject <span>*</span></label>
+                  <select id="ctSubject" name="subject" required>
+                    <option value="">Choose one…</option>
+                    <option value="project">New project enquiry</option>
+                    <option value="existing">Existing project</option>
+                    <option value="retainer">Retainer / partnership</option>
+                    <option value="careers">Careers</option>
+                    <option value="press">Press &amp; media</option>
+                    <option value="other">Something else</option>
+                  </select>
+                  <div class="ct-field-error" id="ctSubjectError">Please select a subject.</div>
+                </div>
+              </div>
+
+              <div class="ct-field">
+                <label for="ctMessage">Message <span>*</span></label>
+                <textarea id="ctMessage" name="message" placeholder="Tell us what you're building, what timeline you're working to, and anything else that helps us understand the project." required></textarea>
+                <div class="ct-field-error" id="ctMessageError">Please add a short message (at least 15 characters).</div>
+              </div>
+
+              <button type="submit" class="ct-form-submit" id="ctSubmit">
+                Send Message <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+              <div class="ct-form-note">
+                <i class="fa-solid fa-lock"></i>
+                Your details stay private. No newsletters, no third parties.
+              </div>
+
+            </div>
+          </div>
+
+          <div class="ct-form-success" id="ctFormSuccess">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>Message sent!</h3>
+            <p>Thanks for reaching out. We'll reply within two working days — check your inbox.</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="ct-form-info" data-aos="fade-left" data-aos-duration="900">
+
+        <div class="ct-form-info-card">
+          <div class="ct-form-info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="ct-form-info-body">
+            <div class="label">Email</div>
+            <strong>General enquiries</strong>
+            <a href="404.html">hello@stacklyagency.com</a>
+          </div>
+        </div>
+
+        <div class="ct-form-info-card">
+          <div class="ct-form-info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="ct-form-info-body">
+            <div class="label">Phone</div>
+            <strong>Mon–Fri, 9–18 GMT</strong>
+            <a href="404.html">987 654 3210</a>
+          </div>
+        </div>
+
+        <div class="ct-form-info-card">
+          <div class="ct-form-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="ct-form-info-body">
+            <div class="label">Studio</div>
+            <strong>Head office</strong>
+            <a href="404.html">22 Studio Lane, Design District</a>
+          </div>
+        </div>
+
+        <div class="ct-form-info-card">
+          <div class="ct-form-info-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="ct-form-info-body">
+            <div class="label">Response time</div>
+            <strong>Within 48 hours</strong>
+            <a href="404.html">Send us a message</a>
+          </div>
+        </div>
+
+        <div class="ct-form-social">
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="404.html" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="404.html" aria-label="Behance"><i class="fab fa-behance"></i></a>
+          <a href="404.html" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 — MAP -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ct-map-grid">
+
+      <div class="ct-map-content" data-aos="fade-right" data-aos-duration="900">
+        <div class="ca-tag"><i class="fa-solid fa-map-location-dot"></i> Find Us</div>
+        <h2>Our studio is in<br>the <em>design district.</em></h2>
+        <p>
+          The best way to start a conversation is over coffee. Our studio is open to visitors by appointment — drop us a message and we'll set a time.
+        </p>
+
+        <div class="ct-map-address">
+          <div class="ct-map-address-row">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Studio address</strong>
+              <span>22 Studio Lane, Design District, London EC2A 4NE</span>
+            </div>
+          </div>
+          <div class="ct-map-address-row">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <strong>Opening hours</strong>
+              <span>Mon–Fri · 9:00 – 18:00 GMT · By appointment</span>
+            </div>
+          </div>
+          <div class="ct-map-address-row">
+            <i class="fa-solid fa-train"></i>
+            <div>
+              <strong>Getting here</strong>
+              <span>5 min from Old Street · 8 min from Liverpool Street</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ct-map-btns">
+          <a href="404.html" class="ca-btn violet">
+            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+          </a>
+          <a href="404.html" class="ca-btn outline">
+            <i class="fa-solid fa-calendar"></i> Book a Visit
+          </a>
+        </div>
+      </div>
+
+      <div class="ct-map-frame" data-aos="fade-left" data-aos-duration="900">
+        <span class="ct-map-badge"><i class="fa-solid fa-location-dot"></i> Studio HQ</span>
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.0865%2C51.5215%2C-0.0685%2C51.5275&layer=mapnik&marker=51.5245%2C-0.0775"
+          loading="lazy"
+          title="Studio location map"></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 — QUICK CHANNELS -->
+<section class="ca-section alt">
+  <div class="ca-wrap">
+    <div class="ca-head" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-bolt"></i> Quick Channels</div>
+        <h2 class="ca-title">Other ways to <span>reach us.</span></h2>
+        <p class="ca-sub">Every channel goes straight to the studio — no call centres, no bots.</p>
+      </div>
+    </div>
+
+    <div class="ct-channels-list">
+
+      <a href="404.html" class="ct-channel-row" data-aos="fade-up">
+        <div class="ct-channel-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="ct-channel-body">
+          <h3>Email us</h3>
+          <p>Best for detailed briefs and project enquiries</p>
+        </div>
+        <span class="ct-channel-value">hello@stacklyagency.com</span>
+        <div class="ct-channel-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <a href="404.html" class="ct-channel-row" data-aos="fade-up" data-aos-delay="60">
+        <div class="ct-channel-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="ct-channel-body">
+          <h3>Call the studio</h3>
+          <p>Mon–Fri, 9–18 GMT · Talk to a real human</p>
+        </div>
+        <span class="ct-channel-value">987 654 3210</span>
+        <div class="ct-channel-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <a href="404.html" class="ct-channel-row" data-aos="fade-up" data-aos-delay="120">
+        <div class="ct-channel-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="ct-channel-body">
+          <h3>WhatsApp</h3>
+          <p>Quick questions, file shares, and voice notes</p>
+        </div>
+        <span class="ct-channel-value">Message us</span>
+        <div class="ct-channel-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <a href="404.html" class="ct-channel-row" data-aos="fade-up" data-aos-delay="180">
+        <div class="ct-channel-icon"><i class="fa-solid fa-calendar"></i></div>
+        <div class="ct-channel-body">
+          <h3>Book a call</h3>
+          <p>Schedule a 30-min intro call with the team</p>
+        </div>
+        <span class="ct-channel-value">Book 30 minutes</span>
+        <div class="ct-channel-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 05 — FAQ -->
+<section class="ca-section">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-circle-question"></i> Common Questions</div>
+        <h2 class="ca-title">Before you <span>get in touch.</span></h2>
+        <p class="ca-sub">The questions we get most often. If yours isn't here, ask us directly — we always reply.</p>
+      </div>
+    </div>
+
+    <div class="ct-faq-wrap" data-aos="fade-up" data-aos-delay="80">
+
+      <div class="ct-faq-item is-open">
+        <button class="ct-faq-q" aria-expanded="true">
+          How quickly will you reply?
+          <span class="ct-faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="ct-faq-a-wrap">
+          <div class="ct-faq-a">
+            <p>Within two working days, usually sooner. If you have a deadline and need a faster reply, mention it in your message and we'll prioritise.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-faq-item">
+        <button class="ct-faq-q" aria-expanded="false">
+          What's your typical project size?
+          <span class="ct-faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="ct-faq-a-wrap">
+          <div class="ct-faq-a">
+            <p>Most of our work runs from $12K to $80K depending on scope. Small sprints start lower, larger identity + digital projects can go higher. We're always happy to scope something bespoke.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-faq-item">
+        <button class="ct-faq-q" aria-expanded="false">
+          Do you work with clients outside your timezone?
+          <span class="ct-faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="ct-faq-a-wrap">
+          <div class="ct-faq-a">
+            <p>Yes — roughly half our clients are outside the UK. We schedule working sessions around your timezone and use async tools for everything else.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-faq-item">
+        <button class="ct-faq-q" aria-expanded="false">
+          Can we start with a small project?
+          <span class="ct-faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="ct-faq-a-wrap">
+          <div class="ct-faq-a">
+            <p>Absolutely. Many clients start with a two or three week sprint to test the working relationship before committing to a larger engagement. We think that's a good idea.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-faq-item">
+        <button class="ct-faq-q" aria-expanded="false">
+          What does your process look like?
+          <span class="ct-faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="ct-faq-a-wrap">
+          <div class="ct-faq-a">
+            <p>Four phases on every project: Discover, Design, Build, Launch. Each phase has clear deliverables and a sign-off point, so you always know what's happening and what comes next.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-faq-item">
+        <button class="ct-faq-q" aria-expanded="false">
+          Do you offer design support after launch?
+          <span class="ct-faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="ct-faq-a-wrap">
+          <div class="ct-faq-a">
+            <p>Yes — every project includes one month of post-launch support. After that, most clients move to a monthly retainer or per-request arrangement.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 06 — OFFICES -->
+<section class="ca-section dark" id="offices">
+  <div class="ca-wrap">
+    <div class="ca-head center" data-aos="fade-up">
+      <div>
+        <div class="ca-tag"><i class="fa-solid fa-building"></i> Our Studios</div>
+        <h2 class="ca-title">Three cities.<br><em style="color:var(--violet-2)">One studio.</em></h2>
+        <p class="ca-sub">Three locations across Europe and the US, one senior team. Drop by any of them — by appointment.</p>
+      </div>
+    </div>
+
+    <div class="ct-offices-grid">
+
+      <div class="ct-office" data-aos="fade-up">
+        <div class="ct-office-img">
+          <span class="ct-office-tag"><i class="fa-solid fa-star"></i> Head Office</span>
+          <img src="ca2.webp" alt="London studio" loading="lazy">
+        </div>
+        <div class="ct-office-body">
+          <h3>London <em>HQ</em></h3>
+          <p>Our original studio and the team that started it all. Home to the design, strategy, and dev teams.</p>
+          <div class="ct-office-meta">
+            <div class="ct-office-meta-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>22 Studio Lane, Design District, EC2A 4NE</span>
+            </div>
+            <div class="ct-office-meta-row">
+              <i class="fa-solid fa-phone"></i>
+              <span>207 946 0958</span>
+            </div>
+          </div>
+          <a href="404.html" class="ct-office-btn">
+            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+          </a>
+        </div>
+      </div>
+
+      <div class="ct-office" data-aos="fade-up" data-aos-delay="80">
+        <div class="ct-office-img">
+          <span class="ct-office-tag"><i class="fa-solid fa-building"></i> Berlin</span>
+          <img src="ca3.webp" alt="Berlin studio" loading="lazy">
+        </div>
+        <div class="ct-office-body">
+          <h3>Berlin <em>Studio</em></h3>
+          <p>Our European base for DACH clients. Home to the motion and 3D practice.</p>
+          <div class="ct-office-meta">
+            <div class="ct-office-meta-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Prinzenstraße 84, 10969 Berlin</span>
+            </div>
+            <div class="ct-office-meta-row">
+              <i class="fa-solid fa-phone"></i>
+              <span>301 234 5678</span>
+            </div>
+          </div>
+          <a href="404.html" class="ct-office-btn">
+            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+          </a>
+        </div>
+      </div>
+
+      <div class="ct-office" data-aos="fade-up" data-aos-delay="160">
+        <div class="ct-office-img">
+          <span class="ct-office-tag"><i class="fa-solid fa-building"></i> New York</span>
+          <img src="ca4.webp" alt="New York studio" loading="lazy">
+        </div>
+        <div class="ct-office-body">
+          <h3>New York <em>Studio</em></h3>
+          <p>Our US base for North American clients. Home to the content and strategy teams.</p>
+          <div class="ct-office-meta">
+            <div class="ct-office-meta-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>120 Bowery, New York, NY 10013</span>
+            </div>
+            <div class="ct-office-meta-row">
+              <i class="fa-solid fa-phone"></i>
+              <span>212 555 0142</span>
+            </div>
+          </div>
+          <a href="404.html" class="ct-office-btn">
+            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ct-offices-cta" data-aos="fade-up">
+      <h2>Ready to <em>work together?</em></h2>
+      <p>Tell us what you're building. We'll come back within two working days with an honest read on scope, timeline, and fit.</p>
+      <div class="ct-offices-cta-btns">
+        <a href="404.html" class="ca-btn violet"><i class="fa-solid fa-comments"></i> Start a Project</a>
+        <a href="404.html" class="ca-btn ghost"><i class="fa-solid fa-envelope"></i> Email the Studio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  AOS.init({
+    duration: 800,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 60,
+    disable: function () { return window.innerWidth < 480; }
+  });
+
+  /* FAQ ACCORDION */
+  const faqItems = document.querySelectorAll('.ct-faq-item');
+  faqItems.forEach(item => {
+    const q = item.querySelector('.ct-faq-q');
+    if (!q) return;
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+      faqItems.forEach(i => {
+        i.classList.remove('is-open');
+        const btn = i.querySelector('.ct-faq-q');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        q.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* CONTACT FORM VALIDATION */
+  const form       = document.getElementById('contactForm');
+  const formContent = document.getElementById('ctFormContent');
+  const formSuccess = document.getElementById('ctFormSuccess');
+  const submitBtn   = document.getElementById('ctSubmit');
+
+  const nameInput  = document.getElementById('ctName');
+  const emailInput = document.getElementById('ctEmail');
+  const phoneInput = document.getElementById('ctPhone');
+  const subjectInput = document.getElementById('ctSubject');
+  const messageInput = document.getElementById('ctMessage');
+
+  const nameErr    = document.getElementById('ctNameError');
+  const emailErr   = document.getElementById('ctEmailError');
+  const phoneErr   = document.getElementById('ctPhoneError');
+  const subjectErr = document.getElementById('ctSubjectError');
+  const messageErr = document.getElementById('ctMessageError');
+
+  function clearError(input, errorEl) {
+    if (!input || !errorEl) return;
+    input.classList.remove('error');
+    errorEl.classList.remove('show');
+  }
+  function setError(input, errorEl, message) {
+    if (!input || !errorEl) return;
+    input.classList.add('error');
+    if (message) errorEl.textContent = message;
+    errorEl.classList.add('show');
+  }
+
+  if (nameInput) {
+    nameInput.addEventListener('input', () => {
+      const cleaned = nameInput.value.replace(/[^A-Za-z\s'.-]/g, '');
+      if (cleaned !== nameInput.value) nameInput.value = cleaned;
+      clearError(nameInput, nameErr);
+    });
+  }
+  if (emailInput) emailInput.addEventListener('input', () => clearError(emailInput, emailErr));
+
+  /* Live-strip phone non-digits + enforce max 10 digits */
+  if (phoneInput) {
+    phoneInput.addEventListener('input', () => {
+      const digitsOnly = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+      if (digitsOnly !== phoneInput.value.replace(/\D/g, '')) {
+        phoneInput.value = digitsOnly;
+      } else if (phoneInput.value !== digitsOnly) {
+        phoneInput.value = digitsOnly;
+      }
+      clearError(phoneInput, phoneErr);
+    });
+  }
+
+  if (subjectInput) subjectInput.addEventListener('change', () => clearError(subjectInput, subjectErr));
+  if (messageInput) messageInput.addEventListener('input', () => clearError(messageInput, messageErr));
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let isValid = true;
+
+      const nameVal = nameInput.value.trim();
+      if (!nameVal || nameVal.length < 2 || !/^[A-Za-z\s'.-]+$/.test(nameVal)) {
+        setError(nameInput, nameErr, 'Please enter your name (letters only).');
+        isValid = false;
+      }
+
+      const emailVal = emailInput.value.trim();
+      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        setError(emailInput, emailErr, 'Please enter a valid email address.');
+        isValid = false;
+      }
+
+      /* Phone must be exactly 10 digits */
+      const phoneDigits = phoneInput.value.replace(/\D/g, '');
+      if (phoneDigits.length !== 10) {
+        setError(phoneInput, phoneErr, 'Please enter exactly 10 digits.');
+        isValid = false;
+      }
+
+      if (!subjectInput.value) {
+        setError(subjectInput, subjectErr, 'Please choose a subject.');
+        isValid = false;
+      }
+
+      const messageVal = messageInput.value.trim();
+      if (!messageVal || messageVal.length < 15) {
+        setError(messageInput, messageErr, 'Please write at least 15 characters.');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        const firstError = form.querySelector('.ct-field input.error, .ct-field select.error, .ct-field textarea.error');
+        if (firstError) {
+          firstError.focus({ preventScroll: false });
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending… <i class="fa-solid fa-spinner fa-spin"></i>';
+
+      setTimeout(() => {
+        if (formContent) formContent.style.display = 'none';
+        if (formSuccess) formSuccess.classList.add('show');
+        setTimeout(() => {
+          window.location.href = '404.html';
+        }, 2500);
+      }, 800);
+    });
+  }
+
+  fetch('header.html')
+    .then(r => r.ok ? r.text() : Promise.reject('Header not found'))
+    .then(d => {
+      document.getElementById('header-placeholder').innerHTML = d;
+      initHeader();
+      AOS.refresh();
+    })
+    .catch(err => console.error('Header load failed:', err));
+
+  fetch('footer.html')
+    .then(r => r.ok ? r.text() : Promise.reject('Footer not found'))
+    .then(d => {
+      document.getElementById('footer-placeholder').innerHTML = d;
+      if (typeof initFooter === 'function') initFooter();
+      AOS.refresh();
+    })
+    .catch(err => console.error('Footer load failed:', err));
+
+  function initHeader() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      document.addEventListener('click', function (e) {
+        if (mobileMenu.classList.contains('active')) {
+          if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+    }
+  }
+
+  window.handleLogout = function (e) {
+    if (e) e.preventDefault();
+    try {
+      sessionStorage.removeItem('stackly_session');
+      localStorage.removeItem('stackly_session');
+    } catch (err) {}
+    window.location.replace('login.html');
+  };
+
+  console.log('✦ Stackly — contact page ready');
+});
+</script>
+
+</body>
+</html>

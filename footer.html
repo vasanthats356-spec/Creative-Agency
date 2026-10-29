@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <title>Creative Agency — Footer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    /* ============================================================
+       STACKLY CREATIVE AGENCY — LIGHT FOOTER
+       Page     #FAF7F2  (warm paper)
+       Footer   #FFFFFF  (pure white)
+       Text     #1A1625  (deep ink — text AND icons)
+       Accent   #7C3AED  (electric violet)
+       Accent s #A78BFA  (soft violet)
+       Border   #EBE6DD  (warm hairline)
+       ============================================================ */
+    :root {
+      --paper: #faf7f2;
+      --white: #ffffff;
+      --ink: #1a1625;
+      --violet: #7c3aed;
+      --violet-soft: #a78bfa;
+      --border: #ebe6dd;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== DUMMY CONTENT (remove in real page) ===== */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+    }
+
+    .main-content h1 {
+      color: var(--ink);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--white);
+      border-top: 2px solid var(--violet);
+      padding: 60px 32px 30px;
+      margin-top: auto;
+      width: 100%;
+      box-shadow: 0 -2px 16px rgba(26, 22, 37, 0.03);
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* ===== COLUMN 1: Logo + Description + Social ===== */
+    .footer-brand .logo-section {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+      margin-bottom: 16px;
+      transition: opacity 0.25s ease;
+    }
+
+    .footer-brand .logo-section:hover {
+      opacity: 0.85;
+    }
+
+    .footer-brand .logo-img {
+      height: 65px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-brand p {
+      color: var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 320px;
+      opacity: 0.75;
+    }
+
+    .footer-brand p .highlight {
+      color: var(--ink);
+      font-weight: 700;
+      opacity: 1;
+    }
+
+    /* ===== SOCIAL ICONS (4: YouTube, X, Instagram, LinkedIn) ===== */
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .social-icons a:hover {
+      background: var(--violet);
+      border-color: var(--violet);
+      color: #ffffff;
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.28);
+    }
+
+    /* ===== FOOTER HEADINGS — FULL UNDERLINE ===== */
+    .footer-heading {
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 0.4px;
+      position: relative;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--violet);
+      width: 100%;
+      text-transform: uppercase;
+    }
+
+    /* ===== LINK LISTS ===== */
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links li a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.93rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.78;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    /* Quick Links — bold text */
+    .footer-links.footer-links-bold li a {
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    /* ⬇ Nav-style icons: same as navbar, black at rest */
+    .footer-links li a i {
+      font-size: 0.85rem;
+      width: 18px;
+      text-align: center;
+      color: var(--ink);
+      transition: all 0.25s ease;
+    }
+
+    .footer-links li a:hover {
+      color: var(--violet);
+      transform: translateX(6px);
+      opacity: 1;
+      border-bottom-color: var(--violet);
+    }
+
+    .footer-links li a:hover i {
+      color: var(--violet);
+      transform: translateX(2px);
+    }
+
+    /* ===== CONTACT INFO ===== */
+    .footer-contact {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--ink);
+      font-size: 0.93rem;
+      font-weight: 500;
+      opacity: 0.78;
+      line-height: 1.55;
+    }
+
+    .footer-contact li i {
+      width: 20px;
+      color: var(--ink);
+      font-size: 0.95rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+      transition: color 0.25s ease;
+    }
+
+    .footer-contact li a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    .footer-contact li:hover i {
+      color: var(--violet);
+    }
+
+    .footer-contact li a:hover {
+      color: var(--violet);
+      border-bottom-color: var(--violet);
+    }
+
+    /* ===== FOOTER BOTTOM ===== */
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 44px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      color: var(--ink);
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .footer-bottom p strong {
+      color: var(--ink);
+      opacity: 1;
+      font-weight: 700;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      transition: all 0.25s ease;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    .footer-bottom-links a:hover {
+      opacity: 1;
+      color: var(--violet);
+      border-bottom-color: var(--violet);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+      }
+
+      .footer-brand p {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer {
+        padding: 40px 20px 20px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-brand .logo-img {
+        height: 55px;
+      }
+
+      .footer-heading {
+        font-size: 0.95rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .footer-bottom-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .social-icons {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .footer-brand .logo-img {
+        height: 48px;
+      }
+
+      .footer-heading {
+        font-size: 0.9rem;
+      }
+
+      .footer-links li a,
+      .footer-contact li {
+        font-size: 0.85rem;
+      }
+
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- COLUMN 1: Logo + Description + Social Icons -->
+      <div class="footer-brand">
+        <a href="index.html" class="logo-section">
+          <img src="stacklylogo.webp" alt="Stackly Creative Agency" class="logo-img">
+        </a>
+        <p>
+          <span class="highlight">Ideas that move brands forward.</span>
+          We're a full-service creative studio building identities, digital experiences, and campaigns that people remember.
+        </p>
+        <div class="social-icons">
+          <a href="404.html" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="404.html" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- COLUMN 2: Quick Links — icons match navbar -->
+      <div>
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links footer-links-bold">
+          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="work.html"><i class="fas fa-briefcase"></i> Work</a></li>
+          <li><a href="services.html"><i class="fas fa-wand-magic-sparkles"></i> Services</a></li>
+          <li><a href="about.html"><i class="fas fa-circle-info"></i> About</a></li>
+          <li><a href="blog.html"><i class="fas fa-pen-nib"></i> Blog</a></li>
+          <li><a href="contact.html"><i class="fas fa-paper-plane"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 3: What We Do (all to 404.html) -->
+      <div>
+        <h3 class="footer-heading">What We Do</h3>
+        <ul class="footer-links">
+          <li><a href="404.html"><i class="fas fa-fingerprint"></i> Brand Identity</a></li>
+          <li><a href="404.html"><i class="fas fa-laptop-code"></i> Web &amp; Digital Design</a></li>
+          <li><a href="404.html"><i class="fas fa-bullhorn"></i> Creative Campaigns</a></li>
+          <li><a href="404.html"><i class="fas fa-film"></i> Motion &amp; Illustration</a></li>
+          <li><a href="404.html"><i class="fas fa-feather-pointed"></i> Content &amp; Copywriting</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 4: Contact Info (all to 404.html) -->
+      <div>
+        <h3 class="footer-heading">Get In Touch</h3>
+        <ul class="footer-contact">
+          <li><i class="fas fa-location-dot"></i> <a href="404.html">22 Studio Lane, Design District</a></li>
+          <li><i class="fas fa-phone"></i> <a href="404.html">+1 987 654 321</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="404.html">hello@stacklyagency.com</a></li>
+          <li><i class="fas fa-clock"></i> <a href="404.html">Mon – Fri: 9:00 AM – 6:00 PM</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ===== FOOTER BOTTOM ===== -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong>Stackly Creative Agency</strong>. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Cookie Policy</a>
+        <a href="404.html">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
